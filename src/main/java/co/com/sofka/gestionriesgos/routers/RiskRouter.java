@@ -1,2 +1,4 @@
-package co.com.sofka.gestionriesgos.routers;public class RiskRouter {
+package co.com.sofka.gestionriesgos.routers;
+
+public class RiskRouter {
 }

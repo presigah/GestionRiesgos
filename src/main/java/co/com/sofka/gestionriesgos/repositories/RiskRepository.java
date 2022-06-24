@@ -1,2 +1,4 @@
-package co.com.sofka.gestionriesgos.repositories;public interface RiskRepository {
+package co.com.sofka.gestionriesgos.repositories;
+
+public interface RiskRepository {
 }

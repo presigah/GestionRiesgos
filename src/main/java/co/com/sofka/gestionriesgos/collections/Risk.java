@@ -1,2 +1,4 @@
-package co.com.sofka.gestionriesgos.collections;public class Risk {
+package co.com.sofka.gestionriesgos.collections;
+
+public class Risk {
 }
