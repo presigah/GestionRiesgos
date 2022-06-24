@@ -1,2 +1,4 @@
-package co.com.sofka.gestionriesgos.mappers;public class RiskMapper {
+package co.com.sofka.gestionriesgos.mappers;
+
+public class RiskMapper {
 }
