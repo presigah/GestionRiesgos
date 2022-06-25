@@ -1,6 +1,7 @@
 package co.com.sofka.gestionriesgos.usercases;
 
 import co.com.sofka.gestionriesgos.mappers.ProjectMapper;
+import co.com.sofka.gestionriesgos.mappers.RiskMapper;
 import co.com.sofka.gestionriesgos.model.ProjectDTO;
 import co.com.sofka.gestionriesgos.repositories.ProjectRepository;
 import co.com.sofka.gestionriesgos.repositories.RiskRepository;
@@ -17,11 +18,13 @@ public class GetProjectUseCase implements Function<String, Mono<ProjectDTO>> {
     private final ProjectRepository projectRepository;
     private final RiskRepository riskRepository;
     private final ProjectMapper projectMapper;
+    private final RiskMapper riskMapper;
 
-    public GetProjectUseCase(ProjectRepository projectRepository, RiskRepository riskRepository, ProjectMapper projectMapper) {
+    public GetProjectUseCase(ProjectRepository projectRepository, RiskRepository riskRepository, ProjectMapper projectMapper, RiskMapper riskMapper) {
         this.projectRepository = projectRepository;
         this.riskRepository = riskRepository;
         this.projectMapper = projectMapper;
+        this.riskMapper = riskMapper;
     }
 
     @Override
@@ -35,12 +38,9 @@ public class GetProjectUseCase implements Function<String, Mono<ProjectDTO>> {
     private Function<ProjectDTO, Mono<ProjectDTO>> mapProjectAggregate() {
         return projectDTO ->
                 Mono.just(projectDTO).zipWith(
-                        riskRepository.findAllByProjectId(projectDTO.getId())
-                                .map(projectMapper.EntityToProjeDTO())
-                                .collectList(),
-                        (question, answers) -> {
-                            question.setAnswers(answers);
-                            return question;
+                        riskRepository.findAllByProjectId(projectDTO.getId()).map(riskMapper.RiskToRiskDTO()).collectList(), (project, risks) -> {
+                            project.setRisks(risks);
+                            return project;
                         }
                 );
     }

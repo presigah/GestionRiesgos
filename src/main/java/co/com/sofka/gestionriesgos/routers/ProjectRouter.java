@@ -3,6 +3,7 @@ package co.com.sofka.gestionriesgos.routers;
 import co.com.sofka.gestionriesgos.model.ProjectDTO;
 import co.com.sofka.gestionriesgos.usercases.CreateProjectUseCase;
 import co.com.sofka.gestionriesgos.usercases.GetAllProjectsUseCase;
+import co.com.sofka.gestionriesgos.usercases.GetProjectUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -41,16 +42,16 @@ public class ProjectRouter {
                 .body(BodyInserters.fromPublisher(getAllProjectsUseCase.get(),ProjectDTO.class)));
     }
 
-    //Obtenr un proyecto por id
+    //Obtener un proyecto por su id
     @Bean
-    public RouterFunction<ServerResponse> get(GetUseCase getUseCase) {
+    public RouterFunction<ServerResponse> getById(GetProjectUseCase getProjectUseCase) {
         return route(
-                GET("/get/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                GET("/getProject/{id}").and(accept(MediaType.APPLICATION_JSON)),
                 request -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
-                        .body(BodyInserters.fromPublisher(getUseCase.apply(
+                        .body(BodyInserters.fromPublisher(getProjectUseCase.apply(
                                         request.pathVariable("id")),
-                                QuestionDTO.class
+                                ProjectDTO.class
                         ))
         );
     }
