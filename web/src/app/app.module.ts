@@ -3,11 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RiesgosComponent } from './riesgos/riesgos.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ProyectFormComponent } from './forms/proyect-form/proyect-form.component';
 import { RiskFormComponent } from './forms/risk-form/risk-form.component';
+import { RiskTableComponent } from './risk-table/risk-table.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,7 @@ import { RiskFormComponent } from './forms/risk-form/risk-form.component';
     SidebarComponent,
     ProyectFormComponent,
     RiskFormComponent,
-    RiesgosComponent,
+    RiskTableComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FontAwesomeModule],
   providers: [],

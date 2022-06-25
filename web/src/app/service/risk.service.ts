@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class RiesgosService {
+export class RiskService {
   constructor() {}
 
   //se crea servicio de prueba
