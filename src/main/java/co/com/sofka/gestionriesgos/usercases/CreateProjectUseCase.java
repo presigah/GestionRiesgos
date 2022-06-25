@@ -26,11 +26,4 @@ public class CreateProjectUseCase implements Function<ProjectDTO, Mono<String>> 
                 .map(Project::getId);
     }
 
-
-//    @Override
-//    public Mono<String> apply(ProjectDTO newProject){
-//        return projectRepository.save(projectMapper.mapperToProject(null).apply(newProject)).map(Project::getId);
-//    }
-
-
 }
