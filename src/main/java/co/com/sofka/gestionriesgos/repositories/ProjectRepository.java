@@ -1,4 +1,8 @@
 package co.com.sofka.gestionriesgos.repositories;
 
-public interface ProjectRepository {
+import co.com.sofka.gestionriesgos.collections.Project;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
+
+public interface ProjectRepository extends ReactiveCrudRepository<Project, String> {
+
 }
