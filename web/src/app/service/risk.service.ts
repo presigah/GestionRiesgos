@@ -8,13 +8,13 @@ export class RiskService {
 
   //se crea servicio de prueba
 
-  traerRiesgos() {
+  getAll() {
     return [
       {
         id: '62a68211957b637d63566901',
         idProyecto: '62a68211957b637d63566901',
         nombreProyecto: 'nombreProyecto',
-        nombreRiesgo: 'nombreRiesgo',
+        nombreRiesgo: 'Fallas en el sistema',
         fechaDetencion: '12/12/2021',
         fechaCierre: '12/24/2021',
         etiqueta: 'etiqueta',
@@ -41,7 +41,7 @@ export class RiskService {
         id: '62a6964bb88b437b1dfe1503',
         idProyecto: '62a6964bbdsd437b1dfe1503',
         nombreProyecto: 'nombreProyecto2',
-        nombreRiesgo: 'nombreRiesgo2',
+        nombreRiesgo: 'Retrasos en la entrega',
         fechaDetencion: '12/12/2021',
         fechaCierre: '12/24/2021',
         etiqueta: 'etiqueta',

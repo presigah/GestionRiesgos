@@ -1,9 +1,8 @@
-<table class="table">
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Id riesgo</th>
       <th>Nombre del riesgo</th>
-      <th>Nombre del rieso</th>
       <th>Fecha de detección</th>
       <th>Fecha de cierre</th>
       <th>Estado del riesgo</th>
@@ -11,6 +10,21 @@
       <th>Categoría</th>
       <th>Tipo de riesgo</th>
       <th>Valor de criticidad</th>
+      <th>Acciones</th>
     </tr>
   </thead>
+  <tbody>
+    <tr *ngFor="let risk of risks">
+      <td>{{ risk.id }}</td>
+      <td>{{ risk.nombreRiesgo }}</td>
+      <td>{{ risk.fechaDetencion }}</td>
+      <td>{{ risk.fechaCierre }}</td>
+      <td>{{ risk.estado }}</td>
+      <td>{{ risk.audiencia }}</td>
+      <td>{{ risk.categoria }}</td>
+      <td>{{ risk.tipo }}</td>
+      <td>{{ risk.criticidad }}</td>
+      <td><button class="btn btn-primary">ver</button></td>
+    </tr>
+  </tbody>
 </table>
