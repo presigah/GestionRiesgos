@@ -2,25 +2,27 @@ package co.com.sofka.gestionriesgos.mappers;
 
 import co.com.sofka.gestionriesgos.collections.Project;
 import co.com.sofka.gestionriesgos.model.ProjectDTO;
+import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
-
+@Component
 public class ProjectMapper {
 
-    public Function<ProjectDTO, Project> toProject(){
-        return newProject -> {
+    public Function<ProjectDTO, Project> mapperToProject(String id){
+        return updatePorject -> {
             var project = new Project();
-            project.setName(newProject.getName());
-            project.setStartDate(newProject.getStartDate());
-            project.setEndingDate(newProject.getEndingDate());
-            project.setLabels(newProject.getLabels());
-            project.setEmails(newProject.getEmails());
-            project.setDescription(newProject.getDescription());
+            project.setId(id);
+            project.setName(updatePorject.getName());
+            project.setStartDate(updatePorject.getStartDate());
+            project.setEndingDate(updatePorject.getEndingDate());
+            project.setLabels(updatePorject.getLabels());
+            project.setEmails(updatePorject.getEmails());
+            project.setDescription(updatePorject.getDescription());
             return project;
         };
     }
 
-    public Function<Project, ProjectDTO> toProjectDTO(){
+    public Function<Project, ProjectDTO> EntityToProjectDTO(){
         return entity -> new ProjectDTO(
                 entity.getId(),
                 entity.getName(),

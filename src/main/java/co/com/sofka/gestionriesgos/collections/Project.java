@@ -16,9 +16,9 @@ import java.util.List;
 public class Project {
 
     @Id
-    private Integer id;
+    private String id;
     private String name;
-    private LocalDate startDate;
+    private LocalDate startDate = LocalDate.now();
     private LocalDate endingDate;
     private List<String> labels;
     private List<String> emails;
