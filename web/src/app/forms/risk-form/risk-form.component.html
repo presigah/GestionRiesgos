@@ -1,0 +1,109 @@
+<form>
+    <div class="mb-3">
+        <label for="riskProyect" class="form-label">¿A que proyecto pertenece el riesgo?</label>
+        <select id="riskProyect" class="form-select" name="riskProyect">
+            <option value="(proyectId)">(proyectId)|(proyectName)</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="riskName" class="form-label">Nombre Riesgo</label>
+        <input type="text" class="form-control" id="riskName" maxlength="50" required>
+        <div class="form-text">El nombre debe ser menor a 50 caracteres</div>
+    </div>
+    <div class="mb-3">
+        <label for="detectionDate" class="form-label">Fecha Deteccion</label>
+        <input type="date" class="form-control" id="detectionDate" required>
+    </div>
+    <div class="mb-3">
+        <label for="closeDate" class="form-label">Fecha Cierre</label>
+        <input type="date" class="form-control" id="closeDate" required>
+    </div>
+    <div class="mb-3">
+        <label for="proyectTags" class="form-label">Etiquetas Riesgo</label>
+        <input type="text" class="form-control" id="proyectTags" required autocapitalize="characters">
+        <div class="form-text">Deben estar separadas por ;</div>
+    </div>
+    <div class="mb-3">
+        <label for="riskResume" class="form-label">Descripcion Riesgo</label>
+        <textarea class="form-control" id="riskResume" maxlength="700" required></textarea>
+        <div class="form-text">La descripcion debe ser menor a 700 caracteres</div>
+    </div>
+    <div class="mb-3">
+        <label for="riskDocs" class="form-label">Documentos Riesgo</label>
+        <input type="file" class="form-control" id="riskDocs">
+        <div class="form-text">Archivos relacionados al riesgo</div>
+    </div>
+    <div class="mb-3">
+        <label for="riskState" class="form-label">Estado del riesgo</label>
+        <select id="riskState" class="form-select" name="riskState">
+            <option value="open">Abierto</option>
+            <option value="mitigated">Mitigado</option>
+            <option value="closed">Cerrado</option>
+            <option value="problem">Problema</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="riskAudience" class="form-label">Audiencia del riesgo</label>
+        <select id="riskAudience" class="form-select" name="riskAudience">
+            <option value="internal">Interna</option>
+            <option value="external">Externa</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="riskCategory" class="form-label">Categoria del riesgo</label>
+        <select id="riskCategory" class="form-select" name="riskCategory">
+            <option value="cost">Costo</option>
+            <option value="time">Tiempo</option>
+            <option value="quality">Calidad</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="riskType" class="form-label">Tipo del riesgo</label>
+        <select id="riskType" class="form-select" name="riskType">
+            <option value="prodQuality">Producto/calidad</option>
+            <option value="proyect">Proyecto</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="riskDetails" class="form-label">Detalles Riesgo</label>
+        <textarea class="form-control" id="riskDetails" maxlength="500" required></textarea>
+        <div class="form-text">Los detalles deben ser menores a 500 caracteres</div>
+    </div>
+    <div class="mb-3">
+        <label for="riskOdds" class="form-label">Probabilidades del riesgo</label>
+        <select id="riskOdds" class="form-select" name="riskOdds">
+            <option value="unlikely">Improbable</option>
+            <option value="possible">Posible</option>
+            <option value="occasional">Ocasional</option>
+            <option value="probable">Probable</option>
+            <option value="frequent">Frecuente</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="riskImpact" class="form-label">Estado del riesgo</label>
+        <select id="riskImpact" class="form-select" name="riskImpact">
+            <option value="insignificant">Insignificante</option>
+            <option value="minor">Menor</option>
+            <option value="moderate">Moderado</option>
+            <option value="major">Mayor</option>
+            <option value="Catastrophic">Catastrófico</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="riskMitigationPlan" class="form-label">Plan de mitigacion del Riesgo</label>
+        <textarea class="form-control" id="riskMitigationPlan" maxlength="1000" required></textarea>
+        <div class="form-text">El plan debe ser menor a 1000 caracteres</div>
+    </div>
+    <div class="mb-3">
+        <label for="riskEmails" class="form-label">Emails Riesgo</label>
+        <textarea class="form-control" id="riskEmails" required autocapitalize="none"></textarea>
+        <div class="form-text">Deben estar separados por ;</div>
+    </div>
+    <div class="d-grid mb-3 gap-1">
+        <label class="form-label">Nivel de Riesgo</label>
+        <button class="btn btn-success disabled">(Riesgo Bajo)</button>
+        <button class="btn btn-warning disabled">(Riesgo Medio)</button>
+        <button class="btn btn-danger disabled">(Riesgo Alto)</button>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar riesgo</button>
+</form>

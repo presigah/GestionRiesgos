@@ -15,19 +15,18 @@
             <button type="button" class="btn btn-success mt-5" data-bs-toggle="modal" data-bs-target="#FormProyectPoPUp">
                 <fa-icon class="user-icon" [icon]="faFolderPlus"></fa-icon>
             </button>
-            <div class="modal fade" id="FormProyectPoPUp" tabindex="-1" aria-labelledby="Title" aria-hidden="true">
-                <div class="modal-dialog">
+            <div class="modal fade " id="FormProyectPoPUp" tabindex="-1" aria-labelledby="Title" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title" id="Title">Agregar un nuevo proyecto</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      ...
+                      <app-proyect-form></app-proyect-form>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                      <button type="button" class="btn btn-primary">Guardar proyecto</button>
                     </div>
                   </div>
                 </div>
@@ -38,14 +37,14 @@
                 <fa-icon class="user-icon" [icon]="faHeartCirclePlus"></fa-icon>
             </button>
             <div class="modal fade" id="FormRiskPoPUp" tabindex="-1" aria-labelledby="Title" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-dialog-scrollable">
                   <div class="modal-content">
                     <div class="modal-header">
                       <h5 class="modal-title" id="Title">Agregar un nuevo riesgo</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      ...
+                      <app-risk-form></app-risk-form>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
