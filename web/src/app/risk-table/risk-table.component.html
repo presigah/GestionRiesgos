@@ -16,14 +16,14 @@
   <tbody>
     <tr *ngFor="let risk of risks">
       <td>{{ risk.id }}</td>
-      <td>{{ risk.nombreRiesgo }}</td>
-      <td>{{ risk.fechaDetencion }}</td>
-      <td>{{ risk.fechaCierre }}</td>
-      <td>{{ risk.estado }}</td>
-      <td>{{ risk.audiencia }}</td>
-      <td>{{ risk.categoria }}</td>
-      <td>{{ risk.tipo }}</td>
-      <td>{{ risk.criticidad }}</td>
+      <td>{{ risk.name }}</td>
+      <td>{{ risk.detectedDate }}</td>
+      <td>{{ risk.endedDate }}</td>
+      <td>{{ risk.risksState }}</td>
+      <td>{{ risk.audience }}</td>
+      <td>{{ risk.category }}</td>
+      <td>{{ risk.riskType }}</td>
+      <td>calcular</td>
       <td><button class="btn btn-primary">ver</button></td>
     </tr>
   </tbody>
