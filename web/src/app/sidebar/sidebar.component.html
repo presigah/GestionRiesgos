@@ -1,0 +1,69 @@
+<nav class="navbar bg-secondary">
+    <div class="container-fluid">
+      <h1 class="navbar-brand mb-0 h1">Gestor de Riesgos <fa-icon [icon]="faBolt"></fa-icon></h1>
+    </div>
+</nav>
+<div class="d-flex">
+    <div class="sidebar-container bg-dark">
+        <div class="menu d-grid gap-2">
+            <button type="button" class="btn btn-secondary disabled" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
+                <fa-icon class="user-icon" [icon]="faQuestion"></fa-icon>
+                <!-- <fa-icon class="user-icon" [icon]="faUserGear"></fa-icon> -->
+                <!-- <fa-icon class="user-icon" [icon]="faUser"></fa-icon> -->
+            </button>
+
+            <button type="button" class="btn btn-success mt-5" data-bs-toggle="modal" data-bs-target="#FormProyectPoPUp">
+                <fa-icon class="user-icon" [icon]="faFolderPlus"></fa-icon>
+            </button>
+            <div class="modal fade " id="FormProyectPoPUp" tabindex="-1" aria-labelledby="Title" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="Title">Agregar un nuevo proyecto</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <app-proyect-form></app-proyect-form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            <button type="button" class="btn btn-success mb-5" data-bs-toggle="modal" data-bs-target="#FormRiskPoPUp">
+                <fa-icon class="user-icon" [icon]="faHeartCirclePlus"></fa-icon>
+            </button>
+            <div class="modal fade" id="FormRiskPoPUp" tabindex="-1" aria-labelledby="Title" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="Title">Agregar un nuevo riesgo</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <app-risk-form></app-risk-form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                      <button type="button" class="btn btn-primary">Guardar riesgo</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+
+            <button class="btn btn-primary mt-5">
+                <fa-icon class="user-icon" [icon]="faArrowRightToBracket"></fa-icon>
+            </button>
+            <!-- <button class="btn btn-danger">
+                <fa-icon class="user-icon" [icon]="faArrowRightFromBracket"></fa-icon>
+            </button> -->
+            
+        </div>
+    </div>
+</div>
+
