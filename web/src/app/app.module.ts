@@ -6,9 +6,17 @@ import { AppComponent } from './app.component';
 import { RiesgosComponent } from './riesgos/riesgos.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { ProyectFormComponent } from './forms/proyect-form/proyect-form.component';
+import { RiskFormComponent } from './forms/risk-form/risk-form.component';
 
 @NgModule({
-  declarations: [AppComponent, RiesgosComponent, SidebarComponent],
+  declarations: [
+    AppComponent,
+    SidebarComponent,
+    ProyectFormComponent,
+    RiskFormComponent,
+    RiesgosComponent,
+  ],
   imports: [BrowserModule, AppRoutingModule, FontAwesomeModule],
   providers: [],
   bootstrap: [AppComponent],

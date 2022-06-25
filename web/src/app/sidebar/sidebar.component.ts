@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { faUserGear, faUser, faQuestion, faFolderPlus, faHeartCirclePlus, faArrowRightToBracket, faArrowRightFromBracket, faBolt} from '@fortawesome/free-solid-svg-icons';
 
-
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -17,6 +16,7 @@ export class SidebarComponent implements OnInit {
   faArrowRightToBracket = faArrowRightToBracket;
   faArrowRightFromBracket = faArrowRightFromBracket;
   faBolt = faBolt;
+
 
   constructor() { }
 
