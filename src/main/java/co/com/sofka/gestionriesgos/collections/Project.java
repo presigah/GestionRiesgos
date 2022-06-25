@@ -18,7 +18,7 @@ public class Project {
     @Id
     private String id;
     private String name;
-    private LocalDate startDate = LocalDate.now();
+    private LocalDate startDate;
     private LocalDate endingDate;
     private List<String> labels;
     private List<String> emails;
