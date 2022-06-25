@@ -40,4 +40,18 @@ public class ProjectRouter {
         return route(GET("/getAllProjects"),request -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromPublisher(getAllProjectsUseCase.get(),ProjectDTO.class)));
     }
+
+    //Obtenr un proyecto por id
+    @Bean
+    public RouterFunction<ServerResponse> get(GetUseCase getUseCase) {
+        return route(
+                GET("/get/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                request -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(BodyInserters.fromPublisher(getUseCase.apply(
+                                        request.pathVariable("id")),
+                                QuestionDTO.class
+                        ))
+        );
+    }
 }
