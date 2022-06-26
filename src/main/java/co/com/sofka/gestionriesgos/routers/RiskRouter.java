@@ -17,16 +17,16 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 @Configuration
 public class RiskRouter {
 
-    @Bean
-    public RouterFunction<ServerResponse> create(CreateRiskUseCase createRiskUseCase) {
-        Function<RiskDTO, Mono<ServerResponse>> executor = riskDTO ->  createRiskUseCase.apply(riskDTO)
-                .flatMap(result -> ServerResponse.ok()
-                        .contentType(MediaType.TEXT_PLAIN)
-                        .bodyValue(result));
-
-        return route(
-                POST("/createRisk").and(accept(MediaType.APPLICATION_JSON)),
-                request -> request.bodyToMono(RiskDTO.class).flatMap(executor)
-        );
-    }
+//    @Bean
+//    public RouterFunction<ServerResponse> create(CreateRiskUseCase createRiskUseCase) {
+//        Function<RiskDTO, Mono<ServerResponse>> executor = riskDTO ->  createRiskUseCase.apply(riskDTO)
+//                .flatMap(result -> ServerResponse.ok()
+//                        .contentType(MediaType.TEXT_PLAIN)
+//                        .bodyValue(result));
+//
+//        return route(
+//                POST("/createRisk").and(accept(MediaType.APPLICATION_JSON)),
+//                request -> request.bodyToMono(RiskDTO.class).flatMap(executor)
+//        );
+//    }
 }

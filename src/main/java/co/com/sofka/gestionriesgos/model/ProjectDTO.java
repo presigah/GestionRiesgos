@@ -1,16 +1,16 @@
 package co.com.sofka.gestionriesgos.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class ProjectDTO {
 
     private String id;
@@ -19,13 +19,14 @@ public class ProjectDTO {
     private LocalDate startDate = LocalDate.now();
     private LocalDate endingDate;
     private List<String> labels;
-    @NotBlank(message = "El correo del proyecto es requerido")
+//    @NotBlank(message = "El correo del proyecto es requerido")
     private List<String> emails;
     @NotBlank(message = "La descripción del proyecto es requerida")
     private String description;
+    private String status;
     private List<RiskDTO> risks;
 
-    public ProjectDTO(String id, String name, LocalDate startDate, LocalDate endingDate, List<String> labels, List<String> emails, String description) {
+    public ProjectDTO(String id, String name, LocalDate startDate, LocalDate endingDate, List<String> labels, List<String> emails, String description, String status) {
         this.id = id;
         this.name = name;
         this.startDate = startDate;
@@ -33,5 +34,7 @@ public class ProjectDTO {
         this.labels = labels;
         this.emails = emails;
         this.description = description;
+        this.status = status;
     }
+
 }

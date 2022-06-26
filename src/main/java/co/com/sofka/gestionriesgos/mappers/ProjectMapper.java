@@ -9,20 +9,21 @@ import java.util.function.Function;
 public class ProjectMapper {
 
     public Function<ProjectDTO, Project> mapperToProject(String id){
-        return updatePorject -> {
+        return updateProject -> {
             var project = new Project();
             project.setId(id);
-            project.setName(updatePorject.getName());
-            project.setStartDate(updatePorject.getStartDate());
-            project.setEndingDate(updatePorject.getEndingDate());
-            project.setLabels(updatePorject.getLabels());
-            project.setEmails(updatePorject.getEmails());
-            project.setDescription(updatePorject.getDescription());
+            project.setName(updateProject.getName());
+            project.setStartDate(updateProject.getStartDate());
+            project.setEndingDate(updateProject.getEndingDate());
+            project.setLabels(updateProject.getLabels());
+            project.setEmails(updateProject.getEmails());
+            project.setDescription(updateProject.getDescription());
+            project.setStatus(updateProject.getStatus());
             return project;
         };
     }
 
-    public Function<Project, ProjectDTO> EntityToProjectDTO(){
+    public Function<Project, ProjectDTO> entityToProjectDTO(){
         return entity -> new ProjectDTO(
                 entity.getId(),
                 entity.getName(),
@@ -30,7 +31,9 @@ public class ProjectMapper {
                 entity.getEndingDate(),
                 entity.getLabels(),
                 entity.getEmails(),
-                entity.getDescription()
+                entity.getDescription(),
+                entity.getStatus()
+//                entity.getRisks()
         );
     }
 }

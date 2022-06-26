@@ -1,4 +1,4 @@
-package co.com.sofka.gestionriesgos.usercases;
+package co.com.sofka.gestionriesgos.usercases.project;
 
 import co.com.sofka.gestionriesgos.mappers.ProjectMapper;
 import co.com.sofka.gestionriesgos.mappers.RiskMapper;
@@ -31,7 +31,7 @@ public class GetProjectUseCase implements Function<String, Mono<ProjectDTO>> {
     public Mono<ProjectDTO> apply(String id) {
         Objects.requireNonNull(id, "Id is required");
         return projectRepository.findById(id)
-                .map(projectMapper.EntityToProjectDTO())
+                .map(projectMapper.entityToProjectDTO())
                 .flatMap(mapProjectAggregate());
     }
 

@@ -23,5 +23,6 @@ public class Project {
     private List<String> labels;
     private List<String> emails;
     private String description;
+    private String status;
 
 }

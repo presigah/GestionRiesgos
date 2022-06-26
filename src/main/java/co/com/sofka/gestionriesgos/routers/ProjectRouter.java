@@ -1,9 +1,11 @@
 package co.com.sofka.gestionriesgos.routers;
 
 import co.com.sofka.gestionriesgos.model.ProjectDTO;
-import co.com.sofka.gestionriesgos.usercases.CreateProjectUseCase;
-import co.com.sofka.gestionriesgos.usercases.GetAllProjectsUseCase;
-import co.com.sofka.gestionriesgos.usercases.GetProjectUseCase;
+import co.com.sofka.gestionriesgos.usercases.project.*;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
+import org.springdoc.core.annotations.RouterOperation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -35,14 +37,16 @@ public class ProjectRouter {
         );
     }
 
-    //Obtener Todos los proyectos
+    //Consultar Todos los proyectos
     @Bean
+    @RouterOperation(beanClass = GetAllProjectsUseCase.class, beanMethod = "get",
+            operation = @Operation(operationId = "Consultar", summary = "Consultar todos los proyecctos", tags = {"Proyecto"}))
     public RouterFunction<ServerResponse> getAll(GetAllProjectsUseCase getAllProjectsUseCase) {
         return route(GET("/getAllProjects"),request -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromPublisher(getAllProjectsUseCase.get(),ProjectDTO.class)));
     }
 
-    //Obtener un proyecto por su id
+    //Consultar un proyecto por su id
     @Bean
     public RouterFunction<ServerResponse> getById(GetProjectUseCase getProjectUseCase) {
         return route(
@@ -55,4 +59,31 @@ public class ProjectRouter {
                         ))
         );
     }
+
+//    Modificar un proyecto
+    @Bean
+    @RouterOperation(beanClass = UpdateProjectUseCase.class, beanMethod = "apply",
+            operation = @Operation(operationId = "Actualizar", summary = "Actualizar proyecto",  tags = {"Proyecto"},
+                    parameters = {@Parameter(in = ParameterIn.PATH, name = "id", description = "id")}))
+    public RouterFunction<ServerResponse> update(UpdateProjectUseCase updateProjectUseCase) {
+        Function<ProjectDTO, Mono<ServerResponse>> executor = projectDTO -> updateProjectUseCase.apply(projectDTO)
+                .flatMap(result -> ServerResponse.ok()
+                        .contentType(MediaType.TEXT_PLAIN)
+                        .bodyValue(result));
+        return route(
+                PUT("/updateProject").and(accept(MediaType.APPLICATION_JSON)),
+                request -> request.bodyToMono(ProjectDTO.class).flatMap(executor)
+        );
+    }
+
+    //Eliminar un proyecto
+//    @Bean
+//    public RouterFunction<ServerResponse> delete(DeleteProjectUseCase deleteProjectUseCase) {
+//        return route(
+//                DELETE("/deleteProject/{id}").and(accept(MediaType.APPLICATION_JSON)),
+//                request -> ServerResponse.accepted()
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .body(BodyInserters.fromPublisher(deleteProjectUseCase.apply(request.pathVariable("id")), Void.class))
+//        );
+//    }
 }
