@@ -13,6 +13,7 @@ import { AngularFireModule} from '@angular/fire/compat';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { RiskDetailComponent } from './risk-detail/risk-detail.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ToastrModule } from 'ngx-toastr';
     ProyectFormComponent,
     RiskFormComponent,
     RiskTableComponent,
+    RiskDetailComponent,
   ],
   imports: [
     BrowserModule, 
