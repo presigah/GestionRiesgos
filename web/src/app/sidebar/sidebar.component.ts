@@ -12,6 +12,7 @@ import {
 
 import { Router } from '@angular/router';
 import { FireserviceService } from 'src/app/service/fireservice.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sidebar',
@@ -32,7 +33,7 @@ export class SidebarComponent implements OnInit {
   faBolt = faBolt;
 
 
-  constructor(public afAuth: FireserviceService, private route: Router) { }
+  constructor(public afAuth: FireserviceService, private route: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.traerDatos();
@@ -48,8 +49,16 @@ export class SidebarComponent implements OnInit {
     });
   }
 
-  login() {
-    this.route.navigate(['login']);
+  loginGoogle(){
+    this.afAuth
+      .loginGoogle()
+      .then((res) => {
+        if(res) {
+          this.toastr.success('Login correcto');
+        }else {
+          this.toastr.error('Rectifique sus datos');
+        }
+      })
   }
 
   logout() {

@@ -10,7 +10,6 @@ import { RiskFormComponent } from './forms/risk-form/risk-form.component';
 import { RiskTableComponent } from './risk-table/risk-table.component';
 import { environment } from '../environments/environment';
 import { AngularFireModule} from '@angular/fire/compat';
-import { LoginComponent } from './user/login/login/login.component'
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -22,7 +21,6 @@ import { ToastrModule } from 'ngx-toastr';
     ProyectFormComponent,
     RiskFormComponent,
     RiskTableComponent,
-    LoginComponent,
   ],
   imports: [
     BrowserModule, 
