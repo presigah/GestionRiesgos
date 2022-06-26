@@ -10,9 +10,10 @@ import java.util.function.Function;
 @Component
 public class RiskMapper {
 
-    public Function<RiskDTO, Risk> RiskDTOTORisk() {
+    public Function<RiskDTO, Risk> RiskDTOTORisk(String id) {
         return updateRisk -> {
             var risk = new Risk();
+            risk.setId(id);
             risk.setProjectId(updateRisk.getProjectId());
             risk.setName(updateRisk.getName());
             risk.setUserId(updateRisk.getUserId());
@@ -20,7 +21,7 @@ public class RiskMapper {
             risk.setEndedDate(updateRisk.getEndedDate());
             risk.setLabels(updateRisk.getLabels());
             risk.setDescription(updateRisk.getDescription());
-            risk.setRisksState(updateRisk.getRisksState());
+            risk.setRiskState(updateRisk.getRiskState());
             risk.setAudience(updateRisk.getAudience());
             risk.setCategory(updateRisk.getCategory());
             risk.setRiskType(updateRisk.getRiskType());
@@ -46,7 +47,7 @@ public class RiskMapper {
                 entity.getEndedDate(),
                 entity.getLabels(),
                 entity.getDescription(),
-                entity.getRisksState(),
+                entity.getRiskState(),
                 entity.getAudience(),
                 entity.getCategory(),
                 entity.getRiskType(),

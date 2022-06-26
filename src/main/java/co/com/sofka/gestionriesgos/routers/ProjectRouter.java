@@ -76,14 +76,14 @@ public class ProjectRouter {
         );
     }
 
-    //Eliminar un proyecto
-//    @Bean
-//    public RouterFunction<ServerResponse> delete(DeleteProjectUseCase deleteProjectUseCase) {
-//        return route(
-//                DELETE("/deleteProject/{id}").and(accept(MediaType.APPLICATION_JSON)),
-//                request -> ServerResponse.accepted()
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .body(BodyInserters.fromPublisher(deleteProjectUseCase.apply(request.pathVariable("id")), Void.class))
-//        );
-//    }
+//    Eliminar un proyecto
+    @Bean
+    public RouterFunction<ServerResponse> delete(DeleteProjectUseCase deleteProjectUseCase) {
+        return route(
+                DELETE("/deleteProject/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                request -> ServerResponse.accepted()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(BodyInserters.fromPublisher(deleteProjectUseCase.apply(request.pathVariable("id")), Void.class))
+        );
+    }
 }
