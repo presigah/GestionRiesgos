@@ -13,19 +13,15 @@ import java.util.Objects;
 @Validated
 public class DeleteProjectUseCase  implements Function<String, Mono<Void>> {
     private final ProjectRepository projectRepository;
-    private final RiskRepository riskRepository;
 
-    public DeleteProjectUseCase(RiskRepository riskRepository, ProjectRepository projectRepository) {
+    public DeleteProjectUseCase( ProjectRepository projectRepository) {
         this.projectRepository = projectRepository;
-        this.riskRepository = riskRepository;
     }
 
 
     @Override
     public Mono<Void> apply(String id) {
-//        Objects.equals(status, "Creado");
         Objects.requireNonNull(id, "Id es requerido");
         return projectRepository.deleteById(id);
-//                .switchIfEmpty(Mono.defer(() -> riskRepository.deleteByQuestionId(id)));
     }
 }

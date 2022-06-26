@@ -4,7 +4,9 @@ import lombok.*;
 
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Data
 @Getter
@@ -19,7 +21,6 @@ public class ProjectDTO {
     private LocalDate startDate = LocalDate.now();
     private LocalDate endingDate;
     private List<String> labels;
-//    @NotBlank(message = "El correo del proyecto es requerido")
     private List<String> emails;
     @NotBlank(message = "La descripción del proyecto es requerida")
     private String description;
@@ -37,4 +38,8 @@ public class ProjectDTO {
         this.status = status;
     }
 
+    public List<RiskDTO> getRisks() {
+        this.risks = Optional.ofNullable(risks).orElse(new ArrayList<>());
+        return risks;
+    }
 }
