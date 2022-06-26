@@ -8,6 +8,11 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ProyectFormComponent } from './forms/proyect-form/proyect-form.component';
 import { RiskFormComponent } from './forms/risk-form/risk-form.component';
 import { RiskTableComponent } from './risk-table/risk-table.component';
+import { environment } from '../environments/environment';
+import { AngularFireModule} from '@angular/fire/compat';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 import { RiskDetailComponent } from './risk-detail/risk-detail.component';
 
 @NgModule({
@@ -19,7 +24,14 @@ import { RiskDetailComponent } from './risk-detail/risk-detail.component';
     RiskTableComponent,
     RiskDetailComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FontAwesomeModule],
+  imports: [
+    BrowserModule, 
+    AppRoutingModule, 
+    FontAwesomeModule, 
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
