@@ -1,4 +1,4 @@
-export interface risk {
+export interface Risk {
   id: string;
   projectId: string;
   name: string;
