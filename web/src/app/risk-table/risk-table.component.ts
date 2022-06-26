@@ -1,4 +1,3 @@
-import { risk } from './../models/risk';
 import { RiskService } from './../service/risk.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -17,6 +16,6 @@ export class RiskTableComponent implements OnInit {
 
   getRisks() {
     this.risks = [];
-    this.risks = this.service.getAll();
+    this.risks = this.service.getAllRisks();
   }
 }

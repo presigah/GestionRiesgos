@@ -8,6 +8,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ProyectFormComponent } from './forms/proyect-form/proyect-form.component';
 import { RiskFormComponent } from './forms/risk-form/risk-form.component';
 import { RiskTableComponent } from './risk-table/risk-table.component';
+import { RiskDetailComponent } from './risk-detail/risk-detail.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { RiskTableComponent } from './risk-table/risk-table.component';
     ProyectFormComponent,
     RiskFormComponent,
     RiskTableComponent,
+    RiskDetailComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FontAwesomeModule],
   providers: [],

@@ -1,0 +1,77 @@
+<p>risk-detail works!</p>
+<div class="container">
+  <div class="card">
+    <div class="card-header text-center fs-1 font1">
+      {{ this.risk.name }}
+    </div>
+    <div class="card-body" style="margin-right: 40px; margin-left: 40px">
+      <h5><b>Fecha de detección: </b> {{ this.risk.detectedDate }}</h5>
+      <h5><b>Fecha de cierre: </b> {{ this.risk.endedDate }}</h5>
+      <!-- nota:eliminar br -->
+      <br />
+      <h5><b>Descripción del riesgo:</b></h5>
+      <div class="card">
+        <p>{{ this.risk.description }}</p>
+      </div>
+      <br />
+      <h5><b>Estado del riesgo: </b> {{ this.risk.risksState }}</h5>
+      <h5><b>Audiencia: </b> {{ this.risk.audience }}</h5>
+      <h5><b>Categoría : </b> {{ this.risk.category }}</h5>
+      <h5><b>Tipo de riesgo: </b> {{ this.risk.riskType }}</h5>
+
+      <!-- nota:eliminar br -->
+      <br />
+      <h5><b>Detalles del tipo de riesgo:</b></h5>
+      <div class="card">
+        <p>{{ this.risk.detailsRiskType }}</p>
+      </div>
+      <br />
+
+      <h5>
+        <b>Probabilidad de que ocurra el riesg: </b>
+        {{ this.risk.probability }}%
+      </h5>
+      <h5>
+        <b>Valor de impacto si ocurre el riesgo: </b>
+        {{ this.risk.impactValue }}
+      </h5>
+      <!-- nota:eliminar br -->
+      <br />
+      <h5><b>Descripción plan de mitigación:</b></h5>
+      <div class="card">
+        <p>{{ this.risk.mitigationPlan }}</p>
+      </div>
+      <br />
+      <h5>
+        <b>Correos de las personas responsables del plan de mitigación:</b>
+      </h5>
+      <ul *ngFor="let email of this.risk.responsibleMitigationMails">
+        <li>{{ email }}</li>
+      </ul>
+
+      <!-- nota:eliminar br -->
+      <br />
+      <h5><b>Descripción plan de contingencia:</b></h5>
+      <div class="card">
+        <p>{{ this.risk.contingencyPlan }}</p>
+      </div>
+      <br />
+
+      <h5>
+        <b>Correos de las personas responsables del plan de contingencia:</b>
+      </h5>
+      <ul *ngFor="let email of this.risk.responsibleContingencyMails">
+        <li>{{ email }}</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- id: string; projectId: string; name: string; userId: string; detectedDate: Date;
+endedDate: Date; labels: [any]; description: string; // (Abierto; mitigado;
+Cerrado; Problema) risksState: string; // (Interna; Externa) audience: string;
+// (Costo; Tiempo; Calidad) category: string; // (Riesgo de producto o calidad;
+Riesgo de proyecto) riskType: string; detailsRiskType: string; probability:
+number; impactValue: number; mitigationPlan: string; responsibleMitigationMails:
+[string]; contingencyPlan: string; responsibleContingencyMails: [string];
+Integer?: number; -->
