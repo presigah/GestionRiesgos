@@ -6,11 +6,15 @@
 <div class="d-flex">
     <div class="sidebar-container bg-dark">
         <div class="menu d-grid gap-2">
-            <button type="button" class="btn btn-secondary disabled" data-bs-toggle="modal" data-bs-target="#staticBackdrop1">
-                <fa-icon class="user-icon" [icon]="faQuestion"></fa-icon>
+            <button type="button" class="btn btn-secondary disabled" data-bs-toggle="modal" data-bs-target="#staticBackdrop1" *ngIf="!afAuth.userData">
+                <fa-icon class="user-icon" [icon]="faQuestion" ></fa-icon>
                 <!-- <fa-icon class="user-icon" [icon]="faUserGear"></fa-icon> -->
                 <!-- <fa-icon class="user-icon" [icon]="faUser"></fa-icon> -->
             </button>
+
+            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop1" *ngIf="afAuth.userData">
+              <img clas="user-icon" [src]="userIcon">
+           </button>
 
             <button type="button" class="btn btn-success mt-5" data-bs-toggle="modal" data-bs-target="#FormProyectPoPUp">
                 <fa-icon class="user-icon" [icon]="faFolderPlus"></fa-icon>

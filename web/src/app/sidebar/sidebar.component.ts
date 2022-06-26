@@ -22,6 +22,7 @@ import { ToastrService } from 'ngx-toastr';
 export class SidebarComponent implements OnInit {
   userLogged = this.afAuth.getUserLogged();
   disabled: boolean = false;
+  userIcon:String | null = '';
 
   faUserGear = faUserGear;
   faUser = faUser;
@@ -44,9 +45,14 @@ export class SidebarComponent implements OnInit {
       if (value?.email == undefined) {
         this.disabled = true;        
       } else {
+        this.userIcon = value.photoURL;
         this.disabled = false;       
       }
     });
+  }
+
+  userInfo() {
+    console.log(this.afAuth.userData.photoURL)
   }
 
   loginGoogle(){
