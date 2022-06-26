@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { RiskDetailComponent } from './risk-detail/risk-detail.component';
 
-const routes: Routes = [];
+const routes: Routes = [{ path: 'risk', component: RiskDetailComponent }];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

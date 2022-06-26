@@ -1,7 +1,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Id riesgo</th>
+      <!-- <th>Id riesgo</th> -->
       <th>Nombre del riesgo</th>
       <th>Fecha de detección</th>
       <th>Fecha de cierre</th>
@@ -15,7 +15,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let risk of risks">
-      <td>{{ risk.id }}</td>
+      <!-- <td>{{ risk.id }}</td> -->
       <td>{{ risk.name }}</td>
       <td>{{ risk.detectedDate }}</td>
       <td>{{ risk.endedDate }}</td>
@@ -24,7 +24,12 @@
       <td>{{ risk.category }}</td>
       <td>{{ risk.riskType }}</td>
       <td>calcular</td>
-      <td><button class="btn btn-primary">ver</button></td>
+      <td>
+        <button class="btn btn-primary">Ver</button>
+      </td>
+      <td>
+        <button class="btn btn-danger">Eliminar</button>
+      </td>
     </tr>
   </tbody>
 </table>
