@@ -29,10 +29,9 @@ public class RiskDTO {
     @NotBlank
     private String userId;
 
-    @NotBlank
     private LocalDate detectedDate = LocalDate.now();
 
-    @NotBlank
+    //@NotBlank
     private LocalDate endedDate;
 
     private List<String> labels;
@@ -40,29 +39,29 @@ public class RiskDTO {
     @NotBlank
     private String description;
 
-    @NotBlank
     // (Abierto; mitigado; Cerrado; Problema)
-    private String risksState;
-
     @NotBlank
+    private String riskState;
+
     // (Interna; Externa)
+    @NotBlank
     private String audience;
 
-    @NotBlank
     // (Costo; Tiempo; Calidad)
+    @NotBlank
     private String category;
 
-    @NotBlank
     // (Riesgo de producto o calidad; Riesgo de proyecto)
+    @NotBlank
     private String riskType;
 
     @NotBlank
     private String detailsRiskType;
 
-    @NotBlank
+    //@NotBlank
     private Integer probability;
 
-    @NotBlank
+    //@NotBlank
     private Integer impactValue;
 
     @NotBlank
