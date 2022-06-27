@@ -8,5 +8,6 @@ export interface Project {
     labels: [string];
     emails: [string];
     description: string;
+    status: string;
     risks: [Risk];
 }
