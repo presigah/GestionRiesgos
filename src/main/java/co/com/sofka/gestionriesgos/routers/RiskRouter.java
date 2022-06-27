@@ -1,8 +1,8 @@
 package co.com.sofka.gestionriesgos.routers;
 
 import co.com.sofka.gestionriesgos.model.RiskDTO;
-import co.com.sofka.gestionriesgos.usercases.CreateRiskUseCase;
-import co.com.sofka.gestionriesgos.usercases.UpdateRiskUseCase;
+import co.com.sofka.gestionriesgos.usercases.risk.CreateRiskUseCase;
+import co.com.sofka.gestionriesgos.usercases.risk.UpdateRiskUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;

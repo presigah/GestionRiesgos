@@ -1,4 +1,4 @@
-package co.com.sofka.gestionriesgos.usercases;
+package co.com.sofka.gestionriesgos.usercases.risk;
 
 import co.com.sofka.gestionriesgos.collections.Risk;
 import co.com.sofka.gestionriesgos.mappers.ProjectMapper;

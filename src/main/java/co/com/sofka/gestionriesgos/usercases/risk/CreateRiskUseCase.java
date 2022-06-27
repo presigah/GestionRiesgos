@@ -1,16 +1,13 @@
-package co.com.sofka.gestionriesgos.usercases;
+package co.com.sofka.gestionriesgos.usercases.risk;
 
 import co.com.sofka.gestionriesgos.collections.Risk;
 import co.com.sofka.gestionriesgos.mappers.ProjectMapper;
 import co.com.sofka.gestionriesgos.mappers.RiskMapper;
-import co.com.sofka.gestionriesgos.model.ProjectDTO;
 import co.com.sofka.gestionriesgos.model.RiskDTO;
 import co.com.sofka.gestionriesgos.repositories.ProjectRepository;
 import co.com.sofka.gestionriesgos.repositories.RiskRepository;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
-
-import java.util.Objects;
 
 @Service
 public class CreateRiskUseCase implements SaveRisk{
