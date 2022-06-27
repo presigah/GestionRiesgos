@@ -61,6 +61,10 @@ export class SidebarComponent implements OnInit {
       .then((res) => {
         if(res) {
           this.toastr.success('Login correcto');
+          setTimeout(() => {
+            this.route.navigate(['preguntas']);
+          }, 3000);
+
         }else {
           this.toastr.error('Rectifique sus datos');
         }
@@ -70,7 +74,7 @@ export class SidebarComponent implements OnInit {
   logout() {
     this.afAuth.logout();
     window.location.reload();
-    this.route.navigate(['/']);
+    this.route.navigate(['projects']);
   }
 
 }
