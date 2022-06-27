@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { RiskDetailComponent } from './risk-detail/risk-detail.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -32,9 +33,10 @@ import { ProjectDetailComponent } from './project-detail/project-detail.componen
     FontAwesomeModule, 
     AngularFireModule.initializeApp(environment.firebaseConfig),
     BrowserAnimationsModule,
+    HttpClientModule,
     ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [HttpClientModule],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

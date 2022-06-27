@@ -30,6 +30,8 @@ export class ProjectService {
 
   saveProject(project: Project): Observable<Project> {
     let direction = this.url + 'create';
-    return this.http.post<Project>(direction, project);
+    return this.http.post<Project>(direction, project, {
+      responseType: 'text' as 'json',
+    });
   }
 }

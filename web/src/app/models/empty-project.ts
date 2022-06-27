@@ -6,5 +6,6 @@ export interface EmptyProject {
     labels: [string];
     emails: [string];
     description: string;
+    status: string;
     risks: [any];
 }
