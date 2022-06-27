@@ -16,6 +16,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { RiskDetailComponent } from './risk-detail/risk-detail.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProjectIdComponent } from './project-id/project-id.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     RiskTableComponent,
     RiskDetailComponent,
     ProjectDetailComponent,
+    ProjectIdComponent,
   ],
   imports: [
     BrowserModule, 

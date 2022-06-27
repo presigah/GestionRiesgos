@@ -26,7 +26,6 @@ export class ProjectDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log('project');
     this.getProjects();
     this.traerdatos();
   }
@@ -37,7 +36,6 @@ export class ProjectDetailComponent implements OnInit {
     });
     this.projectService.getProjects().subscribe((data) => {
       this.projects = data;
-      console.log(this.projects)
     });
   }
 
