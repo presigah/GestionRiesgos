@@ -24,7 +24,7 @@ class GetAllProjectsUseCaseTest {
     @Mock
     private ProjectRepository projectRepository;
 
-    @Mock
+
     private GetAllProjectsUseCase getAllProjectsUseCase;
 
 

@@ -1,5 +1,6 @@
 package co.com.sofka.gestionriesgos.routers;
 
+import co.com.sofka.gestionriesgos.collections.Project;
 import co.com.sofka.gestionriesgos.model.ProjectDTO;
 import co.com.sofka.gestionriesgos.usercases.project.*;
 import io.swagger.v3.oas.annotations.Operation;
@@ -30,7 +31,10 @@ public class ProjectRouter {
     //Crear un proyecto
     @Bean
     @RouterOperation(beanClass = CreateProjectUseCase.class, beanMethod = "apply",
-            operation = @Operation(operationId = "Crear", summary = "Crear Proyecto",  tags = {"Proyecto"}))
+            operation = @Operation(operationId = "ProjectDTO", summary = "Crear proyecto", tags = {"Proyecto"},
+                    responses = {@ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = ProjectDTO.class))),
+                            @ApiResponse(responseCode = "400", description = "Invalid Question supplied"),
+                            @ApiResponse(responseCode = "404", description = "Question not found")}))
     public RouterFunction<ServerResponse> create(CreateProjectUseCase createProjectUseCase) {
         Function<ProjectDTO, Mono<ServerResponse>> executor = projectDTO -> createProjectUseCase.apply(projectDTO)
                 .flatMap(result -> ServerResponse.ok()
@@ -47,18 +51,19 @@ public class ProjectRouter {
     @RouterOperation(beanClass = GetAllProjectsUseCase.class, beanMethod = "get",
             operation = @Operation(operationId = "Consultar", summary = "Consultar todos los proyectos", tags = {"Proyecto"}))
     public RouterFunction<ServerResponse> getAll(GetAllProjectsUseCase getAllProjectsUseCase) {
-        return route(GET("/getAllProjects"),request -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
-                .body(BodyInserters.fromPublisher(getAllProjectsUseCase.get(),ProjectDTO.class)));
+        return route(GET("/getAllProjects"), request -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+                .body(BodyInserters.fromPublisher(getAllProjectsUseCase.get(), ProjectDTO.class)));
     }
 
     //Consultar un proyecto por su id
     @Bean
-    @RouterOperation(operation = @Operation(operationId = "ConsultarById", summary = "Consultar proyecto por ID", tags = {"Proyecto"},
-            parameters = {@Parameter(in = ParameterIn.PATH, name = "id", description = "Proyecto id")},
-            responses = {@ApiResponse(responseCode = "200", description = "Operacion exitosa",
-                    content = @Content(schema = @Schema(implementation = GetProjectUseCase.class))),
-                    @ApiResponse(responseCode = "400", description = "Id Proyecto no encontrado"),
-                    @ApiResponse(responseCode = "404", description = "Proyecto no encontrado")}))
+    @RouterOperation(beanClass = GetProjectUseCase.class, beanMethod = "apply",
+            operation = @Operation(operationId = "ConsultarById", summary = "Consultar proyecto por ID", tags = {"Proyecto"},
+            parameters = {@Parameter(in = ParameterIn.PATH, name = "id", description = "String")},
+            responses = {@ApiResponse(responseCode = "200", description = "successful operation",
+                    content = @Content(schema = @Schema(implementation = ProjectDTO.class))),
+                    @ApiResponse(responseCode = "400", description = "Invalid project supplied"),
+                    @ApiResponse(responseCode = "404", description = "Project not found")}))
     public RouterFunction<ServerResponse> getById(GetProjectUseCase getProjectUseCase) {
         return route(
                 GET("/getProject/{id}").and(accept(MediaType.APPLICATION_JSON)),
@@ -71,11 +76,10 @@ public class ProjectRouter {
         );
     }
 
-//    Modificar un proyecto
+    //    Modificar un proyecto
     @Bean
-    @RouterOperation(beanClass = UpdateProjectUseCase.class, beanMethod = "apply",
-            operation = @Operation(operationId = "Actualizar", summary = "Actualizar proyecto",  tags = {"Proyecto"},
-                    parameters = {@Parameter(in = ParameterIn.PATH, name = "id", description = "Proyecto id")}))
+    @RouterOperation(beanClass = UpdateProjectUseCase.class, beanMethod = "update",
+            operation = @Operation(operationId = "Modificar", summary = "Modificar Proyecto", tags = {"Proyecto"}))
     public RouterFunction<ServerResponse> update(UpdateProjectUseCase updateProjectUseCase) {
         Function<ProjectDTO, Mono<ServerResponse>> executor = projectDTO -> updateProjectUseCase.apply(projectDTO)
                 .flatMap(result -> ServerResponse.ok()
@@ -87,13 +91,14 @@ public class ProjectRouter {
         );
     }
 
-//    Eliminar un proyecto
+    //    Eliminar un proyecto
     @Bean
-    @RouterOperation(operation = @Operation(operationId = "Eliminar", summary = "Eliminar proyecto por ID", tags = {"Proyecto"},
-            parameters = {@Parameter(in = ParameterIn.PATH, name = "id", description = "Proyecto Id")},
-            responses = {@ApiResponse(responseCode = "202", description = "Operacion exitosa"),
-                    @ApiResponse(responseCode = "400", description = "Id proyecto no encontrado"),
-                    @ApiResponse(responseCode = "404", description = "Proyecto no encontrado")}))
+    @RouterOperation(beanClass = DeleteProjectUseCase.class, beanMethod = "apply",
+            operation = @Operation(operationId = "deleteProject", summary = "Eliminar proyecto", tags = {"Proyecto"},
+                    parameters = {@Parameter(in = ParameterIn.PATH, name = "id", description = "String")},
+                    responses = {@ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = ProjectDTO.class))),
+                            @ApiResponse(responseCode = "400", description = "Invalid project supplied"),
+                            @ApiResponse(responseCode = "404", description = "Project not found")}))
     public RouterFunction<ServerResponse> delete(DeleteProjectUseCase deleteProjectUseCase) {
         return route(
                 DELETE("/deleteProject/{id}").and(accept(MediaType.APPLICATION_JSON)),

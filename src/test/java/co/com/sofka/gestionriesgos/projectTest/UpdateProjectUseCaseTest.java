@@ -26,7 +26,7 @@ class UpdateProjectUseCaseTest {
     @Mock
     ProjectRepository projectRepository;
 
-    @Mock
+
     UpdateProjectUseCase updateProjectUseCase;
 
     ProjectMapper projectMapper;
