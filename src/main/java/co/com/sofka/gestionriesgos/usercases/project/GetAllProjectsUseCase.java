@@ -1,4 +1,4 @@
-package co.com.sofka.gestionriesgos.usercases;
+package co.com.sofka.gestionriesgos.usercases.project;
 
 import co.com.sofka.gestionriesgos.mappers.ProjectMapper;
 import co.com.sofka.gestionriesgos.model.ProjectDTO;
@@ -22,6 +22,6 @@ public class GetAllProjectsUseCase implements Supplier<Flux<ProjectDTO>> {
 
     @Override
     public Flux<ProjectDTO> get() {
-        return projectRepository.findAll().map(projectMapper.EntityToProjectDTO());
+        return projectRepository.findAll().map(projectMapper.entityToProjectDTO());
     }
 }

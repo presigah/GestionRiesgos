@@ -43,4 +43,5 @@ public class RiskRouter {
                 request -> request.bodyToMono(RiskDTO.class).flatMap(executor)
         );
     }
+
 }
