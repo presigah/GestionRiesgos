@@ -2,9 +2,9 @@ package co.com.sofka.gestionriesgos.mappers;
 
 import co.com.sofka.gestionriesgos.collections.User;
 import co.com.sofka.gestionriesgos.model.UserDTO;
-import com.mongodb.Function;
 import org.springframework.stereotype.Component;
 
+import java.util.function.Function;
 @Component
 public class UserMapper {
 

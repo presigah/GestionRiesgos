@@ -1,8 +1,8 @@
 package co.com.sofka.gestionriesgos.routers;
 
 
-import co.com.sofka.gestionriesgos.model.ProjectDTO;
-import co.com.sofka.gestionriesgos.usercases.project.GetProjectUseCase;
+import co.com.sofka.gestionriesgos.model.UserDTO;
+import co.com.sofka.gestionriesgos.usercases.user.GetUserUseCase;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RestController;
