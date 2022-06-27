@@ -27,10 +27,9 @@ class UpdateProjectUseCaseTest {
     ProjectRepository projectRepository;
 
     @Mock
-    ProjectMapper projectMapper;
-
-    @Mock
     UpdateProjectUseCase updateProjectUseCase;
+
+    ProjectMapper projectMapper;
 
     @BeforeEach
     public void setup(){
