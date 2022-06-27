@@ -19,7 +19,7 @@ public class UserMapper {
         };
     }
 
-    public Function<User, UserDTO> userToUserDto(){
+    public Function<User, UserDTO> userToUserDTO(){
         return user -> new UserDTO(
                 user.getId(),
                 user.getIdFirebase(),

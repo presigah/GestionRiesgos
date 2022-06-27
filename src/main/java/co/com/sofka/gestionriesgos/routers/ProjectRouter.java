@@ -1,6 +1,5 @@
 package co.com.sofka.gestionriesgos.routers;
 
-import co.com.sofka.gestionriesgos.collections.Project;
 import co.com.sofka.gestionriesgos.model.ProjectDTO;
 import co.com.sofka.gestionriesgos.usercases.project.*;
 import io.swagger.v3.oas.annotations.Operation;
@@ -78,8 +77,18 @@ public class ProjectRouter {
 
     //    Modificar un proyecto
     @Bean
-    @RouterOperation(beanClass = UpdateProjectUseCase.class, beanMethod = "update",
-            operation = @Operation(operationId = "Modificar", summary = "Modificar Proyecto", tags = {"Proyecto"}))
+    @RouterOperation(beanClass = UpdateProjectUseCase.class, beanMethod = "apply",
+            operation = @Operation(operationId = "Modificar", summary = "Modificar Proyecto", tags = {"Proyecto"},
+                    parameters = {@Parameter(in = ParameterIn.PATH, name = "nombre", description = "String"),
+                            @Parameter(in = ParameterIn.PATH, name = "fechaInicio", description = "String"),
+                            @Parameter(in = ParameterIn.PATH, name = "fechaFin", description = "String"),
+                            @Parameter(in = ParameterIn.PATH, name = "etiquetas", description = "List<String>"),
+                            @Parameter(in = ParameterIn.PATH, name = "email", description = "List<String>"),
+                            @Parameter(in = ParameterIn.PATH, name = "descripcion", description = "String"),
+                            @Parameter(in = ParameterIn.PATH, name = "estado", description = "String")},
+                    responses = {@ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = ProjectDTO.class))),
+                            @ApiResponse(responseCode = "400", description = "Invalid project supplied"),
+                            @ApiResponse(responseCode = "404", description = "Project not found")}))
     public RouterFunction<ServerResponse> update(UpdateProjectUseCase updateProjectUseCase) {
         Function<ProjectDTO, Mono<ServerResponse>> executor = projectDTO -> updateProjectUseCase.apply(projectDTO)
                 .flatMap(result -> ServerResponse.ok()
