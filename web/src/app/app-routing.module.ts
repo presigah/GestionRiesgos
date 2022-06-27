@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ProjectDetailComponent } from './project-detail/project-detail.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: 'project/:id', component: ProjectDetailComponent },
+  { path: 'projects', component: ProjectDetailComponent },
+  { path: '**', pathMatch: 'full' , redirectTo: 'projects' }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -1,0 +1,15 @@
+<div class="summary-projects container lg">
+    <div>
+        <p class="text-start fs-1 mb-1"> Proyectos</p>
+    </div>
+    <div class="container">
+        <div *ngFor="let project of projects">
+            <div class="card mb-3 h-200">
+                <button type="button" [routerLink]="['/project', project.id]">
+                    {{project.name}}
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
