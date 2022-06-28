@@ -10,7 +10,6 @@ import { multi } from '../models/data-heatMap';
   styleUrls: ['./heat-map-chart.component.css']
 })
 export class HeatMapChartComponent implements OnInit {
-
   //Datos
   multi = [];
   view: [number, number] = [900, 500];
@@ -27,8 +26,7 @@ export class HeatMapChartComponent implements OnInit {
   yAxisLabel: string = 'Probabilidad';
 
   colorScheme = {
-    domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5'],
-
+    domain: ['#5AA454', '#E44D25', '#CFC0BB', '#7aa3e5', '#a8385d', '#aae3f5']
   };
 
   constructor() {
