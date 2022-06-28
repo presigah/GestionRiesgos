@@ -16,7 +16,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let project of projects">
+        <tr *ngFor="let project of projects | paginate: { itemsPerPage: 20, currentPage: page }">
           <th scope="row" [routerLink]="['/project', project.id]">
             {{ project.id }}
           </th>
@@ -29,5 +29,6 @@
         </tr>
       </tbody>
     </table>
+    <pagination-controls (pageChange)="page = $event" nextLabel="Siguiente" previousLabel="Anterior"></pagination-controls>
   </div>
 </div>

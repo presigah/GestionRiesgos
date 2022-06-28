@@ -24,6 +24,8 @@ export class ProjectDetailComponent implements OnInit {
   projects: Project[] = [];
   user: any = '';
 
+  page: number = 1;
+
   constructor(
     private afAuth: FireserviceService,
     private projectService: ProjectService
