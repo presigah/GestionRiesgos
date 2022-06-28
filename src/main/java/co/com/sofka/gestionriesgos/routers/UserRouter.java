@@ -83,7 +83,8 @@ public class UserRouter {
     @Bean
     @RouterOperation(beanClass = UpdateUserUseCase.class, beanMethod = "apply",
             operation = @Operation(operationId = "Modificar", summary = "Modificar Usuario", tags = {"Usuario"},
-                    parameters = {@Parameter(in = ParameterIn.PATH, name = "rol", description = "String"),
+                    parameters = {@Parameter(in = ParameterIn.PATH, name = "id", description = "String"),@Parameter(in = ParameterIn.PATH, name = "idFirebase", description = "String"),@Parameter
+                            (in = ParameterIn.PATH, name = "rol", description = "String"),
                             @Parameter(in = ParameterIn.PATH, name = "email", description = "String")},
                     responses = {@ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = UserDTO.class))),
                             @ApiResponse(responseCode = "400", description = "Invalid user supplied"),

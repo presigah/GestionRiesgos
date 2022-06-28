@@ -1,6 +1,7 @@
 package co.com.sofka.gestionriesgos.routers;
 
 import co.com.sofka.gestionriesgos.model.ProjectDTO;
+import co.com.sofka.gestionriesgos.model.UserDTO;
 import co.com.sofka.gestionriesgos.usercases.project.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -30,7 +31,7 @@ public class ProjectRouter {
     //Crear un proyecto
     @Bean
     @RouterOperation(beanClass = CreateProjectUseCase.class, beanMethod = "apply",
-            operation = @Operation(operationId = "ProjectDTO", summary = "Crear proyecto", tags = {"Proyecto"},
+            operation = @Operation(operationId = "ProjectDTO", summary = "Crear Proyecto", tags = {"Proyecto"},
                     responses = {@ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = ProjectDTO.class))),
                             @ApiResponse(responseCode = "400", description = "Invalid Project supplied"),
                             @ApiResponse(responseCode = "404", description = "Project not found")}))
@@ -80,14 +81,11 @@ public class ProjectRouter {
     @RouterOperation(beanClass = UpdateProjectUseCase.class, beanMethod = "apply",
             operation = @Operation(operationId = "Modificar", summary = "Modificar Proyecto", tags = {"Proyecto"},
                     parameters = {@Parameter(in = ParameterIn.PATH, name = "id", description = "String"),
-                            @Parameter(in = ParameterIn.PATH, name = "nombre", description = "String"),
-                            @Parameter(in = ParameterIn.PATH, name = "fechaInicio", description = "String"),
-                            @Parameter(in = ParameterIn.PATH, name = "fechaFin", description = "String"),
-                            @Parameter(in = ParameterIn.PATH, name = "etiquetas", description = "List<String>"),
-                            @Parameter(in = ParameterIn.PATH, name = "email", description = "List<String>"),
-                            @Parameter(in = ParameterIn.PATH, name = "descripcion", description = "String"),
-                            @Parameter(in = ParameterIn.PATH, name = "estado", description = "String")},
-                    responses = {@ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = ProjectDTO.class))),
+                            @Parameter(in = ParameterIn.PATH, name = "name", description = "String"),
+                            @Parameter(in = ParameterIn.PATH, name = "startDate", description = "String"),@Parameter(in = ParameterIn.PATH, name = "endiDate", description = "String"),
+                            @Parameter(in = ParameterIn.PATH, name = "labels", description = "List<String>"),
+                            @Parameter(in = ParameterIn.PATH, name = "emails", description = "List<String>"),@Parameter(in = ParameterIn.PATH, name = "description", description = "String"),@Parameter(in = ParameterIn.PATH, name = "status", description = "String"),},
+                    responses = {@ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = UserDTO.class))),
                             @ApiResponse(responseCode = "400", description = "Invalid project supplied"),
                             @ApiResponse(responseCode = "404", description = "Project not found")}))
     public RouterFunction<ServerResponse> update(UpdateProjectUseCase updateProjectUseCase) {

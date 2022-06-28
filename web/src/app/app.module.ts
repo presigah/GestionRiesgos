@@ -17,6 +17,8 @@ import { RiskDetailComponent } from './risk-detail/risk-detail.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProjectIdComponent } from './project-id/project-id.component';
+import { HeatMapChartComponent } from './heat-map-chart/heat-map-chart.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -28,15 +30,17 @@ import { ProjectIdComponent } from './project-id/project-id.component';
     RiskDetailComponent,
     ProjectDetailComponent,
     ProjectIdComponent,
+    HeatMapChartComponent,
   ],
   imports: [
-    BrowserModule, 
-    AppRoutingModule, 
-    FontAwesomeModule, 
+    BrowserModule,
+    AppRoutingModule,
+    FontAwesomeModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     BrowserAnimationsModule,
     HttpClientModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgxChartsModule
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent],
