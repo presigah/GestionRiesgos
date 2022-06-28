@@ -1,3 +1,4 @@
+import { RiskService } from './../../service/risk.service';
 import { Risk } from './../../models/risk';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -28,11 +29,16 @@ export class RiskFormComponent implements OnInit {
     responsibleContingencyMails: [''],
   };
 
-  constructor() {}
+  constructor(private service: RiskService) {}
 
   ngOnInit(): void {}
 
-  saveRisk() {
-    console.log('nombre' + this.risk.name);
+  saveRisk(risk: Risk) {
+    console.log('nombre' + risk.name);
+    this.service.saveRisk(risk).subscribe(() => {
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    });
   }
 }
