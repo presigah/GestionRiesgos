@@ -16,7 +16,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { RiskDetailComponent } from './risk-detail/risk-detail.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ProjectIdComponent } from './project-id/project-id.component';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
@@ -28,7 +27,6 @@ import { CommonModule } from '@angular/common';
     RiskTableComponent,
     RiskDetailComponent,
     ProjectDetailComponent,
-    ProjectIdComponent,
   ],
   imports: [
     BrowserModule, 

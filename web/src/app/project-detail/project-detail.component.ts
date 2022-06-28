@@ -21,6 +21,8 @@ export class ProjectDetailComponent implements OnInit {
   faEye = faEye;
 
   projects: Project[] = [];
+  project: Project | undefined;
+  risks: Risk[] = [];
   user: any = '';
 
   constructor(
@@ -40,6 +42,14 @@ export class ProjectDetailComponent implements OnInit {
     this.projectService.getProjects().subscribe((data) => {
       this.projects = data;
     });
+  }
+
+  getProject(id: string) {
+    console.log(id)
+    this.projectService.getProject(id).subscribe((data) => {
+      this.project = data;
+      this.risks = data.risks;
+    })
   }
 
   traerdatos() {
