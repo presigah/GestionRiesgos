@@ -21,6 +21,8 @@ import { FormsModule } from '@angular/forms';
 import { SortableHeaderProjectDirective } from './directives/sortable-header-project.directive';
 import { SortableHeaderRiskDirective } from './directives/sortable-header-risk.directive';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { HeatMapChartComponent } from './heat-map-chart/heat-map-chart.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
     RiskDetailComponent,
     ProjectDetailComponent,
     ProjectIdComponent,
+    HeatMapChartComponent,
+  ],
+  imports: [
+    BrowserModule,
     SortableHeaderProjectDirective,
     SortableHeaderRiskDirective,
   ],
@@ -44,6 +50,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     BrowserAnimationsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
+    NgxChartsModule
     NgxPaginationModule,
   ],
   providers: [HttpClientModule],
