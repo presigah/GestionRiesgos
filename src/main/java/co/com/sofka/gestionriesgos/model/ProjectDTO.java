@@ -24,7 +24,7 @@ public class ProjectDTO {
     private List<String> emails;
     @NotBlank(message = "La descripción del proyecto es requerida")
     private String description;
-    private String status;
+    private String status = "Creado";
     private List<RiskDTO> risks;
 
     public ProjectDTO(String id, String name, LocalDate startDate, LocalDate endingDate, List<String> labels, List<String> emails, String description, String status) {

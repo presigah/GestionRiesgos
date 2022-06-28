@@ -32,6 +32,7 @@ public class RiskMapper {
             risk.setResponsibleMitigationMails(updateRisk.getResponsibleMitigationMails());
             risk.setContingencyPlan(updateRisk.getContingencyPlan());
             risk.setResponsibleContingencyMails(updateRisk.getResponsibleContingencyMails());
+            risk.setState(updateRisk.getState());
             // state = 1
             return risk;
         };
@@ -58,10 +59,8 @@ public class RiskMapper {
                 entity.getResponsibleMitigationMails(),
                 entity.getContingencyPlan(),
                 entity.getResponsibleContingencyMails(),
-                // Aqui debe cambiar por el nombre verdadero del project
-                // Cuando este creado el project mientras le dejo
-                // el mismo nombre del riesgo
-                entity.getName()
+                entity.getState()
+                //entity.getName()
         );
     }
 }

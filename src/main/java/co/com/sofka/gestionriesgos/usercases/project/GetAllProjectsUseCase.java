@@ -12,8 +12,8 @@ import java.util.function.Supplier;
 @Service
 @Validated
 public class GetAllProjectsUseCase implements Supplier<Flux<ProjectDTO>> {
-    private ProjectRepository projectRepository;
-    private ProjectMapper projectMapper;
+    private final ProjectRepository projectRepository;
+    private final ProjectMapper projectMapper;
 
     public GetAllProjectsUseCase(ProjectRepository projectRepository, ProjectMapper projectMapper) {
         this.projectRepository = projectRepository;

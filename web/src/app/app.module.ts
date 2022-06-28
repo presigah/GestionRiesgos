@@ -18,6 +18,9 @@ import { ProjectDetailComponent } from './project-detail/project-detail.componen
 import { HttpClientModule } from '@angular/common/http';
 import { ProjectIdComponent } from './project-id/project-id.component';
 import { FormsModule } from '@angular/forms';
+import { SortableHeaderProjectDirective } from './directives/sortable-header-project.directive';
+import { SortableHeaderRiskDirective } from './directives/sortable-header-risk.directive';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,8 @@ import { FormsModule } from '@angular/forms';
     RiskDetailComponent,
     ProjectDetailComponent,
     ProjectIdComponent,
+    SortableHeaderProjectDirective,
+    SortableHeaderRiskDirective,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +44,7 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
+    NgxPaginationModule,
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent],

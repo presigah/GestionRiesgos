@@ -6,11 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 
 @Getter
 @Setter
@@ -74,7 +72,8 @@ public class RiskDTO {
 
     private List<String> responsibleContingencyMails;
 
-    // ------
-    private String projectName;
+    private Integer state;
+
+    //private String projectName;
 
 }

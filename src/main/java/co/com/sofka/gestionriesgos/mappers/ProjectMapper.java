@@ -33,7 +33,6 @@ public class ProjectMapper {
                 entity.getEmails(),
                 entity.getDescription(),
                 entity.getStatus()
-//                entity.getRisks()
         );
     }
 }

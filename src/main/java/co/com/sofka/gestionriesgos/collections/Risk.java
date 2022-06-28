@@ -1,11 +1,9 @@
 package co.com.sofka.gestionriesgos.collections;
 
 import lombok.*;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.util.List;
 

@@ -2,7 +2,6 @@ package co.com.sofka.gestionriesgos.projectTest;
 
 import co.com.sofka.gestionriesgos.collections.Project;
 import co.com.sofka.gestionriesgos.mappers.ProjectMapper;
-import co.com.sofka.gestionriesgos.model.ProjectDTO;
 import co.com.sofka.gestionriesgos.repositories.ProjectRepository;
 import co.com.sofka.gestionriesgos.usercases.project.UpdateProjectUseCase;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,8 +14,6 @@ import reactor.test.StepVerifier;
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.refEq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -68,7 +65,7 @@ class UpdateProjectUseCaseTest {
                 .expectNext("1")
                 .verifyComplete();
 
-                verify(projectRepository).save(refEq(project));
+                verify(projectRepository).save(project);
 
 
     }

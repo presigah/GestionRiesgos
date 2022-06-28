@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { EmptyProject } from '../models/empty-project';
+import { SortableHeaderProjectDirective, SortProjectEvent } from '../directives/sortable-header-project.directive';
 import { Project } from '../models/project';
 import { Risk } from '../models/risk';
 import { FireserviceService } from '../service/fireservice.service';
@@ -13,12 +13,18 @@ import { ProjectService } from '../service/project.service';
   styleUrls: ['./project-detail.component.css']
 })
 export class ProjectDetailComponent implements OnInit {
+  @ViewChildren(SortableHeaderProjectDirective) headers: QueryList<SortableHeaderProjectDirective> | undefined;
+
+  compare = (v1: string | Date | [string] | [Risk], v2: string | Date | [string] | [Risk]) => v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
+
   userLogged = this.afAuth.getUserLogged();
   uid: any;
   disabled: boolean = false;
 
   projects: Project[] = [];
   user: any = '';
+
+  page: number = 1;
 
   constructor(
     private afAuth: FireserviceService,
@@ -47,6 +53,24 @@ export class ProjectDetailComponent implements OnInit {
         this.disabled = false;     
       }
     });
+  }
+
+  onSort({column, direction}: SortProjectEvent) {
+    // resetting other headers
+    this.headers?.forEach(header => {
+      if (header.sortable !== column) {
+        header.direction = '';
+      }
+    });
+
+    if(direction === '' || column === ''){
+      this.getProjects();
+    } else {
+      this.projects.sort((a, b) => {
+        const res = this.compare(a[column], b[column]);
+        return direction === 'asc' ? res : -res;
+      });
+    }
   }
 
 }

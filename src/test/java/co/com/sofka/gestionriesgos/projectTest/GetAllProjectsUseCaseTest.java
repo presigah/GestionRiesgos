@@ -14,7 +14,6 @@ import reactor.test.StepVerifier;
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -22,10 +21,10 @@ import static org.mockito.Mockito.when;
 class GetAllProjectsUseCaseTest {
 
     @Mock
-    private ProjectRepository projectRepository;
+    ProjectRepository projectRepository;
 
 
-    private GetAllProjectsUseCase getAllProjectsUseCase;
+    GetAllProjectsUseCase getAllProjectsUseCase;
 
 
     @BeforeEach
