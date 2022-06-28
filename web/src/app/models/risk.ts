@@ -22,5 +22,5 @@ export interface Risk {
   responsibleMitigationMails: [string];
   contingencyPlan: string;
   responsibleContingencyMails: [string];
-  Integer?: number;
+  state?: number;
 }
