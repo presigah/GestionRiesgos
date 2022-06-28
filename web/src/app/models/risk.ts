@@ -1,6 +1,6 @@
 export interface Risk {
   id: string;
-  projectId: string;
+  projectId?: string;
   name: string;
   userId: string;
   detectedDate?: Date;
