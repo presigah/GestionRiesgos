@@ -1,31 +1,79 @@
 <div class="summary-projects container lg">
-    <div>
-        <p class="text-start fs-1 mb-1"> Proyectos</p>
-    </div>
-    <div class="container">
-        <table class="table table-striped">
-            <thead>
-                 <tr>
-                     <th scope="col">Id Proyecto</th>
-                     <th scope="col">Nombre Proyecto</th>
-                     <th scope="col">Fecha Inicio</th>
-                     <th scope="col">Fecha Fin</th>
-                     <th scope="col">Emails</th>
-                     <th scope="col">Descripción</th>
-                     <th scope="col">Status</th>
-                 </tr>
-            </thead> 
-            <tbody>
-                 <tr *ngFor="let project of projects">
-                     <th scope="row" [routerLink]="['/project', project.id]">{{project.id}}</th>
-                     <th scope="row">{{project.name}}</th>
-                     <th scope="row">{{project.startDate}}</th>
-                     <th scope="row">{{project.endingDate}}</th>
-                     <th scope="row">{{project.emails}}</th>
-                     <th scope="row">{{project.description}}</th>
-                     <th scope="row">{{project.status}}</th>
-                 </tr>
-            </tbody>
-         </table>
+    <div class="accordion" id="projectAccordion">
+        <div class="accordion-item" *ngFor="let project of projects">
+            <h2 class="accordion-header" id="headingOne">
+                <button  class="accordion-button collapsed" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse'+project.id" aria-expanded="false" aria-controls="collapseOne">
+                    {{project.name}}
+                </button>
+            </h2>
+            <div id="collapse{{project.id}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#projectAccordion">
+                <div class="accordion-body">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">INICIO</th>
+                            <th scope="col">FINAL</th>
+                            <th scope="col">EMAILS</th>
+                            <th scope="col">DESCRIPCION</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">{{project.id}}</th>
+                            <td>{{project.startDate}}</td>
+                            <td>{{project.endingDate}}</td>
+                            <td>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#projectEmailModal'+project.id">
+                                    <fa-icon [icon]="faEye"></fa-icon>
+                                </button>
+                                  
+                                  <!-- Modal -->
+                                <div class="modal fade" id="projectEmailModal{{project.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="projectEmailModal{{project.id}}">EMAILS</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                {{project.emails}}
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#projectDescriptionModal'+project.id">
+                                    <fa-icon [icon]="faEye"></fa-icon>
+                                </button>
+                                  
+                                  <!-- Modal -->
+                                <div class="modal fade" id="projectDescriptionModal{{project.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="projectDescriptionModal{{project.id}}">DESCRIPCION</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                {{project.description}}
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

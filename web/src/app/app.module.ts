@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { ProyectFormComponent } from './forms/proyect-form/proyect-form.component';
+import { projectFormComponent } from './forms/project-form/project-form.component';
 import { RiskFormComponent } from './forms/risk-form/risk-form.component';
 import { RiskTableComponent } from './risk-table/risk-table.component';
 import { environment } from '../environments/environment';
@@ -17,12 +17,13 @@ import { RiskDetailComponent } from './risk-detail/risk-detail.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProjectIdComponent } from './project-id/project-id.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidebarComponent,
-    ProyectFormComponent,
+    projectFormComponent,
     RiskFormComponent,
     RiskTableComponent,
     RiskDetailComponent,
@@ -36,6 +37,7 @@ import { ProjectIdComponent } from './project-id/project-id.component';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     BrowserAnimationsModule,
     HttpClientModule,
+    CommonModule,
     ToastrModule.forRoot()
   ],
   providers: [HttpClientModule],

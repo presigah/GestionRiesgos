@@ -5,6 +5,7 @@ import { Project } from '../models/project';
 import { Risk } from '../models/risk';
 import { FireserviceService } from '../service/fireservice.service';
 import { ProjectService } from '../service/project.service';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -16,6 +17,8 @@ export class ProjectDetailComponent implements OnInit {
   userLogged = this.afAuth.getUserLogged();
   uid: any;
   disabled: boolean = false;
+
+  faEye = faEye;
 
   projects: Project[] = [];
   user: any = '';

@@ -4,9 +4,9 @@ import { ProjectDetailComponent } from './project-detail/project-detail.componen
 import { ProjectIdComponent } from './project-id/project-id.component';
 
 const routes: Routes = [
-  { path: 'project/:id', component: ProjectIdComponent },
-  { path: 'projects', component: ProjectDetailComponent },
-  { path: '**', pathMatch: 'full' , redirectTo: 'projects' }
+  // { path: 'project/:id', component: ProjectIdComponent },
+  // { path: 'projects', component: ProjectDetailComponent },
+  // { path: '**', pathMatch: 'full' , redirectTo: 'projects' }
 ];
 
 @NgModule({

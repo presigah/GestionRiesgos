@@ -1,8 +1,3 @@
-<nav class="navbar bg-secondary">
-    <div class="container-fluid">
-      <h1 class="navbar-brand mb-0 h1">Gestor de Riesgos <fa-icon [icon]="faBolt"></fa-icon></h1>
-    </div>
-</nav>
 <div class="d-flex">
     <div class="sidebar-container bg-dark">
         <div class="menu d-grid gap-2">
@@ -16,10 +11,10 @@
               <img clas="user-icon" [src]="userIcon">
            </button>
 
-            <button type="button" class="btn btn-success mt-5" data-bs-toggle="modal" data-bs-target="#FormProyectPoPUp">
+            <button type="button" class="btn btn-success mt-5" data-bs-toggle="modal" data-bs-target="#FormprojectPoPUp">
                 <fa-icon class="user-icon" [icon]="faFolderPlus"></fa-icon>
             </button>
-            <div class="modal fade " id="FormProyectPoPUp" tabindex="-1" aria-labelledby="Title" aria-hidden="true">
+            <div class="modal fade " id="FormprojectPoPUp" tabindex="-1" aria-labelledby="Title" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-scrollable">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -27,7 +22,7 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                      <app-proyect-form></app-proyect-form>
+                      <app-project-form></app-project-form>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -68,6 +63,19 @@
             </button>
             
         </div>
+    </div>
+    <div class="w-100">
+      <nav class="navbar bg-secondary">
+        <div class="container-fluid">
+          <h1 class="navbar-brand mb-0 h1">Gestor de Riesgos <fa-icon [icon]="faBolt"></fa-icon></h1>
+        </div>
+      </nav>
+      <div>
+        <section class="container">
+          <h1>PROYECTOS</h1>
+          <app-project-detail></app-project-detail>
+        </section>
+      </div>
     </div>
 </div>
 
