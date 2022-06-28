@@ -1,4 +1,4 @@
-import { Component, EmbeddedViewRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Project } from '../models/project';
 import { Risk } from '../models/risk';
@@ -20,7 +20,6 @@ export class ProjectIdComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private projectService: ProjectService,
-    private asfAuth: FireserviceService
   ) {}
 
   ngOnInit(): void {
