@@ -37,7 +37,7 @@ class DeleteProjectUseCaseTest {
         proyecto.setName("Project");
         proyecto.setDescription("Description");
         proyecto.setStartDate(LocalDate.now());
-        proyecto.setEndingDate(LocalDate.of(2022,07,04));
+        proyecto.setEndingDate(LocalDate.of(2022,7,4));
         proyecto.setLabels(List.of("label1", "label2"));
         proyecto.setEmails(List.of("correo@gmail.com"));
         proyecto.setDescription("Description");

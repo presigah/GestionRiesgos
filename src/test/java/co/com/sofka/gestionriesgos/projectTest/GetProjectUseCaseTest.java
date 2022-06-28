@@ -4,7 +4,6 @@ import co.com.sofka.gestionriesgos.collections.Project;
 import co.com.sofka.gestionriesgos.collections.Risk;
 import co.com.sofka.gestionriesgos.mappers.ProjectMapper;
 import co.com.sofka.gestionriesgos.mappers.RiskMapper;
-import co.com.sofka.gestionriesgos.model.RiskDTO;
 import co.com.sofka.gestionriesgos.repositories.ProjectRepository;
 import co.com.sofka.gestionriesgos.repositories.RiskRepository;
 import co.com.sofka.gestionriesgos.usercases.project.GetProjectUseCase;
@@ -18,7 +17,6 @@ import reactor.test.StepVerifier;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
