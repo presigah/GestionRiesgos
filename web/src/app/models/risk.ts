@@ -3,8 +3,8 @@ export interface Risk {
   projectId?: string;
   name: string;
   userId: string;
-  detectedDate: Date;
-  endedDate: Date;
+  detectedDate?: Date;
+  endedDate?: Date;
   labels: [string];
   description: string;
   // (Abierto; mitigado; Cerrado; Problema)
@@ -22,5 +22,5 @@ export interface Risk {
   responsibleMitigationMails: [string];
   contingencyPlan: string;
   responsibleContingencyMails: [string];
-  state: number;
+  state?: number;
 }
