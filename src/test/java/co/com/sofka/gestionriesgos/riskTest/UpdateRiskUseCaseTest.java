@@ -3,7 +3,7 @@ package co.com.sofka.gestionriesgos.riskTest;
 import co.com.sofka.gestionriesgos.collections.Risk;
 import co.com.sofka.gestionriesgos.mappers.RiskMapper;
 import co.com.sofka.gestionriesgos.repositories.RiskRepository;
-import co.com.sofka.gestionriesgos.usercases.risk.CreateRiskUseCase;
+import co.com.sofka.gestionriesgos.usercases.risk.UpdateRiskUseCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -14,30 +14,30 @@ import reactor.test.StepVerifier;
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.refEq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-public class CreateRiskUseCaseTest {
+public class UpdateRiskUseCaseTest {
 
     @Mock
     RiskRepository riskRepository;
 
-    CreateRiskUseCase createRiskUseCase;
+    UpdateRiskUseCase updateRiskUseCase;
 
     RiskMapper riskMapper;
 
     @BeforeEach
-    void setUp() {
+    public void setup() {
         riskMapper = new RiskMapper();
-        createRiskUseCase = new CreateRiskUseCase(riskMapper, riskRepository);
+        updateRiskUseCase = new UpdateRiskUseCase(riskMapper, riskRepository);
     }
 
     @Test
-    void getValidationCreateRiskTest() {
+    void updateRiskUseCaseTest() {
         var risk = new Risk();
+        risk.setId("1");
         risk.setProjectId("123");
         risk.setName("Risk");
         risk.setUserId("321");
@@ -64,7 +64,7 @@ public class CreateRiskUseCaseTest {
         riskReturn.setDetectedDate(LocalDate.now());
         riskReturn.setEndedDate(LocalDate.of(2022, 06, 30));
         riskReturn.setLabels(List.of("Label1", "Label2"));
-        riskReturn.setDescription("Descripcion1");
+        riskReturn.setDescription("Descripcion1 modificada");
         riskReturn.setRiskState("Abierto");
         riskReturn.setAudience("Interna");
         riskReturn.setCategory("Costo");
@@ -80,9 +80,10 @@ public class CreateRiskUseCaseTest {
 
         var riskDTO = riskMapper.RiskToRiskDTO().apply(risk);
 
-        when(riskRepository.save(any(Risk.class))).thenReturn(Mono.just(riskReturn));
+        when(riskRepository.findById("1")).thenReturn(Mono.just(risk));
+        when(riskRepository.save(risk)).thenReturn(Mono.just(riskReturn));
 
-        StepVerifier.create(createRiskUseCase.apply(riskDTO))
+        StepVerifier.create(updateRiskUseCase.apply(riskDTO))
                 .expectNext("1")
                 .verifyComplete();
 
