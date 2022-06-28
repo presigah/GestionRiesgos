@@ -3,8 +3,8 @@ export interface Risk {
   projectId: string;
   name: string;
   userId: string;
-  detectedDate: Date;
-  endedDate: Date;
+  detectedDate?: Date;
+  endedDate?: Date;
   labels: [any];
   description: string;
   // (Abierto; mitigado; Cerrado; Problema)
