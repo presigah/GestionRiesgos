@@ -74,7 +74,8 @@ public class RiskDTO {
 
     private List<String> responsibleContingencyMails;
 
-    // ------
-    private String projectName;
+    private Integer state;
+
+    //private String projectName;
 
 }

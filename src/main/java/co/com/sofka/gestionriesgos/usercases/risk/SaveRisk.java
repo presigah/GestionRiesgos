@@ -1,4 +1,4 @@
-package co.com.sofka.gestionriesgos.usercases;
+package co.com.sofka.gestionriesgos.usercases.risk;
 
 import co.com.sofka.gestionriesgos.model.RiskDTO;
 import reactor.core.publisher.Mono;
