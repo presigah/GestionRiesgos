@@ -1,9 +1,7 @@
 package co.com.sofka.gestionriesgos.routers;
 
 
-import co.com.sofka.gestionriesgos.model.ProjectDTO;
 import co.com.sofka.gestionriesgos.model.UserDTO;
-import co.com.sofka.gestionriesgos.usercases.project.UpdateProjectUseCase;
 import co.com.sofka.gestionriesgos.usercases.user.CreateUserUseCase;
 import co.com.sofka.gestionriesgos.usercases.user.GetAllUsersUseCase;
 import co.com.sofka.gestionriesgos.usercases.user.GetUserUseCase;
