@@ -1,31 +1,33 @@
 <div class="summary-projects container lg">
-    <div>
-        <p class="text-start fs-1 mb-1"> Proyectos</p>
-    </div>
-    <div class="container">
-        <table class="table table-striped">
-            <thead>
-                 <tr>
-                     <th scope="col">Id Proyecto</th>
-                     <th scope="col">Nombre Proyecto</th>
-                     <th scope="col">Fecha Inicio</th>
-                     <th scope="col">Fecha Fin</th>
-                     <th scope="col">Emails</th>
-                     <th scope="col">Descripción</th>
-                     <th scope="col">Status</th>
-                 </tr>
-            </thead> 
-            <tbody>
-                 <tr *ngFor="let project of projects">
-                     <th scope="row" [routerLink]="['/project', project.id]">{{project.id}}</th>
-                     <th scope="row">{{project.name}}</th>
-                     <th scope="row">{{project.startDate}}</th>
-                     <th scope="row">{{project.endingDate}}</th>
-                     <th scope="row">{{project.emails}}</th>
-                     <th scope="row">{{project.description}}</th>
-                     <th scope="row">{{project.status}}</th>
-                 </tr>
-            </tbody>
-         </table>
-    </div>
+  <div>
+    <p class="text-start fs-1 mb-1">Proyectos</p>
+  </div>
+  <div class="container">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Id Proyecto</th>
+          <th scope="col">Nombre Proyecto</th>
+          <th scope="col">Fecha Inicio</th>
+          <th scope="col">Fecha Fin</th>
+          <th scope="col">Emails</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let project of projects">
+          <th scope="row" [routerLink]="['/project', project.id]">
+            {{ project.id }}
+          </th>
+          <th scope="row">{{ project.name }}</th>
+          <th scope="row">{{ project.startDate }}</th>
+          <th scope="row">{{ project.endingDate }}</th>
+          <th scope="row">{{ project.emails }}</th>
+          <th scope="row">{{ project.description }}</th>
+          <th scope="row">{{ project.status }}</th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

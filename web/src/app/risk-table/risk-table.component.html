@@ -26,7 +26,12 @@
         <td>{{ risk.riskType }}</td>
         <td>calcular</td>
         <td>
-          <button class="btn btn-primary">Ver</button>
+          <button
+            class="btn btn-primary"
+            [routerLink]="['/riskDetail', risk.projectId, risk.id]"
+          >
+            Ver
+          </button>
         </td>
         <td>
           <button class="btn btn-danger">Eliminar</button>
