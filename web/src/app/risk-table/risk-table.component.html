@@ -3,14 +3,14 @@
     <thead>
       <tr>
         <!-- <th>Id riesgo</th> -->
-        <th>Nombre del riesgo</th>
-        <th>Fecha de detección</th>
-        <th>Fecha de cierre</th>
-        <th>Estado del riesgo</th>
-        <th>Audiencia</th>
-        <th>Categoría</th>
-        <th>Tipo de riesgo</th>
-        <th>Valor de criticidad</th>
+        <th scope="col" sortableRisk="name" (sort) = "onRiskSort($event)">>Nombre del riesgo</th>
+        <th scope="col" sortableRisk="detectedDate" (sort) = "onRiskSort($event)">Fecha de detección</th>
+        <th scope="col" sortableRisk="endedDate" (sort) = "onRiskSort($event)">Fecha de cierre</th>
+        <th scope="col" sortableRisk="risksState" (sort) = "onRiskSort($event)">Estado del riesgo</th>
+        <th scope="col" sortableRisk="audience" (sort) = "onRiskSort($event)">Audiencia</th>
+        <th scope="col" sortableRisk="category" (sort) = "onRiskSort($event)">Categoría</th>
+        <th scope="col" sortableRisk="riskType" (sort) = "onRiskSort($event)">Tipo de riesgo</th>
+        <th scope="col" >Valor de criticidad</th>
         <th>Acciones</th>
       </tr>
     </thead>

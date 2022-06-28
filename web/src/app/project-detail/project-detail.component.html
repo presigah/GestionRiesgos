@@ -7,12 +7,12 @@
       <thead>
         <tr>
           <th scope="col">Id Proyecto</th>
-          <th scope="col">Nombre Proyecto</th>
-          <th scope="col">Fecha Inicio</th>
-          <th scope="col">Fecha Fin</th>
-          <th scope="col">Emails</th>
-          <th scope="col">Descripción</th>
-          <th scope="col">Status</th>
+          <th scope="col" sortable="name" (sort) = "onSort($event)">Nombre Proyecto</th>
+          <th scope="col" sortable="startDate" (sort) = "onSort($event)">Fecha Inicio</th>
+          <th scope="col" sortable="endingDate" (sort) = "onSort($event)">Fecha Fin</th>
+          <th scope="col" >Emails</th>
+          <th scope="col" >Descripción</th>
+          <th scope="col" sortable="status" (sort) = "onSort($event)">Status</th>
         </tr>
       </thead>
       <tbody>

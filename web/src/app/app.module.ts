@@ -17,6 +17,8 @@ import { RiskDetailComponent } from './risk-detail/risk-detail.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProjectIdComponent } from './project-id/project-id.component';
+import { SortableHeaderProjectDirective } from './directives/sortable-header-project.directive';
+import { SortableHeaderRiskDirective } from './directives/sortable-header-risk.directive';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { ProjectIdComponent } from './project-id/project-id.component';
     RiskDetailComponent,
     ProjectDetailComponent,
     ProjectIdComponent,
+    SortableHeaderProjectDirective,
+    SortableHeaderRiskDirective,
   ],
   imports: [
     BrowserModule, 

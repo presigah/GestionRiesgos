@@ -5,7 +5,7 @@ export interface Risk {
   userId: string;
   detectedDate: Date;
   endedDate: Date;
-  labels: [any];
+  labels: [string];
   description: string;
   // (Abierto; mitigado; Cerrado; Problema)
   risksState: string;
@@ -22,5 +22,5 @@ export interface Risk {
   responsibleMitigationMails: [string];
   contingencyPlan: string;
   responsibleContingencyMails: [string];
-  state?: number;
+  state: number;
 }
