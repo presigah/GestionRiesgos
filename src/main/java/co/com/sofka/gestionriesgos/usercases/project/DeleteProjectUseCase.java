@@ -26,7 +26,8 @@ public class DeleteProjectUseCase implements Function<String, Mono<Void>> {
                 .flatMap(project -> {
                     if (project.getStatus().equalsIgnoreCase("Creado")) {
                        return projectRepository.deleteById(id);
-                    }throw new IllegalArgumentException("El proyecto no puede ser eliminado");
+                    }
+                    return Mono.error(new IllegalArgumentException("El proyecto no puede ser eliminado"));
                 });
     }
 }
