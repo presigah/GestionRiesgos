@@ -8,31 +8,13 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class RiskFormComponent implements OnInit {
   @Input() projectId?: string;
-  risk: Risk = {
-    id: '',
-    projectId: '',
-    name: '',
-    userId: '',
-    labels: [''],
-    description: '',
-    riskState: '',
-    audience: '',
-    category: '',
-    riskType: '',
-    detailsRiskType: '',
-    probability: 0,
-    impactValue: 0,
-    mitigationPlan: '',
-    responsibleMitigationMails: [''],
-    contingencyPlan: '',
-    responsibleContingencyMails: [''],
-  };
+  risk: Risk | undefined;
 
   constructor() {}
 
   ngOnInit(): void {}
 
   saveRisk() {
-    console.log('nombre' + this.risk.name);
+    console.log('nombre' + this.risk?.name);
   }
 }
