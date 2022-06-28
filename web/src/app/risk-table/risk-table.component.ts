@@ -1,5 +1,6 @@
 import { RiskService } from './../service/risk.service';
 import { Component, OnInit } from '@angular/core';
+import { faArrowUpRightFromSquare, faTrashCan, faEye } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-risk-table',
@@ -9,6 +10,10 @@ import { Component, OnInit } from '@angular/core';
 export class RiskTableComponent implements OnInit {
   risks: any;
   constructor(private service: RiskService) {}
+
+  faArrowUpRightFromSquare = faArrowUpRightFromSquare;
+  faTrashCan = faTrashCan;
+  faEye = faEye;
 
   ngOnInit(): void {
     this.getRisks();

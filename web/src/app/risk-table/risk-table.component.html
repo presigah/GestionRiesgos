@@ -1,30 +1,64 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Id riesgo</th>
-      <th>Nombre del riesgo</th>
-      <th>Fecha de detección</th>
-      <th>Fecha de cierre</th>
-      <th>Estado del riesgo</th>
+      <!-- <th>Id riesgo</th> -->
+      <th>Nombre</th>
+      <th>Detección</th>
+      <th>Cierre</th>
+      <th>Descripcion</th>
+      <th>Estado</th>
       <th>Audiencia</th>
       <th>Categoría</th>
-      <th>Tipo de riesgo</th>
-      <th>Valor de criticidad</th>
-      <th>Acciones</th>
+      <th>Tipo</th>
+      <th>Detalles</th>
+      <th>Criticidad</th>
+      <th colspan="2">Acciones</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let risk of risks">
-      <td>{{ risk.id }}</td>
+      <!-- <td>{{ risk.id }}</td> -->
       <td>{{ risk.name }}</td>
       <td>{{ risk.detectedDate }}</td>
       <td>{{ risk.endedDate }}</td>
+      <td>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#riskDescriptionModal'+risk.id">
+            <fa-icon [icon]="faEye"></fa-icon>
+        </button>
+          
+          <!-- Modal -->
+        <div class="modal fade" id="riskDescriptionModal{{risk.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="riskDescriptionModal{{risk.id}}">DESCRIPCION</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                {{risk.description}}
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </td>
       <td>{{ risk.risksState }}</td>
       <td>{{ risk.audience }}</td>
       <td>{{ risk.category }}</td>
       <td>{{ risk.riskType }}</td>
-      <td>calcular</td>
-      <td><button class="btn btn-primary">ver</button></td>
+      <td>Calcular</td>
+      <td>
+        <button class="btn btn-warning">
+          <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
+        </button>
+      </td>
+      <td>
+        <button class="btn btn-danger">
+          <fa-icon [icon]="faTrashCan"></fa-icon>
+        </button>
+      </td>
     </tr>
   </tbody>
 </table>

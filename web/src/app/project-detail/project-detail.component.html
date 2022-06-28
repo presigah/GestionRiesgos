@@ -11,16 +11,16 @@
                     <table class="table">
                         <thead>
                           <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">INICIO</th>
-                            <th scope="col">FINAL</th>
-                            <th scope="col">EMAILS</th>
-                            <th scope="col">DESCRIPCION</th>
+                            <!-- <th scope="col">ID</th> -->
+                            <th >Inicio</th>
+                            <th >Final</th>
+                            <th >Emails</th>
+                            <th >Descripcion</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
-                            <th scope="row">{{project.id}}</th>
+                            <!-- <th>{{project.id}}</th> -->
                             <td>{{project.startDate}}</td>
                             <td>{{project.endingDate}}</td>
                             <td>
@@ -72,6 +72,8 @@
                           </tr>
                         </tbody>
                     </table>
+                    <h3>Riesgos</h3>
+                    <app-risk-table></app-risk-table>
                 </div>
             </div>
         </div>

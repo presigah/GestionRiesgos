@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./risk-form.component.css']
 })
 export class RiskFormComponent implements OnInit {
-
+  
   constructor() { }
 
   ngOnInit(): void {
