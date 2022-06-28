@@ -18,7 +18,7 @@ export class RiskDetailComponent implements OnInit {
 
   projects: Project[] | undefined;
   // risk: Risk[] | undefined;
-  risk: any;
+  risk: Risk | undefined;
 
   constructor(
     private service: RiskService,
