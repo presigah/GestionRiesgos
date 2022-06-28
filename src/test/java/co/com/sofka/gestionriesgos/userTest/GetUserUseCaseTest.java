@@ -41,7 +41,13 @@ class GetUserUseCaseTest {
         when(userRepository.findById(user.getId())).thenReturn(Mono.just(user));
 
         StepVerifier.create(getUserUseCase.apply(user.getId()))
-                .expectNext(user)
+                .expectNextMatches(userDTO -> {
+                    assert userDTO.getId().equals(user.getId());
+                    assert userDTO.getIdFirebase().equals(user.getIdFirebase());
+                    assert userDTO.getEmail().equals(user.getEmail());
+                    assert userDTO.getRol().equals(user.getRol());
+                    return true;
+                })
                 .verifyComplete();
 
         verify(userRepository).findById(user.getId());
