@@ -15,6 +15,8 @@ export class RiskTableComponent implements OnInit {
 
   faHeartCirclePlus = faHeartCirclePlus;
 
+  page: number = 1;
+
   @Input() risks: Risk[] = [];
   constructor() {}
 

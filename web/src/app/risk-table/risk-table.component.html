@@ -58,7 +58,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let risk of risks">
+      <tr *ngFor="let risk of risks | paginate: { itemsPerPage: 30, currentPage: page }">
         <!-- <td>{{ risk.id }}</td> -->
         <td>{{ risk.name }}</td>
         <td>{{ risk.detectedDate }}</td>
@@ -84,4 +84,5 @@
       </tr>
     </tbody>
   </table>
+  <pagination-controls (pageChange)="page = $event" nextLabel="Siguiente" previousLabel="Anterior"></pagination-controls>
 </div>
