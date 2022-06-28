@@ -9,7 +9,7 @@ import { ProyectFormComponent } from './forms/proyect-form/proyect-form.componen
 import { RiskFormComponent } from './forms/risk-form/risk-form.component';
 import { RiskTableComponent } from './risk-table/risk-table.component';
 import { environment } from '../environments/environment';
-import { AngularFireModule} from '@angular/fire/compat';
+import { AngularFireModule } from '@angular/fire/compat';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -17,6 +17,7 @@ import { RiskDetailComponent } from './risk-detail/risk-detail.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProjectIdComponent } from './project-id/project-id.component';
+import { FormsModule } from '@angular/forms';
 import { SortableHeaderProjectDirective } from './directives/sortable-header-project.directive';
 import { SortableHeaderRiskDirective } from './directives/sortable-header-risk.directive';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -35,14 +36,15 @@ import { NgxPaginationModule } from 'ngx-pagination';
     SortableHeaderRiskDirective,
   ],
   imports: [
-    BrowserModule, 
-    AppRoutingModule, 
-    FontAwesomeModule, 
+    BrowserModule,
+    FormsModule,
+    AppRoutingModule,
+    FontAwesomeModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     BrowserAnimationsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent],

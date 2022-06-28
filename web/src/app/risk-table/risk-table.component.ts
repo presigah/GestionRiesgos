@@ -30,11 +30,17 @@ export class RiskTableComponent implements OnInit {
       }
     });
 
-    if(directionRisk === '' || columnRisk === ''){
+    if(directionRisk === '' || columnRisk == null){
       this.risks;
     } else {
       this.risks.sort((a, b) => {
-        const res = this.compare(a[columnRisk], b[columnRisk]);
+        if (columnRisk == null || columnRisk == '') return 0
+        const aColumnRisk = a[columnRisk]
+        const bColumnRisk = b[columnRisk]
+        if (aColumnRisk == null && bColumnRisk == null) return 0
+        if (aColumnRisk == null) return 1
+        if (bColumnRisk == null) return -1
+        const res = this.compare(aColumnRisk, bColumnRisk);
         return directionRisk === 'asc' ? res : -res;
       });
     }
