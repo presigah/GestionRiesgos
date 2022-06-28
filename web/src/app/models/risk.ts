@@ -1,14 +1,14 @@
 export interface Risk {
   id: string;
-  projectId: string;
+  projectId?: string;
   name: string;
   userId: string;
-  detectedDate: Date;
-  endedDate: Date;
-  labels: [any];
+  detectedDate?: Date;
+  endedDate?: Date;
+  labels: [string];
   description: string;
   // (Abierto; mitigado; Cerrado; Problema)
-  risksState: string;
+  riskState: string;
   // (Interna; Externa)
   audience: string;
   // (Costo; Tiempo; Calidad)

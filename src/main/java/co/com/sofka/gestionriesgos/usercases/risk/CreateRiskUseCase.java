@@ -5,9 +5,11 @@ import co.com.sofka.gestionriesgos.mappers.RiskMapper;
 import co.com.sofka.gestionriesgos.model.RiskDTO;
 import co.com.sofka.gestionriesgos.repositories.RiskRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 import reactor.core.publisher.Mono;
 
 @Service
+@Validated
 public class CreateRiskUseCase implements SaveRisk{
     private final RiskRepository riskRepo;
     private final RiskMapper riskMapper;

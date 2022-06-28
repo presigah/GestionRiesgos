@@ -3,7 +3,7 @@ package co.com.sofka.gestionriesgos.userTest;
 import co.com.sofka.gestionriesgos.collections.User;
 import co.com.sofka.gestionriesgos.mappers.UserMapper;
 import co.com.sofka.gestionriesgos.repositories.UserRepository;
-import co.com.sofka.gestionriesgos.usercases.user.CreateUserUseCase;
+import co.com.sofka.gestionriesgos.usercases.user.UpdateUserUseCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -11,30 +11,30 @@ import org.springframework.boot.test.context.SpringBootTest;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.refEq;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-class CreateUserUseCaseTest {
+public class UpdateUserUseCaseTest {
 
     @Mock
     UserRepository userRepository;
 
-    CreateUserUseCase createUserUseCase;
+    UpdateUserUseCase updateUserUseCase;
 
     UserMapper userMapper;
 
     @BeforeEach
-    void setUp() {
+    public void setup() {
         userMapper = new UserMapper();
-        createUserUseCase = new CreateUserUseCase(userRepository, userMapper);
+        updateUserUseCase = new UpdateUserUseCase(userRepository, userMapper);
     }
 
     @Test
-    void getValidationCreateUserTest() {
+    void updateUserUseCase() {
         var user = new User();
+        user.setId("1");
         user.setIdFirebase("1user");
         user.setRol("Administrador");
         user.setEmail("correo@gmail.com");
@@ -47,13 +47,13 @@ class CreateUserUseCaseTest {
 
         var userDTO = userMapper.userToUserDTO().apply(user);
 
-        when(userRepository.save(any(User.class))).thenReturn(Mono.just(userReturn));
+        when(userRepository.findById("1")).thenReturn(Mono.just(user));
+        when(userRepository.save(user)).thenReturn(Mono.just(userReturn));
 
-        StepVerifier.create(createUserUseCase.apply(userDTO))
+        StepVerifier.create(updateUserUseCase.apply(userDTO))
                 .expectNext("1")
                 .verifyComplete();
 
-        verify(userRepository).save(user);
+        verify(userRepository).save(refEq(user));
     }
-
 }

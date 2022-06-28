@@ -1,4 +1,4 @@
-import { Component, EmbeddedViewRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Project } from '../models/project';
 import { Risk } from '../models/risk';
@@ -20,7 +20,6 @@ export class ProjectIdComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private projectService: ProjectService,
-    private asfAuth: FireserviceService
   ) {}
 
   ngOnInit(): void {
@@ -30,11 +29,8 @@ export class ProjectIdComponent implements OnInit {
 
   getProject(id: string) {
     this.projectService.getProject(id).subscribe((data) => {
-      console.log({ data });
       this.project = data;
       this.risks = data.risks;
-      console.log({ risks3: this.risks });
     });
   }
 }
-EmbeddedViewRef;
