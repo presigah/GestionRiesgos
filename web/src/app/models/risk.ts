@@ -8,7 +8,7 @@ export interface Risk {
   labels: [any];
   description: string;
   // (Abierto; mitigado; Cerrado; Problema)
-  risksState: string;
+  riskState: string;
   // (Interna; Externa)
   audience: string;
   // (Costo; Tiempo; Calidad)
