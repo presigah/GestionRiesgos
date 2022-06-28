@@ -21,10 +21,10 @@ import static org.mockito.Mockito.when;
 class GetAllProjectsUseCaseTest {
 
     @Mock
-    private ProjectRepository projectRepository;
+    ProjectRepository projectRepository;
 
 
-    private GetAllProjectsUseCase getAllProjectsUseCase;
+    GetAllProjectsUseCase getAllProjectsUseCase;
 
 
     @BeforeEach
