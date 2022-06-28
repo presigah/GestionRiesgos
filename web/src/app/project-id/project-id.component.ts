@@ -30,11 +30,8 @@ export class ProjectIdComponent implements OnInit {
 
   getProject(id: string) {
     this.projectService.getProject(id).subscribe((data) => {
-      console.log({ data });
       this.project = data;
       this.risks = data.risks;
-      console.log({ risks3: this.risks });
     });
   }
 }
-EmbeddedViewRef;

@@ -1,15 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Risk } from './../../models/risk';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-risk-form',
   templateUrl: './risk-form.component.html',
-  styleUrls: ['./risk-form.component.css']
+  styleUrls: ['./risk-form.component.css'],
 })
 export class RiskFormComponent implements OnInit {
+  @Input() projectId?: string;
+  risk: Risk = {
+    id: '',
+    projectId: '',
+    name: '',
+    userId: '',
+    labels: [''],
+    description: '',
+    riskState: '',
+    audience: '',
+    category: '',
+    riskType: '',
+    detailsRiskType: '',
+    probability: 0,
+    impactValue: 0,
+    mitigationPlan: '',
+    responsibleMitigationMails: [''],
+    contingencyPlan: '',
+    responsibleContingencyMails: [''],
+  };
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  saveRisk() {
+    console.log('nombre' + this.risk.name);
   }
-
 }
