@@ -1,5 +1,6 @@
 import { RiskService } from './../service/risk.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Risk } from '../models/risk';
 
 @Component({
   selector: 'app-risk-table',
@@ -7,15 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./risk-table.component.css'],
 })
 export class RiskTableComponent implements OnInit {
-  risks: any;
+  @Input() risks?: Risk[];
   constructor(private service: RiskService) {}
 
-  ngOnInit(): void {
-    this.getRisks();
-  }
-
-  getRisks() {
-    this.risks = [];
-    this.risks = this.service.getAllRisks();
-  }
+  ngOnInit(): void {}
 }
