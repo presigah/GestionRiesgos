@@ -36,9 +36,9 @@ export class RiskTableComponent implements OnInit {
         return directionRisk === 'asc' ? res : -res;
       });
     }
+  }
     
   deleteRisk(risk: Risk) {
     console.log(risk);
-
   }
 }
