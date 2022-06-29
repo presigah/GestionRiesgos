@@ -15,11 +15,11 @@ import { FireserviceService } from 'src/app/service/fireservice.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css']
 })
-export class SidebarComponent implements OnInit {
+export class NavbarComponent implements OnInit {
   userLogged = this.afAuth.getUserLogged();
   disabled: boolean = false;
   userIcon:String | null = '';

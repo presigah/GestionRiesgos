@@ -1,5 +1,6 @@
 package co.com.sofka.gestionriesgos.routers;
 
+import co.com.sofka.gestionriesgos.collections.Project;
 import co.com.sofka.gestionriesgos.model.ProjectDTO;
 import co.com.sofka.gestionriesgos.model.UserDTO;
 import co.com.sofka.gestionriesgos.usercases.project.*;
@@ -30,7 +31,7 @@ public class ProjectRouter {
     //Crear un proyecto
     @Bean
     @RouterOperation(beanClass = CreateProjectUseCase.class, beanMethod = "apply",
-            operation = @Operation(operationId = "ProjectDTO", summary = "Crear Proyecto", tags = {"Proyecto"},
+            operation = @Operation(operationId = "ProjectDTO", summary = "Crear proyecto", tags = {"proyecto"},
                     responses = {@ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = ProjectDTO.class))),
                             @ApiResponse(responseCode = "400", description = "Invalid Project supplied"),
                             @ApiResponse(responseCode = "404", description = "Project not found")}))
@@ -45,7 +46,7 @@ public class ProjectRouter {
         );
     }
 
-    //Consultar Todos los proyectos
+    //Consultar Todos los projectos
     @Bean
     @RouterOperation(beanClass = GetAllProjectsUseCase.class, beanMethod = "get",
             operation = @Operation(operationId = "Consultar", summary = "Consultar todos los proyectos", tags = {"Proyecto"}))
@@ -101,7 +102,7 @@ public class ProjectRouter {
     //    Eliminar un proyecto
     @Bean
     @RouterOperation(beanClass = DeleteProjectUseCase.class, beanMethod = "apply",
-            operation = @Operation(operationId = "deleteProject", summary = "Eliminar proyecto", tags = {"Proyecto"},
+            operation = @Operation(operationId = "deleteProject", summary = "Eliminar proyecto", tags = {"proyecto"},
                     parameters = {@Parameter(in = ParameterIn.PATH, name = "id", description = "String")},
                     responses = {@ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = ProjectDTO.class))),
                             @ApiResponse(responseCode = "400", description = "Invalid project supplied"),
