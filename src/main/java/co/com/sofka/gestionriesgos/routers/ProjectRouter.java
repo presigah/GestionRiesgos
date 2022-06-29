@@ -2,6 +2,7 @@ package co.com.sofka.gestionriesgos.routers;
 
 import co.com.sofka.gestionriesgos.collections.Project;
 import co.com.sofka.gestionriesgos.model.ProjectDTO;
+import co.com.sofka.gestionriesgos.model.UserDTO;
 import co.com.sofka.gestionriesgos.usercases.project.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

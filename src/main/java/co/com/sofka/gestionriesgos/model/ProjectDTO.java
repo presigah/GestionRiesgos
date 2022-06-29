@@ -18,7 +18,7 @@ public class ProjectDTO {
     private String id;
     @NotBlank(message = "El nombre del proyecto es requerido")
     private String name;
-    private LocalDate startDate = LocalDate.now();
+    private LocalDate startDate;
     private LocalDate endingDate;
     private List<String> labels;
     private List<String> emails;

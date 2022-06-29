@@ -17,7 +17,7 @@ public class RiskMapper {
             risk.setProjectId(updateRisk.getProjectId());
             risk.setName(updateRisk.getName());
             risk.setUserId(updateRisk.getUserId());
-            // detectedDate = now
+            risk.setDetectedDate(updateRisk.getDetectedDate());
             risk.setEndedDate(updateRisk.getEndedDate());
             risk.setLabels(updateRisk.getLabels());
             risk.setDescription(updateRisk.getDescription());
@@ -60,7 +60,6 @@ public class RiskMapper {
                 entity.getContingencyPlan(),
                 entity.getResponsibleContingencyMails(),
                 entity.getState()
-                //entity.getName()
         );
     }
 }
