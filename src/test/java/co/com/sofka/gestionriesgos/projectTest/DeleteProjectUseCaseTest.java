@@ -1,7 +1,9 @@
 package co.com.sofka.gestionriesgos.projectTest;
 
 import co.com.sofka.gestionriesgos.collections.Project;
+import co.com.sofka.gestionriesgos.collections.Risk;
 import co.com.sofka.gestionriesgos.repositories.ProjectRepository;
+import co.com.sofka.gestionriesgos.repositories.RiskRepository;
 import co.com.sofka.gestionriesgos.usercases.project.DeleteProjectUseCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,11 +25,14 @@ class DeleteProjectUseCaseTest {
     @Mock
     ProjectRepository projectRepository;
 
+    @Mock
+    RiskRepository riskRepository;
+
     DeleteProjectUseCase deleteProjectUseCase;
 
     @BeforeEach
     void setup() {
-        deleteProjectUseCase = new DeleteProjectUseCase(projectRepository);
+        deleteProjectUseCase = new DeleteProjectUseCase(projectRepository, riskRepository);
     }
 
     @Test
@@ -46,11 +51,14 @@ class DeleteProjectUseCaseTest {
 
         when(projectRepository.findById(proyecto.getId())).thenReturn(Mono.just(proyecto));
         when(projectRepository.deleteById(proyecto.getId())).thenReturn(Mono.empty());
+        when(riskRepository.findByProjectId(proyecto.getId())).thenReturn(Mono.just(new Risk()));
+        when(riskRepository.save(new Risk())).thenReturn(Mono.empty());
 
         StepVerifier.create(deleteProjectUseCase.apply(proyecto.getId()))
                 .verifyComplete();
 
         verify(projectRepository).deleteById(proyecto.getId());
+        verify(riskRepository).findByProjectId(proyecto.getId());
     }
 
 
