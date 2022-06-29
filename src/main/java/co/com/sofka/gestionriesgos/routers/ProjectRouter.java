@@ -1,6 +1,7 @@
 package co.com.sofka.gestionriesgos.routers;
 
 import co.com.sofka.gestionriesgos.model.ProjectDTO;
+import co.com.sofka.gestionriesgos.model.UserDTO;
 import co.com.sofka.gestionriesgos.usercases.project.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -23,24 +24,23 @@ import java.util.function.Function;
 import static org.springframework.web.reactive.function.server.RequestPredicates.*;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 
-@RestController
 @Configuration
 public class ProjectRouter {
 
     //Crear un proyecto
     @Bean
     @RouterOperation(beanClass = CreateProjectUseCase.class, beanMethod = "apply",
-            operation = @Operation(operationId = "ProjectDTO", summary = "Crear proyecto", tags = {"Proyecto"},
+            operation = @Operation(operationId = "ProjectDTO", summary = "Crear Proyecto", tags = {"Proyecto"},
                     responses = {@ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = ProjectDTO.class))),
                             @ApiResponse(responseCode = "400", description = "Invalid Project supplied"),
                             @ApiResponse(responseCode = "404", description = "Project not found")}))
-    public RouterFunction<ServerResponse> create(CreateProjectUseCase createProjectUseCase) {
+    public RouterFunction<ServerResponse> createProject(CreateProjectUseCase createProjectUseCase) {
         Function<ProjectDTO, Mono<ServerResponse>> executor = projectDTO -> createProjectUseCase.apply(projectDTO)
                 .flatMap(result -> ServerResponse.ok()
                         .contentType(MediaType.TEXT_PLAIN)
                         .bodyValue(result));
         return route(
-                POST("/create").and(accept(MediaType.APPLICATION_JSON)),
+                POST("/createProject").and(accept(MediaType.APPLICATION_JSON)),
                 request -> request.bodyToMono(ProjectDTO.class).flatMap(executor)
         );
     }
@@ -49,7 +49,7 @@ public class ProjectRouter {
     @Bean
     @RouterOperation(beanClass = GetAllProjectsUseCase.class, beanMethod = "get",
             operation = @Operation(operationId = "Consultar", summary = "Consultar todos los proyectos", tags = {"Proyecto"}))
-    public RouterFunction<ServerResponse> getAll(GetAllProjectsUseCase getAllProjectsUseCase) {
+    public RouterFunction<ServerResponse> getAllProjects(GetAllProjectsUseCase getAllProjectsUseCase) {
         return route(GET("/getAllProjects"), request -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromPublisher(getAllProjectsUseCase.get(), ProjectDTO.class)));
     }
@@ -63,9 +63,9 @@ public class ProjectRouter {
                             content = @Content(schema = @Schema(implementation = ProjectDTO.class))),
                             @ApiResponse(responseCode = "400", description = "Invalid project supplied"),
                             @ApiResponse(responseCode = "404", description = "Project not found")}))
-    public RouterFunction<ServerResponse> getById(GetProjectUseCase getProjectUseCase) {
+    public RouterFunction<ServerResponse> getProjectById(GetProjectUseCase getProjectUseCase) {
         return route(
-                GET("/getProject/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                GET("/getProjectById/{id}").and(accept(MediaType.APPLICATION_JSON)),
                 request -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(BodyInserters.fromPublisher(getProjectUseCase.apply(
@@ -80,17 +80,14 @@ public class ProjectRouter {
     @RouterOperation(beanClass = UpdateProjectUseCase.class, beanMethod = "apply",
             operation = @Operation(operationId = "Modificar", summary = "Modificar Proyecto", tags = {"Proyecto"},
                     parameters = {@Parameter(in = ParameterIn.PATH, name = "id", description = "String"),
-                            @Parameter(in = ParameterIn.PATH, name = "nombre", description = "String"),
-                            @Parameter(in = ParameterIn.PATH, name = "fechaInicio", description = "String"),
-                            @Parameter(in = ParameterIn.PATH, name = "fechaFin", description = "String"),
-                            @Parameter(in = ParameterIn.PATH, name = "etiquetas", description = "List<String>"),
-                            @Parameter(in = ParameterIn.PATH, name = "email", description = "List<String>"),
-                            @Parameter(in = ParameterIn.PATH, name = "descripcion", description = "String"),
-                            @Parameter(in = ParameterIn.PATH, name = "estado", description = "String")},
-                    responses = {@ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = ProjectDTO.class))),
+                            @Parameter(in = ParameterIn.PATH, name = "name", description = "String"),
+                            @Parameter(in = ParameterIn.PATH, name = "startDate", description = "String"),@Parameter(in = ParameterIn.PATH, name = "endiDate", description = "String"),
+                            @Parameter(in = ParameterIn.PATH, name = "labels", description = "List<String>"),
+                            @Parameter(in = ParameterIn.PATH, name = "emails", description = "List<String>"),@Parameter(in = ParameterIn.PATH, name = "description", description = "String"),@Parameter(in = ParameterIn.PATH, name = "status", description = "String"),},
+                    responses = {@ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = UserDTO.class))),
                             @ApiResponse(responseCode = "400", description = "Invalid project supplied"),
                             @ApiResponse(responseCode = "404", description = "Project not found")}))
-    public RouterFunction<ServerResponse> update(UpdateProjectUseCase updateProjectUseCase) {
+    public RouterFunction<ServerResponse> updateProject(UpdateProjectUseCase updateProjectUseCase) {
         Function<ProjectDTO, Mono<ServerResponse>> executor = projectDTO -> updateProjectUseCase.apply(projectDTO)
                 .flatMap(result -> ServerResponse.ok()
                         .contentType(MediaType.TEXT_PLAIN)
@@ -109,7 +106,7 @@ public class ProjectRouter {
                     responses = {@ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = ProjectDTO.class))),
                             @ApiResponse(responseCode = "400", description = "Invalid project supplied"),
                             @ApiResponse(responseCode = "404", description = "Project not found")}))
-    public RouterFunction<ServerResponse> delete(DeleteProjectUseCase deleteProjectUseCase) {
+    public RouterFunction<ServerResponse> deleteProject(DeleteProjectUseCase deleteProjectUseCase) {
         return route(
                 DELETE("/deleteProject/{id}").and(accept(MediaType.APPLICATION_JSON)),
                 request -> ServerResponse.accepted()
