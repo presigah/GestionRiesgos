@@ -20,5 +20,12 @@ export class EditRiskComponent implements OnInit {
 
   editRisk() {
     console.log(this.risk);
+    if (this.risk != undefined) {
+      this.service.updateRisk(this.risk).subscribe(() => {
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      });
+    }
   }
 }
