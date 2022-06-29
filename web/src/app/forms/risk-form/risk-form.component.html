@@ -62,7 +62,6 @@
               >Fecha Cierre (opcional)</label
             >
             <input
-              [(ngModel)]="risk.endedDate"
               name="endedDate"
               type="date"
               class="form-control"
@@ -75,12 +74,13 @@
             <label for="proyectTags" class="form-label">Etiquetas Riesgo</label>
             <input
               name="label"
+              [(ngModel)]="this.tags"
               type="text"
               class="form-control"
               id="proyectTags"
               autocapitalize="characters"
             />
-            <div class="form-text">Deben estar separadas por ;</div>
+            <div class="form-text">Deben estar separadas por ,</div>
           </div>
 
           <!-- descripcion de riesgo -->
@@ -124,7 +124,12 @@
             <label for="riskAudience" class="form-label"
               >Audiencia del riesgo</label
             >
-            <select id="riskAudience" class="form-select" name="riskAudience">
+            <select
+              id="riskAudience"
+              class="form-select"
+              name="riskAudience"
+              [(ngModel)]="risk.audience"
+            >
               <option value="internal">Interna</option>
               <option value="external">Externa</option>
             </select>
@@ -136,7 +141,12 @@
             <label for="riskCategory" class="form-label"
               >Categoria del riesgo</label
             >
-            <select id="riskCategory" class="form-select" name="riskCategory">
+            <select
+              id="riskCategory"
+              class="form-select"
+              name="riskCategory"
+              [(ngModel)]="risk.category"
+            >
               <option value="cost">Costo</option>
               <option value="time">Tiempo</option>
               <option value="quality">Calidad</option>
@@ -146,7 +156,12 @@
           <!-- tipo de riesgo -->
           <div class="mb-3">
             <label for="riskType" class="form-label">Tipo del riesgo</label>
-            <select id="riskType" class="form-select" name="riskType">
+            <select
+              id="riskType"
+              class="form-select"
+              name="riskType"
+              [(ngModel)]="risk.riskType"
+            >
               <option value="prodQuality">Producto/calidad</option>
               <option value="proyect">Proyecto</option>
             </select>
@@ -163,6 +178,7 @@
               maxlength="500"
               required
               name="detailsRiskType"
+              [(ngModel)]="risk.detailsRiskType"
             ></textarea>
             <div class="form-text">
               Los detalles deben ser menores a 500 caracteres
@@ -173,30 +189,45 @@
             <label for="riskOdds" class="form-label"
               >Probabilidades del riesgo</label
             >
-            <select id="riskOdds" class="form-select" name="riskOdds">
-              <option value="unlikely">Improbable</option>
-              <option value="possible">Posible</option>
-              <option value="occasional">Ocasional</option>
-              <option value="probable">Probable</option>
-              <option value="frequent">Frecuente</option>
+            <select
+              id="riskOdds"
+              class="form-select"
+              name="riskOdds"
+              [(ngModel)]="this.occurrence"
+            >
+              <option value="1">Improbable</option>
+              <option value="2">Posible</option>
+              <option value="3">Ocasional</option>
+              <option value="4">Probable</option>
+              <option value="5">Frecuente</option>
             </select>
           </div>
-          <!-- estado del riesgo -->
+          <!-- valor de impacto-->
           <div class="mb-3">
-            <label for="riskImpact" class="form-label">Estado del riesgo</label>
-            <select id="riskImpact" class="form-select" name="riskImpact">
-              <option value="insignificant">Insignificante</option>
-              <option value="minor">Menor</option>
-              <option value="moderate">Moderado</option>
-              <option value="major">Mayor</option>
-              <option value="Catastrophic">Catastrófico</option>
+            <label for="riskImpact" class="form-label"
+              >Valor de impacto si ocurre el riesgo</label
+            >
+            <select
+              id="riskImpact"
+              class="form-select"
+              name="riskImpact"
+              [(ngModel)]="impactValue"
+            >
+              <option value="1">Insignificante</option>
+              <option value="2">Menor</option>
+              <option value="3">Moderado</option>
+              <option value="4">Mayor</option>
+              <option value="5">Catastrófico</option>
             </select>
           </div>
+          <!-- plan de mitigacion -->
           <div class="mb-3">
             <label for="riskMitigationPlan" class="form-label"
               >Plan de mitigacion del Riesgo</label
             >
             <textarea
+              [(ngModel)]="risk.mitigationPlan"
+              name="mitigationPlan"
               class="form-control"
               id="riskMitigationPlan"
               maxlength="1000"
@@ -206,9 +237,48 @@
               El plan debe ser menor a 1000 caracteres
             </div>
           </div>
+          <!-- Emails -->
           <div class="mb-3">
-            <label for="riskEmails" class="form-label">Emails Riesgo</label>
+            <label for="riskEmails" class="form-label"
+              >Emails responsables plan de mitigación</label
+            >
             <textarea
+              class="form-control"
+              name="riskEmails"
+              [(ngModel)]="this.mitigationMails"
+              id="riskEmails"
+              required
+              autocapitalize="none"
+            ></textarea>
+            <div class="form-text">Deben estar separados por ,</div>
+          </div>
+
+          <!-- plan de contingencia -->
+          <div class="mb-3">
+            <label for="riskMitigationPlan" class="form-label"
+              >Plan de contingencia del riesgo</label
+            >
+            <textarea
+              [(ngModel)]="risk.contingencyPlan"
+              name="contingenciaPlan"
+              class="form-control"
+              id="riskMitigationPlan"
+              maxlength="1000"
+              required
+            ></textarea>
+            <div class="form-text">
+              El plan debe ser menor a 1000 caracteres
+            </div>
+          </div>
+
+          <!-- Emails -->
+          <div class="mb-3">
+            <label for="riskEmails" class="form-label"
+              >Emails responsables plan de contingencia</label
+            >
+            <textarea
+              [(ngModel)]="this.contingenceMails"
+              name="mitigationMails"
               class="form-control"
               id="riskEmails"
               required
@@ -216,6 +286,8 @@
             ></textarea>
             <div class="form-text">Deben estar separados por ;</div>
           </div>
+
+          <!-- nivel del riesgo -->
           <div class="d-grid mb-3 gap-1">
             <label class="form-label">Nivel de Riesgo</label>
             <button class="btn btn-success disabled">(Riesgo Bajo)</button>
