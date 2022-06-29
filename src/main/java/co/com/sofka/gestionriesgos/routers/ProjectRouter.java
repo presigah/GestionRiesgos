@@ -1,7 +1,7 @@
 package co.com.sofka.gestionriesgos.routers;
 
+import co.com.sofka.gestionriesgos.collections.Project;
 import co.com.sofka.gestionriesgos.model.ProjectDTO;
-import co.com.sofka.gestionriesgos.model.UserDTO;
 import co.com.sofka.gestionriesgos.usercases.project.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -31,10 +31,10 @@ public class ProjectRouter {
     //Crear un proyecto
     @Bean
     @RouterOperation(beanClass = CreateProjectUseCase.class, beanMethod = "apply",
-            operation = @Operation(operationId = "ProjectDTO", summary = "Crear Proyecto", tags = {"Proyecto"},
+            operation = @Operation(operationId = "ProjectDTO", summary = "Crear proyecto", tags = {"proyecto"},
                     responses = {@ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = ProjectDTO.class))),
-                            @ApiResponse(responseCode = "400", description = "Invalid Project supplied"),
-                            @ApiResponse(responseCode = "404", description = "Project not found")}))
+                            @ApiResponse(responseCode = "400", description = "Invalid Question supplied"),
+                            @ApiResponse(responseCode = "404", description = "Question not found")}))
     public RouterFunction<ServerResponse> create(CreateProjectUseCase createProjectUseCase) {
         Function<ProjectDTO, Mono<ServerResponse>> executor = projectDTO -> createProjectUseCase.apply(projectDTO)
                 .flatMap(result -> ServerResponse.ok()
@@ -46,10 +46,10 @@ public class ProjectRouter {
         );
     }
 
-    //Consultar Todos los proyectos
+    //Consultar Todos los projectos
     @Bean
     @RouterOperation(beanClass = GetAllProjectsUseCase.class, beanMethod = "get",
-            operation = @Operation(operationId = "Consultar", summary = "Consultar todos los proyectos", tags = {"Proyecto"}))
+            operation = @Operation(operationId = "Consultar", summary = "Consultar todos los projectos", tags = {"proyecto"}))
     public RouterFunction<ServerResponse> getAll(GetAllProjectsUseCase getAllProjectsUseCase) {
         return route(GET("/getAllProjects"), request -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromPublisher(getAllProjectsUseCase.get(), ProjectDTO.class)));
@@ -58,12 +58,12 @@ public class ProjectRouter {
     //Consultar un proyecto por su id
     @Bean
     @RouterOperation(beanClass = GetProjectUseCase.class, beanMethod = "apply",
-            operation = @Operation(operationId = "ConsultarById", summary = "Consultar proyecto por ID", tags = {"Proyecto"},
-                    parameters = {@Parameter(in = ParameterIn.PATH, name = "id", description = "String")},
-                    responses = {@ApiResponse(responseCode = "200", description = "successful operation",
-                            content = @Content(schema = @Schema(implementation = ProjectDTO.class))),
-                            @ApiResponse(responseCode = "400", description = "Invalid project supplied"),
-                            @ApiResponse(responseCode = "404", description = "Project not found")}))
+            operation = @Operation(operationId = "ConsultarById", summary = "Consultar proyecto por ID", tags = {"proyecto"},
+            parameters = {@Parameter(in = ParameterIn.PATH, name = "id", description = "String")},
+            responses = {@ApiResponse(responseCode = "200", description = "successful operation",
+                    content = @Content(schema = @Schema(implementation = ProjectDTO.class))),
+                    @ApiResponse(responseCode = "400", description = "Invalid project supplied"),
+                    @ApiResponse(responseCode = "404", description = "Project not found")}))
     public RouterFunction<ServerResponse> getById(GetProjectUseCase getProjectUseCase) {
         return route(
                 GET("/getProject/{id}").and(accept(MediaType.APPLICATION_JSON)),
@@ -78,16 +78,8 @@ public class ProjectRouter {
 
     //    Modificar un proyecto
     @Bean
-    @RouterOperation(beanClass = UpdateProjectUseCase.class, beanMethod = "apply",
-            operation = @Operation(operationId = "Modificar", summary = "Modificar Proyecto", tags = {"Proyecto"},
-                    parameters = {@Parameter(in = ParameterIn.PATH, name = "id", description = "String"),
-                            @Parameter(in = ParameterIn.PATH, name = "name", description = "String"),
-                            @Parameter(in = ParameterIn.PATH, name = "startDate", description = "String"),@Parameter(in = ParameterIn.PATH, name = "endiDate", description = "String"),
-                            @Parameter(in = ParameterIn.PATH, name = "labels", description = "List<String>"),
-                            @Parameter(in = ParameterIn.PATH, name = "emails", description = "List<String>"),@Parameter(in = ParameterIn.PATH, name = "description", description = "String"),@Parameter(in = ParameterIn.PATH, name = "status", description = "String"),},
-                    responses = {@ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = UserDTO.class))),
-                            @ApiResponse(responseCode = "400", description = "Invalid project supplied"),
-                            @ApiResponse(responseCode = "404", description = "Project not found")}))
+    @RouterOperation(beanClass = UpdateProjectUseCase.class, beanMethod = "update",
+            operation = @Operation(operationId = "Modificar", summary = "Modificar proyecto", tags = {"proyecto"}))
     public RouterFunction<ServerResponse> update(UpdateProjectUseCase updateProjectUseCase) {
         Function<ProjectDTO, Mono<ServerResponse>> executor = projectDTO -> updateProjectUseCase.apply(projectDTO)
                 .flatMap(result -> ServerResponse.ok()
@@ -102,7 +94,7 @@ public class ProjectRouter {
     //    Eliminar un proyecto
     @Bean
     @RouterOperation(beanClass = DeleteProjectUseCase.class, beanMethod = "apply",
-            operation = @Operation(operationId = "deleteProject", summary = "Eliminar proyecto", tags = {"Proyecto"},
+            operation = @Operation(operationId = "deleteProject", summary = "Eliminar proyecto", tags = {"proyecto"},
                     parameters = {@Parameter(in = ParameterIn.PATH, name = "id", description = "String")},
                     responses = {@ApiResponse(responseCode = "200", description = "successful operation", content = @Content(schema = @Schema(implementation = ProjectDTO.class))),
                             @ApiResponse(responseCode = "400", description = "Invalid project supplied"),

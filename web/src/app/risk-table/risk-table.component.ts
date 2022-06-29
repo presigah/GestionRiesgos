@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Risk } from '../models/risk';
 import { SortableHeaderRiskDirective, SortRiskEvent } from '../directives/sortable-header-risk.directive';
-import { faHeartCirclePlus } from '@fortawesome/free-solid-svg-icons';
+import { faHeartCirclePlus, faArrowUpRightFromSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-risk-table',
@@ -14,6 +14,8 @@ export class RiskTableComponent implements OnInit {
   compare = (v1: string | Date | [string] | number, v2: string | Date | [string] | number ) => v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
 
   faHeartCirclePlus = faHeartCirclePlus;
+  faArrowUpRightFromSquare = faArrowUpRightFromSquare;
+  faTrashCan = faTrashCan;
 
   page: number = 1;
 

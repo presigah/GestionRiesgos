@@ -4,8 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { ProyectFormComponent } from './forms/proyect-form/proyect-form.component';
+import { ProjectFormComponent } from './forms/project-form/project-form.component';
 import { RiskFormComponent } from './forms/risk-form/risk-form.component';
 import { RiskTableComponent } from './risk-table/risk-table.component';
 import { environment } from '../environments/environment';
@@ -23,23 +22,21 @@ import { SortableHeaderRiskDirective } from './directives/sortable-header-risk.d
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HeatMapChartComponent } from './heat-map-chart/heat-map-chart.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent,
-    ProyectFormComponent,
+    ProjectFormComponent,
     RiskFormComponent,
     RiskTableComponent,
     RiskDetailComponent,
     ProjectDetailComponent,
     ProjectIdComponent,
     HeatMapChartComponent,
-  ],
-  imports: [
-    BrowserModule,
     SortableHeaderProjectDirective,
     SortableHeaderRiskDirective,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +47,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     BrowserAnimationsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    NgxChartsModule
+    NgxChartsModule,
     NgxPaginationModule,
   ],
   providers: [HttpClientModule],
