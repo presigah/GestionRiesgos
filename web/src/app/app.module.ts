@@ -35,9 +35,6 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     ProjectDetailComponent,
     ProjectIdComponent,
     HeatMapChartComponent,
-  ],
-  imports: [
-    BrowserModule,
     SortableHeaderProjectDirective,
     SortableHeaderRiskDirective,
   ],
@@ -50,7 +47,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     BrowserAnimationsModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    NgxChartsModule
+    NgxChartsModule,
     NgxPaginationModule,
   ],
   providers: [HttpClientModule],
