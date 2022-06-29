@@ -5,13 +5,12 @@ import { Observable } from 'rxjs';
 import { Project } from '../models/project';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProjectService {
-
   private url = 'https://gestionriesgossofka.herokuapp.com/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getProjects(): Observable<Project[]> {
     let direction = this.url + 'getAllProjects';
@@ -19,7 +18,7 @@ export class ProjectService {
   }
 
   getProject(id: string): Observable<Project> {
-    let direction = this.url + 'getProject/' + id
+    let direction = this.url + 'getProjectById/' + id;
     return this.http.get<Project>(direction);
   }
 

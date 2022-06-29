@@ -1,5 +1,5 @@
 export interface Risk {
-  id: string;
+  id?: string;
   projectId?: string;
   name: string;
   userId: string;

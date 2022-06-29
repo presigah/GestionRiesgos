@@ -20,7 +20,9 @@
       <div class="modal-body">
         <form>
           <div class="mb-3">
-            <label for="riskProyect" class="form-label">Nombre del proyecto</label>
+            <label for="riskProyect" class="form-label"
+              >Nombre del proyecto</label
+            >
             <select id="riskProyect" class="form-select" name="riskProyect">
               <option value="(proyectId)">{{ projectId }}</option>
             </select>
@@ -54,6 +56,7 @@
               class="form-control"
               id="detectionDate"
               required
+              [(ngModel)]="risk.detectedDate"
             />
           </div>
           <!-- fecha de cierre -->
@@ -67,6 +70,7 @@
               class="form-control"
               id="closeDate"
               required
+              [(ngModel)]="risk.endedDate"
             />
           </div>
           <!-- etiquetas de riesgo -->
@@ -304,7 +308,12 @@
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Cerrar
         </button>
-        <button type="button" class="btn btn-primary" (click)="saveRisk()">
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-dismiss="modal"
+          (click)="saveRisk()"
+        >
           Guardar riesgo
         </button>
       </div>

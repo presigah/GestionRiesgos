@@ -12,11 +12,15 @@ export class RiskService {
 
   saveRisk(risk: Risk): Observable<any> {
     let direction = this.url + 'createRisk';
-    return this.http.post<any>(direction, risk);
+    return this.http.post<any>(direction, risk, {
+      responseType: 'text' as 'json',
+    });
   }
 
   updateRisk(risk: Risk): Observable<any> {
     let direction = this.url + 'updateRisk';
-    return this.http.put<any>(direction, risk);
+    return this.http.put<any>(direction, risk, {
+      responseType: 'text' as 'json',
+    });
   }
 }
