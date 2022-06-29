@@ -1,0 +1,41 @@
+<div class="d-grid bg-dark">
+  <h1 class="mx-5 text text-light text-center">DETALLES PROYECTO</h1>
+</div>
+<table class="table table-dark table-striped-columns text-center">
+  <thead>
+    <tr>
+      <th scope="col">Id Proyecto</th>
+      <th scope="col">Nombre Proyecto</th>
+      <th scope="col">Fecha Inicio</th>
+      <th scope="col">Fecha Fin</th>
+      <th scope="col">Emails</th>
+      <th scope="col">Descripción</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">{{ this.project?.id }}</th>
+      <th scope="row">{{ this.project?.name }}</th>
+      <th scope="row">{{ this.project?.startDate }}</th>
+      <th scope="row">{{ this.project?.endingDate }}</th>
+      <th scope="row">{{ this.project?.emails }}</th>
+      <th scope="row">{{ this.project?.description }}</th>
+      <th scope="row">{{ this.project?.status }}</th>
+    </tr>
+  </tbody>
+</table>
+<div class="d-grid bg-dark">
+  <app-risk-table [risks]="this.risks"></app-risk-table>
+</div>
+<!-- <h3 class="text-center">Detalles del proyecto</h3>
+<hr />
+<div class="container">
+  
+</div>
+<h3 class="text-center">Lista de riesgos del proyecto</h3>
+<hr />
+<br />
+<div>
+  
+</div> -->

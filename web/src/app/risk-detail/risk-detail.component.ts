@@ -1,3 +1,7 @@
+import { ProjectService } from './../service/project.service';
+import { Risk } from './../models/risk';
+import { Project } from './../models/project';
+import { ActivatedRoute } from '@angular/router';
 import { RiskService } from './../service/risk.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -7,17 +11,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./risk-detail.component.css'],
 })
 export class RiskDetailComponent implements OnInit {
-  // risk: Risk[] | undefined;
-  risk: any;
+  project: Project | undefined;
+  risks: Risk[] = [];
+  projectId: string | undefined;
+  riskId: string | undefined;
 
-  constructor(private service: RiskService) {}
+  projects: Project[] | undefined;
+  // risk: Risk[] | undefined;
+  risk: Risk | undefined;
+
+  constructor(
+    private service: RiskService,
+    private route: ActivatedRoute,
+    private projectService: ProjectService
+  ) {}
 
   ngOnInit(): void {
-    this.getRiskId('lklewqeqw123');
+    const projectId = this.route.snapshot.paramMap.get('projectId');
+    const riskId = this.route.snapshot.paramMap.get('riskId');
+    this.getProject(`${projectId}`, `${riskId}`);
   }
 
-  getRiskId(id: string) {
-    this.risk = this.service.getRisk(id);
-    console.log(this.risk);
+  getProject(projactId: string, riskId: string) {
+    this.projectService.getProject(projactId).subscribe((data) => {
+      this.project = data;
+      this.risks = data.risks;
+      const risk = this.risks.filter((risk) => risk.id === riskId);
+      this.risk = risk[0];
+    });
   }
 }

@@ -1,3 +1,8 @@
+<nav class="navbar bg-secondary">
+    <div class="container-fluid">
+      <h1 class="navbar-brand mb-0 h1">Gestor de Riesgos <fa-icon [icon]="faBolt"></fa-icon></h1>
+    </div>
+</nav>
 <div class="d-flex">
     <div class="sidebar-container bg-dark">
         <div class="menu d-grid gap-2">
@@ -11,10 +16,10 @@
               <img clas="user-icon" [src]="userIcon">
            </button>
 
-            <button type="button" class="btn btn-success mt-5" data-bs-toggle="modal" data-bs-target="#FormprojectPoPUp">
+            <button type="button" class="btn btn-success mt-5" data-bs-toggle="modal" data-bs-target="#FormProyectPoPUp">
                 <fa-icon class="user-icon" [icon]="faFolderPlus"></fa-icon>
             </button>
-            <div class="modal fade " id="FormprojectPoPUp" tabindex="-1" aria-labelledby="Title" aria-hidden="true">
+            <div class="modal fade " id="FormProyectPoPUp" tabindex="-1" aria-labelledby="Title" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-scrollable">
                   <div class="modal-content">
                     <div class="modal-header">
@@ -32,6 +37,7 @@
               </div>
 
 
+              <!--
             <button type="button" class="btn btn-success mb-5" data-bs-toggle="modal" data-bs-target="#FormRiskPoPUp">
                 <fa-icon class="user-icon" [icon]="faHeartCirclePlus"></fa-icon>
             </button>
@@ -52,6 +58,7 @@
                   </div>
                 </div>
               </div>
+            -->
 
 
 
@@ -63,19 +70,6 @@
             </button>
             
         </div>
-    </div>
-    <div class="w-100">
-      <nav class="navbar bg-secondary">
-        <div class="container-fluid">
-          <h1 class="navbar-light mb-0 h1"><p class="text-light">Gestor de Riesgos <fa-icon [icon]="faBolt"></fa-icon></p></h1>
-        </div>
-      </nav>
-      <div>
-        <section class="container mt-4">
-          <h1>PROYECTOS</h1>
-          <app-project-detail></app-project-detail>
-        </section>
-      </div>
     </div>
 </div>
 
