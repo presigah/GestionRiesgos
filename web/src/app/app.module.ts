@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { ProjectFormComponent } from './forms/project-form/project-form.component';
 import { RiskFormComponent } from './forms/risk-form/risk-form.component';
 import { RiskTableComponent } from './risk-table/risk-table.component';
@@ -28,7 +27,6 @@ import { NavbarComponent } from './navbar/navbar.component';
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent,
     ProjectFormComponent,
     RiskFormComponent,
     RiskTableComponent,

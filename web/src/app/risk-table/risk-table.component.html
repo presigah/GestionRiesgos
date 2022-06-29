@@ -18,7 +18,7 @@
       <th scope="col" sortableRisk="category" (sort) = "onRiskSort($event)">Categoría</th>
       <th scope="col" sortableRisk="riskType" (sort) = "onRiskSort($event)">Tipo de riesgo</th>
       <th scope="col" >Valor de criticidad</th>
-      <th>Acciones</th>
+      <th colspan="2">Acciones</th>
     </tr>
   </thead>
   <tbody>
@@ -37,27 +37,15 @@
           class="btn btn-primary"
           [routerLink]="['/riskDetail', risk.projectId, risk.id]"
         >
-          Ver
+          <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
         </button>
       </td>
       <td>
         <button class="btn btn-danger" (click)="deleteRisk(risk)">
-          Eliminar
+          <fa-icon [icon]="faTrashCan"></fa-icon>
         </button>
       </td>
     </tr>
   </tbody>
 </table>
 <pagination-controls (pageChange)="page = $event" nextLabel="Siguiente" previousLabel="Anterior"></pagination-controls>
-<!-- <div class="container">
-  <button
-    type="button"
-    class="btn btn-success mb-6 col-md-2 offset-md-10"
-    data-bs-toggle="modal"
-    data-bs-target="#FormRiskPoPUp"
-  >
-    <fa-icon class="user-icon" [icon]="faHeartCirclePlus"></fa-icon>
-  </button>
-
- 
-   -->
