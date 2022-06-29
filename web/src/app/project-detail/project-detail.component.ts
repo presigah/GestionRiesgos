@@ -17,9 +17,9 @@ import { FormControl } from '@angular/forms';
   providers: [DatePipe]
 })
 export class ProjectDetailComponent implements OnInit {
-  @ViewChildren(SortableHeaderProjectDirective) headers: QueryList<SortableHeaderProjectDirective> | undefined;
+  
+  @ViewChildren(SortableHeaderProjectDirective) headers!: QueryList<SortableHeaderProjectDirective>;
 
-  compare = (v1: string | Date | [string] | [Risk], v2: string | Date | [string] | [Risk]) => v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
 
   faEye = faEye;
   faFolderPlus = faFolderPlus;
@@ -34,19 +34,15 @@ export class ProjectDetailComponent implements OnInit {
   user: any = '';
 
   projects$: Observable<Project[]>;
-  filter = new FormControl('');
 
   page: number = 1;
 
   constructor(
     private afAuth: FireserviceService,
-    private projectService: ProjectService,
-    public pipe: DatePipe
+    public projectService: ProjectService,
+    private pipe: DatePipe
   ) { 
-    this.projects$ = this.filter.valueChanges.pipe(
-      startWith(''),
-      map(text => this.search(text!, pipe))
-    )
+    this.projects$ = projectService.projects$;
   }
 
   ngOnInit(): void {
@@ -73,30 +69,15 @@ export class ProjectDetailComponent implements OnInit {
     });
   }
 
-  onSort({column, direction}: SortProjectEvent) {
-    // resetting other headers
-    this.headers?.forEach(header => {
+  onSort({column, direction}: SortProjectEvent){
+    this.headers.forEach(header => {
       if (header.sortable !== column) {
         header.direction = '';
       }
     });
 
-    if(direction === '' || column === ''){
-      this.getProjects();
-    } else {
-      this.projects.sort((a, b) => {
-        const res = this.compare(a[column], b[column]);
-        return direction === 'asc' ? res : -res;
-      });
-    }
-  }
-
-  search(text: string, pipe: PipeTransform): Project[] {
-    return this.projects.filter(project => {
-      const term = text.toLowerCase();
-      //console.log(pipe.transform(project.startDate, 'yyyy,M,dd'))
-      return project.name.toLowerCase().includes(term);
-    });
+    this.projectService.sortColumn = column;
+    this.projectService.sortDirection = direction;
   }
 
 }

@@ -70,8 +70,7 @@ export class RiskTableComponent implements OnInit {
         || risk.riskState.toLowerCase().includes(term)
         || risk.riskType.toLowerCase().includes(term)
         || risk.category.toLowerCase().includes(term)
-        || risk.audience.toLowerCase().includes(term)
-        || risk;
+        || risk.audience.toLowerCase().includes(term);
     });
   }
 }
