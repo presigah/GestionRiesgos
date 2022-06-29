@@ -19,7 +19,7 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 public class RiskRouter {
 
     @Bean
-    public RouterFunction<ServerResponse> create(CreateRiskUseCase useCase) {
+    public RouterFunction<ServerResponse> createRisk(CreateRiskUseCase useCase) {
         Function<RiskDTO, Mono<ServerResponse>> executor = riskDTO ->  useCase.apply(riskDTO)
                 .flatMap(result -> ServerResponse.ok()
                         .contentType(MediaType.TEXT_PLAIN)
@@ -32,7 +32,7 @@ public class RiskRouter {
     }
 
     @Bean
-    public RouterFunction<ServerResponse> update(UpdateRiskUseCase useCase) {
+    public RouterFunction<ServerResponse> updateRisk(UpdateRiskUseCase useCase) {
         Function<RiskDTO, Mono<ServerResponse>> executor = riskDTO ->  useCase.apply(riskDTO)
                 .flatMap(result -> ServerResponse.ok()
                         .contentType(MediaType.TEXT_PLAIN)
