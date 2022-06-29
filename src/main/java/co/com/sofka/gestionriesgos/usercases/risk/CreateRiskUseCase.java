@@ -20,8 +20,14 @@ public class CreateRiskUseCase implements SaveRisk{
     }
 
     public Mono<String> apply(RiskDTO riskDTO) {
-        return riskRepo
-                .save(riskMapper.RiskDTOTORisk(null).apply(riskDTO))
-                .map(Risk::getId);
+        if(riskDTO.getDetectedDate().isBefore(riskDTO.getEndedDate()) || riskDTO.getDetectedDate().isEqual(riskDTO.getEndedDate())) {
+            return riskRepo
+                    .save(riskMapper.RiskDTOTORisk(null).apply(riskDTO))
+                    .map(Risk::getId);
+        }
+        return Mono.error(new IllegalArgumentException("La fecha de inicio debe ser igual o anterior a la fecha de finalización"));
+        //        return riskRepo
+//                .save(riskMapper.RiskDTOTORisk(null).apply(riskDTO))
+//                .map(Risk::getId);
     }
 }
