@@ -14,37 +14,56 @@
     <thead>
       <tr>
         <!-- <th>Id riesgo</th> -->
-        <th scope="col" sortableRisk="name" (sort) = "onRiskSort($event)">>Nombre del riesgo</th>
-        <th scope="col" sortableRisk="detectedDate" (sort) = "onRiskSort($event)">Fecha de detección</th>
-        <th scope="col" sortableRisk="endedDate" (sort) = "onRiskSort($event)">Fecha de cierre</th>
-        <th scope="col" sortableRisk="riskState" (sort) = "onRiskSort($event)">Estado del riesgo</th>
-        <th scope="col" sortableRisk="audience" (sort) = "onRiskSort($event)">Audiencia</th>
-        <th scope="col" sortableRisk="category" (sort) = "onRiskSort($event)">Categoría</th>
-        <th scope="col" sortableRisk="riskType" (sort) = "onRiskSort($event)">Tipo de riesgo</th>
-        <th scope="col" >Valor de criticidad</th>
+        <th scope="col" sortableRisk="name" (sort)="onRiskSort($event)">
+          >Nombre del riesgo
+        </th>
+        <th scope="col" sortableRisk="detectedDate" (sort)="onRiskSort($event)">
+          Fecha de detección
+        </th>
+        <th scope="col" sortableRisk="endedDate" (sort)="onRiskSort($event)">
+          Fecha de cierre
+        </th>
+        <th scope="col" sortableRisk="riskState" (sort)="onRiskSort($event)">
+          Estado del riesgo
+        </th>
+        <th scope="col" sortableRisk="audience" (sort)="onRiskSort($event)">
+          Audiencia
+        </th>
+        <th scope="col" sortableRisk="category" (sort)="onRiskSort($event)">
+          Categoría
+        </th>
+        <th scope="col" sortableRisk="riskType" (sort)="onRiskSort($event)">
+          Tipo de riesgo
+        </th>
+        <th scope="col">Valor de criticidad</th>
         <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let risk of risks | paginate: { itemsPerPage: 30, currentPage: page }">
+      <tr
+        *ngFor="
+          let risk of risks | paginate: { itemsPerPage: 30, currentPage: page }
+        "
+      >
         <!-- <td>{{ risk.id }}</td> -->
-        <td>{{ risk.name }}</td>
-        <td>{{ risk.detectedDate }}</td>
-        <td>{{ risk.endedDate }}</td>
-        <td>{{ risk.riskState }}</td>
-        <td>{{ risk.audience }}</td>
-        <td>{{ risk.category }}</td>
-        <td>{{ risk.riskType }}</td>
-        <td>calcular</td>
-        <td>
+        <td *ngIf="risk.state === 1">{{ risk.name }}</td>
+        <td *ngIf="risk.state === 1">{{ risk.detectedDate }}</td>
+        <td *ngIf="risk.state === 1">{{ risk.endedDate }}</td>
+        <td *ngIf="risk.state === 1">{{ risk.riskState }}</td>
+        <td *ngIf="risk.state === 1">{{ risk.audience }}</td>
+        <td *ngIf="risk.state === 1">{{ risk.category }}</td>
+        <td *ngIf="risk.state === 1">{{ risk.riskType }}</td>
+        <td *ngIf="risk.state === 1">calcular</td>
+        <td *ngIf="risk.state === 1">
           <button
             class="btn btn-primary"
             [routerLink]="['/riskDetail', risk.projectId, risk.id]"
+            *ngIf="risk.state === 1"
           >
             Ver
           </button>
         </td>
-        <td>
+        <td *ngIf="risk.state === 1">
           <button class="btn btn-danger" (click)="deleteRisk(risk)">
             Eliminar
           </button>
@@ -52,5 +71,9 @@
       </tr>
     </tbody>
   </table>
-  <pagination-controls (pageChange)="page = $event" nextLabel="Siguiente" previousLabel="Anterior"></pagination-controls>
+  <pagination-controls
+    (pageChange)="page = $event"
+    nextLabel="Siguiente"
+    previousLabel="Anterior"
+  ></pagination-controls>
 </div>

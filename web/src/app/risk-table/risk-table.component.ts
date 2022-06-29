@@ -1,3 +1,4 @@
+import { RiskService } from './../service/risk.service';
 import {
   Component,
   Input,
@@ -32,7 +33,7 @@ export class RiskTableComponent implements OnInit {
   page: number = 1;
 
   @Input() risks: Risk[] = [];
-  constructor() {}
+  constructor(private service: RiskService) {}
 
   ngOnInit(): void {}
 
@@ -61,6 +62,11 @@ export class RiskTableComponent implements OnInit {
   }
 
   deleteRisk(risk: Risk) {
-    console.log(risk);
+    risk.state = 0;
+    this.service.updateRisk(risk).subscribe(() => {
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    });
   }
 }
