@@ -115,10 +115,10 @@
               name="riskState"
               [(ngModel)]="risk.riskState"
             >
-              <option value="open">Abierto</option>
-              <option value="mitigated">Mitigado</option>
-              <option value="closed">Cerrado</option>
-              <option value="problem">Problema</option>
+              <option value="Abierto">Abierto</option>
+              <option value="Mitigado">Mitigado</option>
+              <option value="Cerrado">Cerrado</option>
+              <option value="Problema">Problema</option>
             </select>
           </div>
 
@@ -134,8 +134,8 @@
               name="riskAudience"
               [(ngModel)]="risk.audience"
             >
-              <option value="internal">Interna</option>
-              <option value="external">Externa</option>
+              <option value="Interna">Interna</option>
+              <option value="Externa">Externa</option>
             </select>
           </div>
 
@@ -151,9 +151,9 @@
               name="riskCategory"
               [(ngModel)]="risk.category"
             >
-              <option value="cost">Costo</option>
-              <option value="time">Tiempo</option>
-              <option value="quality">Calidad</option>
+              <option value="Costo">Costo</option>
+              <option value="Tiempo">Tiempo</option>
+              <option value="Calidad">Calidad</option>
             </select>
           </div>
 
@@ -166,8 +166,10 @@
               name="riskType"
               [(ngModel)]="risk.riskType"
             >
-              <option value="prodQuality">Producto/calidad</option>
-              <option value="proyect">Proyecto</option>
+              <option value="Riesgo de producto o calidad">
+                Producto/calidad
+              </option>
+              <option value="Riesgo de proyecto">Proyecto</option>
             </select>
           </div>
 
