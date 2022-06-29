@@ -2,6 +2,8 @@ import { Component, Input, OnInit, QueryList, ViewChildren } from '@angular/core
 import { Risk } from '../models/risk';
 import { SortableHeaderRiskDirective, SortRiskEvent } from '../directives/sortable-header-risk.directive';
 import { faHeartCirclePlus, faArrowUpRightFromSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { map, Observable, startWith } from 'rxjs';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-risk-table',
@@ -19,8 +21,16 @@ export class RiskTableComponent implements OnInit {
 
   page: number = 1;
 
+  risks$: Observable<Risk[]>;
+  filter = new FormControl('');
+
   @Input() risks: Risk[] = [];
-  constructor() {}
+  constructor() {
+    this.risks$ = this.filter.valueChanges.pipe(
+      startWith(''),
+      map(text => this.search(text!))
+    )
+  }
 
   ngOnInit(): void {}
 
@@ -50,5 +60,18 @@ export class RiskTableComponent implements OnInit {
     
   deleteRisk(risk: Risk) {
     console.log(risk);
+  }
+
+  search(text: string): Risk[] {
+    return this.risks.filter(risk => {
+      const term = text.toLowerCase();
+      //console.log(pipe.transform(project.startDate, 'yyyy,M,dd'))
+      return risk.name.toLowerCase().includes(term)
+        || risk.riskState.toLowerCase().includes(term)
+        || risk.riskType.toLowerCase().includes(term)
+        || risk.category.toLowerCase().includes(term)
+        || risk.audience.toLowerCase().includes(term)
+        || risk;
+    });
   }
 }

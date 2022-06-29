@@ -6,6 +6,15 @@
  
 <app-risk-form [projectId]="risks?.[0]?.projectId"></app-risk-form>
 
+<form>
+  <div class="mb-3 row">
+    <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Búscar coincidencias proyecto:</label>
+    <div class="col-xs-3 col-sm-auto">
+      <input id="table-filtering-search" class="form-control" type="text" [formControl]="filter">
+    </div>
+  </div>
+</form>
+
 <table class="table table-dark table-striped table-hover text-center">
   <thead>
     <tr>
@@ -22,7 +31,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let risk of risks | paginate: { itemsPerPage: 30, currentPage: page }">
+    <tr *ngFor="let risk of risks$ | async">
       <!-- <td>{{ risk.id }}</td> -->
       <td>{{ risk.name }}</td>
       <td>{{ risk.detectedDate }}</td>

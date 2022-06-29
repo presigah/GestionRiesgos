@@ -1,17 +1,20 @@
-import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
+import { Component, OnInit, PipeTransform, QueryList, ViewChildren } from '@angular/core';
 import { SortableHeaderProjectDirective, SortProjectEvent } from '../directives/sortable-header-project.directive';
 import { Project } from '../models/project';
 import { Risk } from '../models/risk';
 import { FireserviceService } from '../service/fireservice.service';
 import { ProjectService } from '../service/project.service';
 import { faEye, faFolderPlus, faArrowUpRightFromSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { DatePipe } from '@angular/common';
+import { map, Observable, startWith  } from 'rxjs';
+import { FormControl } from '@angular/forms';
 
 
 @Component({
   selector: 'app-project-detail',
   templateUrl: './project-detail.component.html',
-  styleUrls: ['./project-detail.component.css']
+  styleUrls: ['./project-detail.component.css'],
+  providers: [DatePipe]
 })
 export class ProjectDetailComponent implements OnInit {
   @ViewChildren(SortableHeaderProjectDirective) headers: QueryList<SortableHeaderProjectDirective> | undefined;
@@ -30,12 +33,21 @@ export class ProjectDetailComponent implements OnInit {
   projects: Project[] = [];
   user: any = '';
 
+  projects$: Observable<Project[]>;
+  filter = new FormControl('');
+
   page: number = 1;
 
   constructor(
     private afAuth: FireserviceService,
-    private projectService: ProjectService
-  ) { }
+    private projectService: ProjectService,
+    public pipe: DatePipe
+  ) { 
+    this.projects$ = this.filter.valueChanges.pipe(
+      startWith(''),
+      map(text => this.search(text!, pipe))
+    )
+  }
 
   ngOnInit(): void {
     this.getProjects();
@@ -77,6 +89,14 @@ export class ProjectDetailComponent implements OnInit {
         return direction === 'asc' ? res : -res;
       });
     }
+  }
+
+  search(text: string, pipe: PipeTransform): Project[] {
+    return this.projects.filter(project => {
+      const term = text.toLowerCase();
+      //console.log(pipe.transform(project.startDate, 'yyyy,M,dd'))
+      return project.name.toLowerCase().includes(term);
+    });
   }
 
 }

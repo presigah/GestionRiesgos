@@ -12,8 +12,8 @@
                 <fa-icon class="user-icon" [icon]="faQuestion" ></fa-icon>
            
             </button>
-            <button type="button" class="btn btn-secondary disabled" data-bs-toggle="modal" data-bs-target="#staticBackdrop1" *ngIf="afAuth.userData">
-                <fa-icon class="user-icon" [icon]="faUser"></fa-icon>
+            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop1" *ngIf="afAuth.userData">
+              <img clas="user-icon" [src]="userIcon">
             </button>
 
             <button class="btn btn-primary mx-2" (click)="loginGoogle()" *ngIf="!afAuth.userData">

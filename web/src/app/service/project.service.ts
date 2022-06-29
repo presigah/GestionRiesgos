@@ -19,7 +19,7 @@ export class ProjectService {
   }
 
   getProject(id: string): Observable<Project> {
-    let direction = this.url + 'getProject/' + id
+    let direction = this.url + 'getProjectById/' + id
     return this.http.get<Project>(direction);
   }
 

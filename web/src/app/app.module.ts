@@ -16,7 +16,7 @@ import { RiskDetailComponent } from './risk-detail/risk-detail.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProjectIdComponent } from './project-id/project-id.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SortableHeaderProjectDirective } from './directives/sortable-header-project.directive';
 import { SortableHeaderRiskDirective } from './directives/sortable-header-risk.directive';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -49,6 +49,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     ToastrModule.forRoot(),
     NgxChartsModule,
     NgxPaginationModule,
+    ReactiveFormsModule
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent],
