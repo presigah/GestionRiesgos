@@ -18,9 +18,7 @@ export class RiskFormComponent implements OnInit {
 
   constructor(private service: RiskService) {}
 
-  ngOnInit(): void {
-    console.log('onInit');
-  }
+  ngOnInit(): void {}
 
   saveRisk() {
     this.risk.projectId = this.projectId;

@@ -21,6 +21,7 @@ import { FormsModule } from '@angular/forms';
 import { SortableHeaderProjectDirective } from './directives/sortable-header-project.directive';
 import { SortableHeaderRiskDirective } from './directives/sortable-header-risk.directive';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { EditRiskComponent } from './forms/edit-risk/edit-risk.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ProjectIdComponent,
     SortableHeaderProjectDirective,
     SortableHeaderRiskDirective,
+    EditRiskComponent,
   ],
   imports: [
     BrowserModule,

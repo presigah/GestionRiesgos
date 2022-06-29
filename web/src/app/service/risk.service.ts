@@ -14,4 +14,9 @@ export class RiskService {
     let direction = this.url + 'createRisk';
     return this.http.post<any>(direction, risk);
   }
+
+  updateRisk(risk: Risk): Observable<any> {
+    let direction = this.url + 'updateRisk';
+    return this.http.put<any>(direction, risk);
+  }
 }
