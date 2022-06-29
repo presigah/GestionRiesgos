@@ -20,6 +20,7 @@ import { FormsModule } from '@angular/forms';
 import { SortableHeaderProjectDirective } from './directives/sortable-header-project.directive';
 import { SortableHeaderRiskDirective } from './directives/sortable-header-risk.directive';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { EditRiskComponent } from './forms/edit-risk/edit-risk.component';
 import { HeatMapChartComponent } from './heat-map-chart/heat-map-chart.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -36,6 +37,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     HeatMapChartComponent,
     SortableHeaderProjectDirective,
     SortableHeaderRiskDirective,
+    EditRiskComponent,
     NavbarComponent,
   ],
   imports: [

@@ -4,6 +4,7 @@ import { Project } from './../models/project';
 import { ActivatedRoute } from '@angular/router';
 import { RiskService } from './../service/risk.service';
 import { Component, OnInit } from '@angular/core';
+import { faHeartCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -12,6 +13,7 @@ import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./risk-detail.component.css'],
 })
 export class RiskDetailComponent implements OnInit {
+  faHeartCirclePlus = faHeartCirclePlus;
   project: Project | undefined;
   risks: Risk[] = [];
   projectId: string | undefined;
