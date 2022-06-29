@@ -38,6 +38,7 @@ export class RiskTableComponent implements OnInit {
 
   page: number = 1;
 
+  @Input() projectId?: string;
   @Input() risks: Risk[] = [];
   constructor(private service: RiskService) {}
 

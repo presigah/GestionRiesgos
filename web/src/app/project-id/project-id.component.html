@@ -27,16 +27,8 @@
   </tbody>
 </table>
 <div class="d-grid bg-dark">
-  <app-risk-table [risks]="this.risks"></app-risk-table>
+  <app-risk-table
+    [projectId]="this.project?.id"
+    [risks]="this.risks"
+  ></app-risk-table>
 </div>
-<!-- <h3 class="text-center">Detalles del proyecto</h3>
-<hr />
-<div class="container">
-  
-</div>
-<h3 class="text-center">Lista de riesgos del proyecto</h3>
-<hr />
-<br />
-<div>
-  
-</div> -->

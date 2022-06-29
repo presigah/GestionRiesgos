@@ -22,8 +22,6 @@ export class RiskFormComponent implements OnInit {
 
   saveRisk() {
     this.risk.projectId = this.projectId;
-    console.log('projectId' + this.risk.projectId);
-
     if (this.occurrence != undefined) {
       this.risk.probability = Number(this.occurrence);
       console.log(this.risk.probability, this.occurrence);
@@ -40,12 +38,8 @@ export class RiskFormComponent implements OnInit {
     if (this.mitigationMails != undefined) {
       this.risk.responsibleMitigationMails = this.mitigationMails.split(',');
     }
-    console.log(this.risk.labels);
+    this.risk.userId = '11298';
 
-    console.log(this.risk.responsibleContingencyMails);
-    console.log(this.risk.responsibleMitigationMails);
-
-    console.log('guadando');
     this.service.saveRisk(this.risk).subscribe(() => {
       setTimeout(() => {
         window.location.reload();
@@ -56,17 +50,15 @@ export class RiskFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log({ risk: this.risk });
     this.risk = this.getEmptyRisk();
   }
 
   getEmptyRisk(): Risk {
     return {
-      id: '',
       projectId: '',
       name: '',
       userId: '',
-      labels: [''],
+      labels: [],
       description: '',
       riskState: '',
       audience: '',
