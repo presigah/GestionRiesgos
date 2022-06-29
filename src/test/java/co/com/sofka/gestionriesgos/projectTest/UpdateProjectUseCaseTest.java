@@ -38,7 +38,7 @@ class UpdateProjectUseCaseTest {
     void updateProjectUseCaseTest(){
         var project = new Project();
         project.setId("1");
-        project.setName("Proyecto 1");
+        project.setName("proyecto 1");
         project.setStartDate(LocalDate.now());
         project.setEndingDate(LocalDate.now());
         project.setDescription("Descripcion");
@@ -48,7 +48,7 @@ class UpdateProjectUseCaseTest {
 
         var projectReturn = new Project();
         projectReturn.setId("1");
-        projectReturn.setName("Proyecto 1");
+        projectReturn.setName("proyecto 1");
         projectReturn.setStartDate(LocalDate.now());
         projectReturn.setEndingDate(LocalDate.of(2022,7,4));
         projectReturn.setDescription("Descripcion modificada");

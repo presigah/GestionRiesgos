@@ -1,0 +1,31 @@
+<form>
+    <div class="mb-3">
+        <label for="projectName" class="form-label">Nombre proyecto</label>
+        <input type="text" class="form-control" id="projectName" maxlength="50" required>
+        <div class="form-text">El nombre debe ser menor a 50 caracteres</div>
+    </div>
+    <div class="mb-3">
+        <label for="startDate" class="form-label">Fecha Inicio</label>
+        <input type="date" class="form-control" id="startDate" required>
+    </div>
+    <div class="mb-3">
+        <label for="endDate" class="form-label">Fecha Final</label>
+        <input type="date" class="form-control" id="endDate" required>
+    </div>
+    <div class="mb-3">
+        <label for="projectTags" class="form-label">Etiquetas proyecto</label>
+        <input type="text" class="form-control" id="projectTags" required autocapitalize="characters">
+        <div class="form-text">Deben estar separadas por ;</div>
+    </div>
+    <div class="mb-3">
+        <label for="projectEmails" class="form-label">Emails proyecto</label>
+        <textarea class="form-control" id="projectEmails" required autocapitalize="none"></textarea>
+        <div class="form-text">Deben estar separados por ;</div>
+    </div>
+    <div class="mb-3">
+        <label for="projectResume" class="form-label">Descripcion proyecto</label>
+        <textarea class="form-control" id="projectResume" maxlength="700" required></textarea>
+        <div class="form-text">La descripcion debe ser menor a 7000 caracteres</div>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar proyecto</button>
+</form>

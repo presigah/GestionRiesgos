@@ -11,7 +11,11 @@ import {
   SortableHeaderRiskDirective,
   SortRiskEvent,
 } from '../directives/sortable-header-risk.directive';
-import { faHeartCirclePlus } from '@fortawesome/free-solid-svg-icons';
+import {
+  faHeartCirclePlus,
+  faArrowUpRightFromSquare,
+  faTrashCan,
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-risk-table',
@@ -29,6 +33,8 @@ export class RiskTableComponent implements OnInit {
   ) => (v1 < v2 ? -1 : v1 > v2 ? 1 : 0);
 
   faHeartCirclePlus = faHeartCirclePlus;
+  faArrowUpRightFromSquare = faArrowUpRightFromSquare;
+  faTrashCan = faTrashCan;
 
   page: number = 1;
 

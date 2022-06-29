@@ -5,6 +5,7 @@ import { Project } from '../models/project';
 import { Risk } from '../models/risk';
 import { FireserviceService } from '../service/fireservice.service';
 import { ProjectService } from '../service/project.service';
+import { faEye, faFolderPlus, faArrowUpRightFromSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -16,6 +17,11 @@ export class ProjectDetailComponent implements OnInit {
   @ViewChildren(SortableHeaderProjectDirective) headers: QueryList<SortableHeaderProjectDirective> | undefined;
 
   compare = (v1: string | Date | [string] | [Risk], v2: string | Date | [string] | [Risk]) => v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
+
+  faEye = faEye;
+  faFolderPlus = faFolderPlus;
+  faArrowUpRightFromSquare = faArrowUpRightFromSquare;
+  faTrashCan = faTrashCan;
 
   userLogged = this.afAuth.getUserLogged();
   uid: any;
