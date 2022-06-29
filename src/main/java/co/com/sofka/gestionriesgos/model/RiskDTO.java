@@ -36,7 +36,7 @@ public class RiskDTO {
     private LocalDate endedDate;
 
     private List<
-            @Length(min = 1, max = 5, message = "La longitud de una etiqueta debe ser menor a 50 caracteres y no puede ser vacia")
+            @Length(min = 1, max = 50, message = "La longitud de una etiqueta debe ser menor a 50 caracteres y no puede ser vacia")
             String> labels;
 
     @NotBlank

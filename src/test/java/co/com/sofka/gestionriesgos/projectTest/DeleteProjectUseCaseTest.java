@@ -25,14 +25,11 @@ class DeleteProjectUseCaseTest {
     @Mock
     ProjectRepository projectRepository;
 
-    @Mock
-    RiskRepository riskRepository;
-
     DeleteProjectUseCase deleteProjectUseCase;
 
     @BeforeEach
     void setup() {
-        deleteProjectUseCase = new DeleteProjectUseCase(projectRepository, riskRepository);
+        deleteProjectUseCase = new DeleteProjectUseCase(projectRepository);
     }
 
     @Test
@@ -51,14 +48,12 @@ class DeleteProjectUseCaseTest {
 
         when(projectRepository.findById(proyecto.getId())).thenReturn(Mono.just(proyecto));
         when(projectRepository.deleteById(proyecto.getId())).thenReturn(Mono.empty());
-        when(riskRepository.findByProjectId(proyecto.getId())).thenReturn(Mono.just(new Risk()));
-        when(riskRepository.save(new Risk())).thenReturn(Mono.empty());
+
 
         StepVerifier.create(deleteProjectUseCase.apply(proyecto.getId()))
                 .verifyComplete();
 
         verify(projectRepository).deleteById(proyecto.getId());
-        verify(riskRepository).findByProjectId(proyecto.getId());
     }
 
 
