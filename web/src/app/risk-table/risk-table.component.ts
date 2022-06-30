@@ -79,7 +79,7 @@ export class RiskTableComponent implements OnInit {
 
   onEndingDateSelect(value: any){
     if(this.table !== undefined){
-      this.table.filter(this.formatDate(value), 'endingDate', 'equals');
+      this.table.filter(this.formatDate(value), 'endedDate', 'equals');
     }
   }
 
