@@ -1,26 +1,24 @@
-import { Component, OnInit, PipeTransform, QueryList, ViewChildren } from '@angular/core';
-import { SortableHeaderProjectDirective, SortProjectEvent } from '../directives/sortable-header-project.directive';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Project } from '../models/project';
-import { Risk } from '../models/risk';
 import { FireserviceService } from '../service/fireservice.service';
 import { ProjectService } from '../service/project.service';
 import { faEye, faFolderPlus, faArrowUpRightFromSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { DatePipe } from '@angular/common';
-import { map, Observable, startWith  } from 'rxjs';
-import { FormControl } from '@angular/forms';
-import {PageEvent} from '@angular/material/paginator';
+import { PrimeNGConfig } from 'primeng/api';
+import { Table } from 'primeng/table';
 
 
 @Component({
   selector: 'app-project-detail',
   templateUrl: './project-detail.component.html',
-  styleUrls: ['./project-detail.component.css'],
+  styleUrls: ['./project-detail.component.scss'],
   providers: [DatePipe]
 })
 export class ProjectDetailComponent implements OnInit {
   
-  @ViewChildren(SortableHeaderProjectDirective) headers!: QueryList<SortableHeaderProjectDirective>;
+  @ViewChild('dt') table?: Table;
 
+  selectedProjects: Project[] = [];
 
   faEye = faEye;
   faFolderPlus = faFolderPlus;
@@ -34,22 +32,18 @@ export class ProjectDetailComponent implements OnInit {
   projects: Project[] = [];
   user: any = '';
 
-  projects$: Observable<Project[]>;
-
-  pageSize: number = 20;
-  pageEvent?: PageEvent;
+  loading: boolean = true;
 
   constructor(
     private afAuth: FireserviceService,
     public projectService: ProjectService,
-    private pipe: DatePipe
-  ) { 
-    this.projects$ = projectService.projects$;
-  }
+    private primengConfig: PrimeNGConfig
+  ) { }
 
   ngOnInit(): void {
     this.getProjects();
     this.traerdatos();
+    this.primengConfig.ripple = true;
   }
 
   getProjects() {
@@ -71,15 +65,22 @@ export class ProjectDetailComponent implements OnInit {
     });
   }
 
-  onSort({column, direction}: SortProjectEvent){
-    this.headers.forEach(header => {
-      if (header.sortable !== column) {
-        header.direction = '';
-      }
-    });
-
-    this.projectService.sortColumn = column;
-    this.projectService.sortDirection = direction;
+  onStartDateSelect(value: any){
+    if(this.table !== undefined){
+      this.table.filter(this.formatDate(value), 'startDate', 'equals');
+    }
   }
 
+  onEndingDateSelect(value: any){
+    if(this.table !== undefined){
+      this.table.filter(this.formatDate(value), 'endingDate', 'equals');
+    }
+  }
+
+  formatDate(date: any) {
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+
+    return date.getFullYear() + ',' + month + ',' + day;
+  }
 }

@@ -14,14 +14,13 @@ export class RiskFormComponent implements OnInit {
   constructor(private service: RiskService) {}
 
   ngOnInit(): void {
-    console.log('onInit');
   }
 
   saveRisk() {
     this.risk.projectId = this.projectId;
     console.log(this.risk);
 
-    console.log('guadando');
+    console.log('guardando');
     this.service.saveRisk(this.risk).subscribe(() => {
       setTimeout(() => {
         window.location.reload();

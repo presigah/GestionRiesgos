@@ -17,13 +17,12 @@ import { ProjectDetailComponent } from './project-detail/project-detail.componen
 import { HttpClientModule } from '@angular/common/http';
 import { ProjectIdComponent } from './project-id/project-id.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SortableHeaderProjectDirective } from './directives/sortable-header-project.directive';
-import { SortableHeaderRiskDirective } from './directives/sortable-header-risk.directive';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HeatMapChartComponent } from './heat-map-chart/heat-map-chart.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NavbarComponent } from './navbar/navbar.component';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { PrimeNgModule } from './prime-ng/prime-ng.module';
 
 @NgModule({
   declarations: [
@@ -35,12 +34,11 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
     ProjectDetailComponent,
     ProjectIdComponent,
     HeatMapChartComponent,
-    SortableHeaderProjectDirective,
-    SortableHeaderRiskDirective,
     NavbarComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
     FontAwesomeModule,
@@ -51,7 +49,8 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
     NgxChartsModule,
     NgxPaginationModule,
     ReactiveFormsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    PrimeNgModule
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent],

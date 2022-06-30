@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Project } from '../models/project';
 import { Risk } from '../models/risk';
-import { FireserviceService } from '../service/fireservice.service';
 import { ProjectService } from '../service/project.service';
 
 @Component({
@@ -20,7 +19,8 @@ export class ProjectIdComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private projectService: ProjectService,
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');

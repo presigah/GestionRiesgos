@@ -1,60 +1,250 @@
 <div class="d-grid bg-dark">
   <h1 class="mx-5 text text-light text-center">RIESGOS PROYECTO</h1>
-  <button type="button" class="btn btn-dark border border-success border-4" data-bs-toggle="modal" data-bs-target="#FormRiskPoPUp">
+  <button
+    type="button"
+    class="btn btn-dark border border-success border-4"
+    data-bs-toggle="modal"
+    data-bs-target="#FormRiskPoPUp"
+  >
     <fa-icon [icon]="faHeartCirclePlus"></fa-icon>
   </button>
- 
-<app-risk-form [projectId]="risks?.[0]?.projectId"></app-risk-form>
 
-<form>
-  <div class="mb-3 row">
-    <label for="table-filtering-search" class="col-xs-3 col-sm-auto col-form-label">Búscar coincidencias proyecto:</label>
-    <div class="col-xs-3 col-sm-auto">
-      <input id="table-filtering-search" class="form-control" type="text" [formControl]="filter">
-    </div>
-  </div>
-</form>
+  <app-risk-form [projectId]="risks?.[0]?.projectId"></app-risk-form>
 
-<table class="table table-dark table-striped table-hover text-center">
-  <thead>
-    <tr>
-      <!-- <th>Id riesgo</th> -->
-      <th scope="col" sortableRisk="name" (sort) = "onRiskSort($event)">Nombre del riesgo</th>
-      <th scope="col" sortableRisk="detectedDate" (sort) = "onRiskSort($event)">Fecha de detección</th>
-      <th scope="col" sortableRisk="endedDate" (sort) = "onRiskSort($event)">Fecha de cierre</th>
-      <th scope="col" sortableRisk="riskState" (sort) = "onRiskSort($event)">Estado del riesgo</th>
-      <th scope="col" sortableRisk="audience" (sort) = "onRiskSort($event)">Audiencia</th>
-      <th scope="col" sortableRisk="category" (sort) = "onRiskSort($event)">Categoría</th>
-      <th scope="col" sortableRisk="riskType" (sort) = "onRiskSort($event)">Tipo de riesgo</th>
-      <th scope="col" >Valor de criticidad</th>
-      <th colspan="2">Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let risk of risks$ | async">
-      <!-- <td>{{ risk.id }}</td> -->
-      <td>{{ risk.name }}</td>
-      <td>{{ risk.detectedDate }}</td>
-      <td>{{ risk.endedDate }}</td>
-      <td>{{ risk.riskState }}</td>
-      <td>{{ risk.audience }}</td>
-      <td>{{ risk.category }}</td>
-      <td>{{ risk.riskType }}</td>
-      <td>calcular</td>
-      <td>
-        <button
-          class="btn btn-primary"
-          [routerLink]="['/riskDetail', risk.projectId, risk.id]"
-        >
-          <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
-        </button>
-      </td>
-      <td>
-        <button class="btn btn-danger" (click)="deleteRisk(risk)">
-          <fa-icon [icon]="faTrashCan"></fa-icon>
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<mat-paginator [length]="risks.length" [pageSize]="pageSize" (page)="pageEvent = $event" aria-label="Select page"></mat-paginator>
+  <p-table
+    #dt
+    [value]="risks"
+    [(selection)]="selectedRisks"
+    dataKey="id"
+    [rowHover]="true"
+    [rows]="30"
+    [showCurrentPageReport]="true"
+    [loading]="loading"
+    [paginator]="true"
+    [filterDelay]="0"
+    [globalFilterFields]="[
+      'name',
+      'riskState',
+      'audience',
+      'category',
+      'riskType',
+      'criticValue'
+    ]"
+    styleClass="table table-dark table-striped table-hover text-center"
+  >
+    <ng-template pTemplate="caption">
+      <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input
+          #search
+          pInputText
+          type="text"
+          (input)="dt.filterGlobal(search.value, 'contains')"
+          placeholder="Buscar..."
+        />
+      </span>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="name">
+          Nombre del riesgo <p-sortIcon field="name"></p-sortIcon>
+        </th>
+        <th pSortableColumn="detectedDate">
+          Fecha de deteccion <p-sortIcon field="detectedDate"></p-sortIcon>
+        </th>
+        <th pSortableColumn="endedDate">
+          Fecha de cierre <p-sortIcon field="endedDate"></p-sortIcon>
+        </th>
+        <th pSortableColumn="riskState">
+          Estado del riesgo <p-sortIcon field="riskState"></p-sortIcon>
+        </th>
+        <th pSortableColumn="audience">
+          Audiencia <p-sortIcon field="audience"></p-sortIcon>
+        </th>
+        <th pSortableColumn="category">
+          Categoría <p-sortIcon field="category"></p-sortIcon>
+        </th>
+        <th pSortableColumn="riskType">
+          Tipo de riesgo <p-sortIcon field="riskType"></p-sortIcon>
+        </th>
+        <th pSortableColumn="criticValue">
+          Valor Criticidad <p-sortIcon field="criticValue"></p-sortIcon>
+        </th>
+        <th style="width: 8rem">Acciones</th>
+      </tr>
+      <tr>
+        <th>
+          <input
+            #searchName
+            pInputText
+            type="text"
+            (input)="dt.filter(searchName.value, 'name', 'contains')"
+            placeholder="Buscar por nombre"
+          />
+        </th>
+        <th>
+          <p-calendar
+            (onSelect)="onDetectedDateSelect($event)"
+            (onClearClick)="dt.filter('', 'detectedDate', 'equals')"
+            [showButtonBar]="true"
+            styleClass="p-column-filter"
+            placeholder="Fecha Deteccion"
+            [readonlyInput]="true"
+            dateFormat="yyyy,M,dd"
+          >
+          </p-calendar>
+        </th>
+        <th>
+          <p-calendar
+            (onSelect)="onEndingDateSelect($event)"
+            (onClearClick)="dt.filter('', 'endingDate', 'equals')"
+            [showButtonBar]="true"
+            styleClass="p-column-filter"
+            placeholder="Fecha Cierre"
+            [readonlyInput]="true"
+            dateFormat="yyyy,M,dd"
+          >
+          </p-calendar>
+        </th>
+        <th>
+          <p-dropdown
+            [options]="riskState"
+            (onChange)="dt.filter($event.value, 'riskState', 'equals')"
+            styleClass="p-column-filter"
+            placeholder="Seleccione un estado"
+            [showClear]="true"
+          >
+            <ng-template let-option pTemplate="item">
+              <span [class]="'risk-badge riskState-' + option.value"
+                >&#123;&#123;option.label&#125;&#125;</span
+              >
+            </ng-template>
+          </p-dropdown>
+        </th>
+        <th>
+          <p-dropdown
+            [options]="audience"
+            (onChange)="dt.filter($event.value, 'audience', 'equals')"
+            styleClass="p-column-filter"
+            placeholder="Audiencia"
+            [showClear]="true"
+          >
+            <ng-template let-option pTemplate="item">
+              <span [class]="'risk-badge audience-' + option.value"
+                >&#123;&#123;option.label&#125;&#125;</span
+              >
+            </ng-template>
+          </p-dropdown>
+        </th>
+        <th>
+          <p-dropdown
+            [options]="category"
+            (onChange)="dt.filter($event.value, 'category', 'equals')"
+            styleClass="p-column-filter"
+            placeholder="Seleccione una categoria"
+            [showClear]="true"
+          >
+            <ng-template let-option pTemplate="item">
+              <span [class]="'risk-badge category-' + option.value"
+                >&#123;&#123;option.label&#125;&#125;</span
+              >
+            </ng-template>
+          </p-dropdown>
+        </th>
+        <th>
+          <p-dropdown
+            [options]="riskType"
+            (onChange)="dt.filter($event.value, 'riskType', 'equals')"
+            styleClass="p-column-filter"
+            placeholder="Seleccione una categoria"
+            [showClear]="true"
+          >
+            <ng-template let-option pTemplate="item">
+              <span [class]="'risk-badge riskType-' + option.value"
+                >&#123;&#123;option.label&#125;&#125;</span
+              >
+            </ng-template>
+          </p-dropdown>
+        </th>
+        <th>
+          <input
+            #searchCritic
+            pInputText
+            type="text"
+            (input)="dt.filter(searchCritic.value, 'criticValue', 'contains')"
+            placeholder="Buscar por criticidad"
+          />
+          <!-- <p-dropdown [options]="criticValue" (onChange)="dt.filter($event.value, 'criticValue', 'equals')"
+        styleClass="p-column-filter" placeholder="Seleccione una categoria" [showClear]="true">
+          <ng-template let-option pTemplate="item">
+            <span [class]="'risk-badge criticValue-' +option.value">&#123;&#123;option.label&#125;&#125;</span>
+          </ng-template>
+        </p-dropdown> -->
+        </th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-risk>
+      <tr class="p-selectable-row">
+        <td>
+          <span class="p-column-title">Name</span>
+          {{ risk.name }}
+        </td>
+        <td>
+          <span class="p-column-title">Fecha de deteccion</span>
+          {{ risk.detectedDate }}
+        </td>
+        <td>
+          <span class="p-column-title">Fecha de cierre</span>
+          {{ risk.endedDate }}
+        </td>
+        <td>
+          <span class="p-column-title">Estado del riesgo</span>
+          <span [class]="'risk-badge riskState-' + risk.riskState"
+            >{{ risk.riskState }}
+          </span>
+        </td>
+        <td>
+          <span class="p-column-title">Audiencia</span>
+          <span [class]="'risk-badge audience-' + risk.audience"
+            >{{ risk.audience }}
+          </span>
+        </td>
+        <td>
+          <span class="p-column-title">Categoria</span>
+          <span [class]="'risk-badge category-' + risk.category"
+            >{{ risk.category }}
+          </span>
+        </td>
+        <td>
+          <span class="p-column-title">Tipo de riesgo</span>
+          <span [class]="'risk-badge riskType-' + risk.riskType"
+            >{{ risk.riskType }}
+          </span>
+        </td>
+        <td>
+          <span class="p-column-title">Valor Criticidad</span>
+          calcular
+        </td>
+        <td>
+          <button
+            class="btn btn-primary"
+            [routerLink]="['/riskDetail', risk.projectId, risk.id]"
+          >
+            <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteRisk(risk)">
+            <fa-icon [icon]="faTrashCan"></fa-icon>
+          </button>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="8">Riesgo no encontrado</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
