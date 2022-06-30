@@ -1,0 +1,17 @@
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { History } from '../models/history';
+
+@Injectable({
+    providedIn: 'root',
+})
+export class HistoryService {
+    private url = 'https://gestionriesgossofka.herokuapp.com/';
+    constructor(private http: HttpClient) {}
+
+    getHistory(id: string): Observable<any> {
+        let direction = this.url + 'getHistoryByProject/' + id
+        return this.http.get<History>(direction);
+    }
+}
