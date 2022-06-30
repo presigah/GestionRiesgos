@@ -165,7 +165,11 @@
         </button>
       </th>
       <th>
-        <button class="btn btn-danger" (click)="deleteProject(project.id)">
+        <button
+          class="btn btn-danger"
+          *ngIf="project.status == 'Creado'"
+          (click)="deleteProject(project.id)"
+        >
           <fa-icon [icon]="faTrashCan"></fa-icon>
         </button>
       </th>
