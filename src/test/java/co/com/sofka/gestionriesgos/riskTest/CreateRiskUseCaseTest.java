@@ -2,6 +2,7 @@ package co.com.sofka.gestionriesgos.riskTest;
 
 import co.com.sofka.gestionriesgos.collections.Risk;
 import co.com.sofka.gestionriesgos.mappers.RiskMapper;
+import co.com.sofka.gestionriesgos.repositories.ProjectRepository;
 import co.com.sofka.gestionriesgos.repositories.RiskRepository;
 import co.com.sofka.gestionriesgos.usercases.risk.CreateRiskUseCase;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,6 +25,7 @@ public class CreateRiskUseCaseTest {
 
     @Mock
     RiskRepository riskRepository;
+    ProjectRepository projectRepository;
 
     CreateRiskUseCase createRiskUseCase;
 
@@ -32,7 +34,7 @@ public class CreateRiskUseCaseTest {
     @BeforeEach
     void setUp() {
         riskMapper = new RiskMapper();
-        createRiskUseCase = new CreateRiskUseCase(riskMapper, riskRepository);
+        createRiskUseCase = new CreateRiskUseCase(riskMapper, riskRepository, projectRepository);
     }
 
     @Test
