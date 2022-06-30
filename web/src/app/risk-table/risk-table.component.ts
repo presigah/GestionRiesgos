@@ -3,6 +3,7 @@ import { Risk } from '../models/risk';
 import { faHeartCirclePlus, faArrowUpRightFromSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { Table } from 'primeng/table';
 import { PrimeNGConfig } from 'primeng/api';
+import { RiskService } from '../service/risk.service';
 
 @Component({
   selector: 'app-risk-table',
@@ -33,7 +34,7 @@ export class RiskTableComponent implements OnInit {
 
   @Input() projectId?: string;
   @Input() risks: Risk[] = [];
-  constructor(private primengConfig: PrimeNGConfig) {
+  constructor(private primengConfig: PrimeNGConfig, private service: RiskService) {
   }
 
   ngOnInit() {
