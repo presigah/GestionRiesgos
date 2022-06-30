@@ -34,4 +34,9 @@ export class ProjectService {
       responseType: 'text' as 'json',
     });
   }
+
+  deleteProject(id: string): Observable<Project> {
+    let direction = this.url + 'deleteProject/' + id;
+    return this.http.delete<Project>(direction);
+  }
 }

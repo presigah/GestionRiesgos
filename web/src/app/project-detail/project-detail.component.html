@@ -1,20 +1,42 @@
 <div class="d-grid bg-dark">
   <h1 class="mx-5 text text-light text-center">PROYECTOS</h1>
-  <button type="button" class="btn btn-dark border border-success border-4" data-bs-toggle="modal" data-bs-target="#FormProyectPoPUp">
+  <button
+    type="button"
+    class="btn btn-dark border border-success border-4"
+    data-bs-toggle="modal"
+    data-bs-target="#FormProyectPoPUp"
+  >
     <fa-icon [icon]="faFolderPlus"></fa-icon>
   </button>
-  <div class="modal fade " id="FormProyectPoPUp" tabindex="-1" aria-labelledby="Title" aria-hidden="true">
+  <div
+    class="modal fade"
+    id="FormProyectPoPUp"
+    tabindex="-1"
+    aria-labelledby="Title"
+    aria-hidden="true"
+  >
     <div class="modal-dialog modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="Title">Agregar un nuevo proyecto</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
         </div>
         <div class="modal-body">
           <app-project-form></app-project-form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cerrar
+          </button>
         </div>
       </div>
     </div>
@@ -24,17 +46,22 @@
   <thead>
     <tr>
       <!-- <th scope="col">Id Proyecto</th> -->
-      <th scope="col" sortable="name" (sort) = "onSort($event)">Nombre</th>
-      <th scope="col" sortable="startDate" (sort) = "onSort($event)">Inicio</th>
-      <th scope="col" sortable="endingDate" (sort) = "onSort($event)">Final</th>
-      <th scope="col" >Emails</th>
-      <th scope="col" >Descripción</th>
+      <th scope="col" sortable="name" (sort)="onSort($event)">Nombre</th>
+      <th scope="col" sortable="startDate" (sort)="onSort($event)">Inicio</th>
+      <th scope="col" sortable="endingDate" (sort)="onSort($event)">Final</th>
+      <th scope="col">Emails</th>
+      <th scope="col">Descripción</th>
       <th scope="col" colspan="2">Acciones</th>
       <!-- <th scope="col" sortable="status" (sort) = "onSort($event)">Status</th> -->
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let project of projects | paginate: { itemsPerPage: 20, currentPage: page }">
+    <tr
+      *ngFor="
+        let project of projects
+          | paginate: { itemsPerPage: 20, currentPage: page }
+      "
+    >
       <!-- <th scope="row" [routerLink]="['/project', project.id]">
         {{ project.id }}
       </th> -->
@@ -42,46 +69,94 @@
       <th scope="row">{{ project.startDate }}</th>
       <th scope="row">{{ project.endingDate }}</th>
       <th scope="row">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#projectEmailsModal'+project.id">
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          [attr.data-bs-target]="'#projectEmailsModal' + project.id"
+        >
           <fa-icon [icon]="faEye"></fa-icon>
         </button>
-        <div class="modal fade" id="projectEmailsModal{{project.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div
+          class="modal fade"
+          id="projectEmailsModal{{ project.id }}"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title text-dark" id="projectEmailsModal">Emails</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title text-dark" id="projectEmailsModal">
+                  Emails
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
               </div>
               <div class="modal-body text-dark">
-                {{project.emails}}
+                {{ project.emails }}
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
               </div>
             </div>
           </div>
-        </div>      
+        </div>
       </th>
       <th scope="row">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#projectDescriptionModal'+project.id">
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          [attr.data-bs-target]="'#projectDescriptionModal' + project.id"
+        >
           <fa-icon [icon]="faEye"></fa-icon>
         </button>
-        <div class="modal fade" id="projectDescriptionModal{{project.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div
+          class="modal fade"
+          id="projectDescriptionModal{{ project.id }}"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title text-dark" id="projectDescriptionModal">Descripción</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title text-dark" id="projectDescriptionModal">
+                  Descripción
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
               </div>
               <div class="modal-body text-dark">
-                {{project.description}}
+                {{ project.description }}
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
               </div>
             </div>
           </div>
-        </div>      
+        </div>
       </th>
       <!-- <th scope="row">{{ project.status }}</th> -->
       <th>
@@ -90,7 +165,7 @@
         </button>
       </th>
       <th>
-        <button class="btn btn-danger">
+        <button class="btn btn-danger" (click)="deleteProject(project.id)">
           <fa-icon [icon]="faTrashCan"></fa-icon>
         </button>
       </th>
@@ -98,4 +173,8 @@
   </tbody>
 </table>
 
-<pagination-controls (pageChange)="page = $event" nextLabel="Siguiente" previousLabel="Anterior"></pagination-controls>
+<pagination-controls
+  (pageChange)="page = $event"
+  nextLabel="Siguiente"
+  previousLabel="Anterior"
+></pagination-controls>
