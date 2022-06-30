@@ -15,6 +15,7 @@ export class RiskFormComponent implements OnInit {
   tags?: string;
   contingenceMails?: string;
   mitigationMails?: string;
+  openModal: boolean = true;
 
   constructor(private service: RiskService) {}
 
@@ -29,23 +30,33 @@ export class RiskFormComponent implements OnInit {
       this.risk.impactValue = Number(this.impactValue);
     }
     if (this.tags != undefined) {
-      this.risk.labels = this.tags.split(',');
+      this.risk.labels = this.removeSpaces(this.tags.split(','));
     }
     if (this.contingenceMails != undefined) {
-      this.risk.responsibleContingencyMails = this.contingenceMails.split(',');
+      this.risk.responsibleContingencyMails = this.removeSpaces(
+        this.contingenceMails.split(',')
+      );
     }
     if (this.mitigationMails != undefined) {
-      this.risk.responsibleMitigationMails = this.mitigationMails.split(',');
+      this.risk.responsibleMitigationMails = this.removeSpaces(
+        this.mitigationMails.split(',')
+      );
     }
     this.risk.userId = '11298';
-    
-    this.service.saveRisk(this.risk).subscribe(() => {
-      setTimeout(() => {
-        window.location.reload();
-      }, 1000);
-    });
-    this.impactValue = '';
-    this.occurrence = '';
+    let validEmails =
+      this.validateEmails(this.risk.responsibleContingencyMails) &&
+      this.validateEmails(this.risk.responsibleMitigationMails);
+    let validEmptyFields = this.validateEmptyFields();
+
+    if (validEmails && validEmptyFields) {
+      this.service.saveRisk(this.risk).subscribe(() => {
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      });
+      this.impactValue = '';
+      this.occurrence = '';
+    }
   }
 
   onSubmit() {
@@ -71,5 +82,44 @@ export class RiskFormComponent implements OnInit {
       contingencyPlan: '',
       responsibleContingencyMails: [''],
     };
+  }
+
+  removeSpaces(array: string[]) {
+    return array.map((i) => i.trim());
+  }
+
+  validateEmails(emailList: string[]) {
+    for (let index = 0; index < emailList.length; index++) {
+      let validate = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
+        emailList[index]
+      );
+      if (validate == false) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  validateEmptyFields() {
+    if (
+      this.risk.name !== '' &&
+      this.risk.detectedDate != undefined &&
+      this.risk.labels !== [] &&
+      this.risk.description !== '' &&
+      this.risk.riskState !== '' &&
+      this.risk.audience !== '' &&
+      this.risk.category !== '' &&
+      this.risk.riskType !== '' &&
+      this.risk.detailsRiskType !== '' &&
+      this.risk.probability !== 0 &&
+      this.risk.impactValue !== 0 &&
+      this.risk.mitigationPlan !== '' &&
+      this.risk.responsibleContingencyMails !== [] &&
+      this.risk.responsibleMitigationMails !== [] &&
+      this.risk.contingencyPlan !== ''
+    ) {
+      return true;
+    }
+    return false;
   }
 }

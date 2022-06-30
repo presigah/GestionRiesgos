@@ -43,19 +43,19 @@
   </div>
 </div>
 
-  <p-table 
+<p-table
   #dt
-    [value]="projects"
-    [(selection)]="selectedProjects"
-    dataKey="id"
-    [rowHover]="true"
-    [rows]="30"
-    [showCurrentPageReport]="true"
-    [loading]="loading"
-    [paginator]="true"
-    [filterDelay]="0"
-    styleClass="table table-dark table-striped table-hover text-center"
-  >
+  [value]="projects"
+  [(selection)]="selectedProjects"
+  dataKey="id"
+  [rowHover]="true"
+  [rows]="30"
+  [showCurrentPageReport]="true"
+  [loading]="loading"
+  [paginator]="true"
+  [filterDelay]="0"
+  styleClass="table table-dark table-striped table-hover text-center"
+>
   <ng-template pTemplate="header">
     <tr>
       <th pSortableColumn="name">
@@ -111,7 +111,7 @@
   <ng-template pTemplate="body" let-project>
     <tr class="p-selectable-row">
       <th>
-          {{ project.name }}
+        {{ project.name }}
       </th>
       <th>
         {{ project.startDate }}
