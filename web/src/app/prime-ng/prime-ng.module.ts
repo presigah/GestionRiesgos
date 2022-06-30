@@ -7,18 +7,22 @@ import {ContextMenuModule} from 'primeng/contextmenu';
 import {DropdownModule} from 'primeng/dropdown';
 import { CalendarModule } from "primeng/calendar";
 import { InputTextModule } from "primeng/inputtext";
+import { ButtonModule } from "primeng/button";
+import {ProgressBarModule} from 'primeng/progressbar';
 
 @NgModule({
     declarations: [],
     exports: [
         TableModule,
         CalendarModule,
-        SliderModule,
+		SliderModule,
 		DialogModule,
 		MultiSelectModule,
-        ContextMenuModule,
+		ContextMenuModule,
 		DropdownModule,
+		ButtonModule,
         InputTextModule,
+        ProgressBarModule,
     ],
 })
 export class PrimeNgModule {}
