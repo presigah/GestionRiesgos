@@ -1,20 +1,42 @@
 <div class="d-grid bg-dark">
   <h1 class="mx-5 text text-light text-center">PROYECTOS</h1>
-  <button type="button" class="btn btn-dark border border-success border-4" data-bs-toggle="modal" data-bs-target="#FormProyectPoPUp">
+  <button
+    type="button"
+    class="btn btn-dark border border-success border-4"
+    data-bs-toggle="modal"
+    data-bs-target="#FormProyectPoPUp"
+  >
     <fa-icon [icon]="faFolderPlus"></fa-icon>
   </button>
-  <div class="modal fade " id="FormProyectPoPUp" tabindex="-1" aria-labelledby="Title" aria-hidden="true">
+  <div
+    class="modal fade"
+    id="FormProyectPoPUp"
+    tabindex="-1"
+    aria-labelledby="Title"
+    aria-hidden="true"
+  >
     <div class="modal-dialog modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="Title">Agregar un nuevo proyecto</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
         </div>
         <div class="modal-body">
           <app-project-form></app-project-form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Cerrar
+          </button>
         </div>
       </div>
     </div>
@@ -98,46 +120,94 @@
         {{ project.endingDate }}
       </th>
       <th scope="row">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#projectEmailsModal'+project.id">
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          [attr.data-bs-target]="'#projectEmailsModal' + project.id"
+        >
           <fa-icon [icon]="faEye"></fa-icon>
         </button>
-        <div class="modal fade" id="projectEmailsModal{{project.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div
+          class="modal fade"
+          id="projectEmailsModal{{ project.id }}"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title text-dark" id="projectEmailsModal">Emails</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title text-dark" id="projectEmailsModal">
+                  Emails
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
               </div>
               <div class="modal-body text-dark">
-                {{project.emails}}
+                {{ project.emails }}
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
               </div>
             </div>
           </div>
-        </div>      
+        </div>
       </th>
       <th scope="row">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#projectDescriptionModal'+project.id">
+        <button
+          type="button"
+          class="btn btn-primary"
+          data-bs-toggle="modal"
+          [attr.data-bs-target]="'#projectDescriptionModal' + project.id"
+        >
           <fa-icon [icon]="faEye"></fa-icon>
         </button>
-        <div class="modal fade" id="projectDescriptionModal{{project.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div
+          class="modal fade"
+          id="projectDescriptionModal{{ project.id }}"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title text-dark" id="projectDescriptionModal">Descripción</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title text-dark" id="projectDescriptionModal">
+                  Descripción
+                </h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
               </div>
               <div class="modal-body text-dark">
-                {{project.description}}
+                {{ project.description }}
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
               </div>
             </div>
           </div>
-        </div>      
+        </div>
       </th>
       <th>
         <button class="btn btn-warning" [routerLink]="['/project', project.id]">
@@ -145,7 +215,11 @@
         </button>
       </th>
       <th>
-        <button class="btn btn-danger">
+        <button
+          class="btn btn-danger"
+          *ngIf="project.status == 'Creado'"
+          (click)="deleteProject(project.id)"
+        >
           <fa-icon [icon]="faTrashCan"></fa-icon>
         </button>
       </th>

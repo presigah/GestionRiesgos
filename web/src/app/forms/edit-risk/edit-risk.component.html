@@ -8,7 +8,7 @@
   <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="Title">Agregar un nuevo riesgo</h5>
+        <h5 class="modal-title" id="Title">Editar riesgo</h5>
         <button
           type="button"
           class="btn-close"
@@ -18,16 +18,7 @@
       </div>
 
       <div class="modal-body">
-        <form>
-          <div class="mb-3">
-            <label for="riskProyect" class="form-label"
-              >Nombre del proyecto</label
-            >
-            <select id="riskProyect" class="form-select" name="riskProyect">
-              <option value="(proyectId)">{{ projectId }}</option>
-            </select>
-          </div>
-
+        <form *ngIf="risk">
           <!-- nombre del riego -->
           <div class="mb-3">
             <label for="riskName" class="form-label">Nombre Riesgo</label>
@@ -51,12 +42,12 @@
               >Fecha Deteccion</label
             >
             <input
+              [(ngModel)]="risk.detectedDate"
               name="detectedDate"
               type="date"
               class="form-control"
               id="detectionDate"
               required
-              [(ngModel)]="risk.detectedDate"
             />
           </div>
           <!-- fecha de cierre -->
@@ -65,12 +56,12 @@
               >Fecha Cierre (opcional)</label
             >
             <input
+              [(ngModel)]="risk.endedDate"
               name="endedDate"
               type="date"
               class="form-control"
               id="closeDate"
               required
-              [(ngModel)]="risk.endedDate"
             />
           </div>
           <!-- etiquetas de riesgo -->
@@ -199,7 +190,7 @@
               id="riskOdds"
               class="form-select"
               name="riskOdds"
-              [(ngModel)]="this.occurrence"
+              [(ngModel)]="this.risk.probability"
             >
               <option value="1">Improbable</option>
               <option value="2">Posible</option>
@@ -217,7 +208,7 @@
               id="riskImpact"
               class="form-select"
               name="riskImpact"
-              [(ngModel)]="impactValue"
+              [(ngModel)]="risk.impactValue"
             >
               <option value="1">Insignificante</option>
               <option value="2">Menor</option>
@@ -251,7 +242,7 @@
             <textarea
               class="form-control"
               name="riskEmails"
-              [(ngModel)]="this.mitigationMails"
+              [(ngModel)]="mitigationMails"
               id="riskEmails"
               required
               autocapitalize="none"
@@ -283,7 +274,7 @@
               >Emails responsables plan de contingencia</label
             >
             <textarea
-              [(ngModel)]="this.contingenceMails"
+              [(ngModel)]="contingenceMails"
               name="mitigationMails"
               class="form-control"
               id="riskEmails"
@@ -292,17 +283,6 @@
             ></textarea>
             <div class="form-text">Deben estar separados por ,</div>
           </div>
-
-          <!-- nivel del riesgo -->
-          <div class="d-grid mb-3 gap-1">
-            <label class="form-label">Nivel de Riesgo</label>
-            <button class="btn btn-success disabled">(Riesgo Bajo)</button>
-            <button class="btn btn-warning disabled">(Riesgo Medio)</button>
-            <button class="btn btn-danger disabled">(Riesgo Alto)</button>
-          </div>
-          <!-- <button type="button" class="btn btn-primary" (click)="onSubmit()">
-            Guardar riesgosxxxx
-          </button> -->
         </form>
       </div>
 
@@ -314,7 +294,7 @@
           type="button"
           class="btn btn-primary"
           data-bs-dismiss="modal"
-          (click)="saveRisk()"
+          (click)="editRisk()"
         >
           Guardar riesgo
         </button>

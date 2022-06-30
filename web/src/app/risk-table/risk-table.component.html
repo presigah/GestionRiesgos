@@ -186,47 +186,47 @@
     </ng-template>
     <ng-template pTemplate="body" let-risk>
       <tr class="p-selectable-row">
-        <td>
+        <td *ngIf="risk.state === 1">
           <span class="p-column-title">Name</span>
           {{ risk.name }}
         </td>
-        <td>
+        <td *ngIf="risk.state === 1">
           <span class="p-column-title">Fecha de deteccion</span>
           {{ risk.detectedDate }}
         </td>
-        <td>
+        <td *ngIf="risk.state === 1">
           <span class="p-column-title">Fecha de cierre</span>
           {{ risk.endedDate }}
         </td>
-        <td>
+        <td *ngIf="risk.state === 1">
           <span class="p-column-title">Estado del riesgo</span>
           <span [class]="'risk-badge riskState-' + risk.riskState"
             >{{ risk.riskState }}
           </span>
         </td>
-        <td>
+        <td *ngIf="risk.state === 1">
           <span class="p-column-title">Audiencia</span>
           <span [class]="'risk-badge audience-' + risk.audience"
             >{{ risk.audience }}
           </span>
         </td>
-        <td>
+        <td *ngIf="risk.state === 1">
           <span class="p-column-title">Categoria</span>
           <span [class]="'risk-badge category-' + risk.category"
             >{{ risk.category }}
           </span>
         </td>
-        <td>
+        <td *ngIf="risk.state === 1">
           <span class="p-column-title">Tipo de riesgo</span>
           <span [class]="'risk-badge riskType-' + risk.riskType"
             >{{ risk.riskType }}
           </span>
         </td>
-        <td>
+        <td *ngIf="risk.state === 1">
           <span class="p-column-title">Valor Criticidad</span>
           calcular
         </td>
-        <td>
+        <td *ngIf="risk.state === 1">
           <button
             class="btn btn-primary"
             [routerLink]="['/riskDetail', risk.projectId, risk.id]"
@@ -234,7 +234,7 @@
             <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
           </button>
         </td>
-        <td>
+        <td *ngIf="risk.state === 1">
           <button class="btn btn-danger" (click)="deleteRisk(risk)">
             <fa-icon [icon]="faTrashCan"></fa-icon>
           </button>

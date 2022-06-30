@@ -1,6 +1,7 @@
 <div class="d-grid bg-dark">
   <h1 class="mx-5 text text-light text-center">DETALLES PROYECTO</h1>
 </div>
+<button class="btn btn-warning" [routerLink]="['/heatMap']"> Matriz de Calor</button>
 <table class="table table-dark table-striped-columns text-center">
   <thead>
     <tr>
@@ -26,5 +27,8 @@
   </tbody>
 </table>
 <div class="d-grid bg-dark">
-  <app-risk-table [risks]="this.risks"></app-risk-table>
+  <app-risk-table
+    [projectId]="this.project?.id"
+    [risks]="this.risks"
+  ></app-risk-table>
 </div>

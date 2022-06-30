@@ -1,3 +1,4 @@
+import { ProjectSave } from './../models/projectSave';
 import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
@@ -5,13 +6,12 @@ import { Observable} from 'rxjs';
 import { Project } from '../models/project';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProjectService {
-
   private url = 'https://gestionriesgossofka.herokuapp.com/';
 
-  constructor(private http: HttpClient) {  }
+  constructor(private http: HttpClient) {}
 
   getProjects(): Observable<Project[]> {
     let direction = this.url + 'getAllProjects';
@@ -28,10 +28,15 @@ export class ProjectService {
     return this.http.put<Project>(direction, project);
   }
 
-  saveProject(project: Project): Observable<Project> {
-    let direction = this.url + 'create';
-    return this.http.post<Project>(direction, project, {
+  saveProject(project: ProjectSave): Observable<ProjectSave> {
+    let direction = this.url + 'createProject';
+    return this.http.post<ProjectSave>(direction, project, {
       responseType: 'text' as 'json',
     });
+  }
+
+  deleteProject(id: string): Observable<Project> {
+    let direction = this.url + 'deleteProject/' + id;
+    return this.http.delete<Project>(direction);
   }
 }

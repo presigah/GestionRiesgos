@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProjectIdComponent } from './project-id/project-id.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { EditRiskComponent } from './forms/edit-risk/edit-risk.component';
 import { HeatMapChartComponent } from './heat-map-chart/heat-map-chart.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -34,6 +35,7 @@ import { PrimeNgModule } from './prime-ng/prime-ng.module';
     ProjectDetailComponent,
     ProjectIdComponent,
     HeatMapChartComponent,
+    EditRiskComponent,
     NavbarComponent,
   ],
   imports: [

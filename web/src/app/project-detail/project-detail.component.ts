@@ -47,7 +47,7 @@ export class ProjectDetailComponent implements OnInit {
   }
 
   getProjects() {
-    this.userLogged.subscribe(value => {
+    this.userLogged.subscribe((value) => {
       this.uid = value?.uid;
     });
     this.projectService.getProjects().subscribe((data) => {
@@ -56,11 +56,11 @@ export class ProjectDetailComponent implements OnInit {
   }
 
   traerdatos() {
-    this.userLogged.subscribe((value) => {     
+    this.userLogged.subscribe((value) => {
       if (value?.email == undefined) {
-        this.disabled = true;       
+        this.disabled = true;
       } else {
-        this.disabled = false;     
+        this.disabled = false;
       }
     });
   }
@@ -82,5 +82,14 @@ export class ProjectDetailComponent implements OnInit {
     let day = date.getDate();
 
     return date.getFullYear() + ',' + month + ',' + day;
+   }
+
+  deleteProject(id: string) {
+    this.projectService.deleteProject(id).subscribe(() => {
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    });
   }
+  
 }

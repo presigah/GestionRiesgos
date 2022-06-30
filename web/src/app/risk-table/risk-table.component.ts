@@ -10,7 +10,7 @@ import { PrimeNGConfig } from 'primeng/api';
   styleUrls: ['./risk-table.component.scss'],
 })
 export class RiskTableComponent implements OnInit {
-  
+
   selectedRisks: Risk[] = [];
   
   criticValue!: any[];
@@ -31,6 +31,7 @@ export class RiskTableComponent implements OnInit {
 
   @ViewChild('dt') table?: Table;
 
+  @Input() projectId?: string;
   @Input() risks: Risk[] = [];
   constructor(private primengConfig: PrimeNGConfig) {
   }
@@ -69,10 +70,6 @@ export class RiskTableComponent implements OnInit {
     this.primengConfig.ripple = true;
   }
 
-  ngOnChanges() {
-    console.log(this.risks);
-  }
-
   onDetectedDateSelect(value: any){
     if(this.table !== undefined){
       this.table.filter(this.formatDate(value), 'detectedDate', 'equals');
@@ -91,8 +88,13 @@ export class RiskTableComponent implements OnInit {
 
     return date.getFullYear() + ',' + month + ',' + day;
 }
-    
+   
   deleteRisk(risk: Risk) {
-    console.log(risk);
+    risk.state = 0;
+    this.service.updateRisk(risk).subscribe(() => {
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    });
   }
 }
