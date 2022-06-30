@@ -23,6 +23,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { HeatMapChartComponent } from './heat-map-chart/heat-map-chart.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NavbarComponent } from './navbar/navbar.component';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     ToastrModule.forRoot(),
     NgxChartsModule,
     NgxPaginationModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatPaginatorModule
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent],

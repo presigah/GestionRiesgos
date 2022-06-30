@@ -8,6 +8,7 @@ import { faEye, faFolderPlus, faArrowUpRightFromSquare, faTrashCan } from '@fort
 import { DatePipe } from '@angular/common';
 import { map, Observable, startWith  } from 'rxjs';
 import { FormControl } from '@angular/forms';
+import {PageEvent} from '@angular/material/paginator';
 
 
 @Component({
@@ -35,7 +36,8 @@ export class ProjectDetailComponent implements OnInit {
 
   projects$: Observable<Project[]>;
 
-  page: number = 1;
+  pageSize: number = 20;
+  pageEvent?: PageEvent;
 
   constructor(
     private afAuth: FireserviceService,

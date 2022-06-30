@@ -57,4 +57,4 @@
     </tr>
   </tbody>
 </table>
-<pagination-controls (pageChange)="page = $event" nextLabel="Siguiente" previousLabel="Anterior"></pagination-controls>
+<mat-paginator [length]="risks.length" [pageSize]="pageSize" (page)="pageEvent = $event" aria-label="Select page"></mat-paginator>

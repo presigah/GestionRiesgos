@@ -103,5 +103,4 @@
     </tbody>
   </table>
 </form>
-
-<!-- <pagination-controls (pageChange)="page = $event" nextLabel="Siguiente" previousLabel="Anterior"></pagination-controls> -->
+<mat-paginator [length]="projects.length" [pageSize]="pageSize" (page)="pageEvent = $event"></mat-paginator>

@@ -4,6 +4,7 @@ import { SortableHeaderRiskDirective, SortRiskEvent } from '../directives/sortab
 import { faHeartCirclePlus, faArrowUpRightFromSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { map, Observable, startWith } from 'rxjs';
 import { FormControl } from '@angular/forms';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-risk-table',
@@ -23,6 +24,9 @@ export class RiskTableComponent implements OnInit {
 
   risks$: Observable<Risk[]>;
   filter = new FormControl('');
+
+  pageSize: number = 30;
+  pageEvent?: PageEvent;
 
   @Input() risks: Risk[] = [];
   constructor() {
