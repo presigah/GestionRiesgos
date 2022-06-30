@@ -1,73 +1,94 @@
-import { RiskService } from './../service/risk.service';
-import {
-  Component,
-  Input,
-  OnInit,
-  QueryList,
-  ViewChildren,
-} from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Risk } from '../models/risk';
-import {
-  SortableHeaderRiskDirective,
-  SortRiskEvent,
-} from '../directives/sortable-header-risk.directive';
-import {
-  faHeartCirclePlus,
-  faArrowUpRightFromSquare,
-  faTrashCan,
-} from '@fortawesome/free-solid-svg-icons';
+import { faHeartCirclePlus, faArrowUpRightFromSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { Table } from 'primeng/table';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-risk-table',
   templateUrl: './risk-table.component.html',
-  styleUrls: ['./risk-table.component.css'],
+  styleUrls: ['./risk-table.component.scss'],
 })
 export class RiskTableComponent implements OnInit {
-  @ViewChildren(SortableHeaderRiskDirective) headers:
-    | QueryList<SortableHeaderRiskDirective>
-    | undefined;
 
-  compare = (
-    v1: string | Date | string[] | number,
-    v2: string | Date | string[] | number
-  ) => (v1 < v2 ? -1 : v1 > v2 ? 1 : 0);
+  selectedRisks: Risk[] = [];
+  
+  criticValue!: any[];
+
+  riskState!: any[];
+
+  audience!: any[];
+
+  category!: any[];
+
+  riskType!: any[];
+
+  loading: boolean = true;
 
   faHeartCirclePlus = faHeartCirclePlus;
   faArrowUpRightFromSquare = faArrowUpRightFromSquare;
   faTrashCan = faTrashCan;
 
-  page: number = 1;
+  @ViewChild('dt') table?: Table;
 
   @Input() projectId?: string;
   @Input() risks: Risk[] = [];
-  constructor(private service: RiskService) {}
+  constructor(private primengConfig: PrimeNGConfig) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    console.log(this.risks)
+    this.criticValue = [
+      {label: 'Bajo', value: 'Bajo'},
+      {label: 'Medio', value: 'Medio'},
+      {label: 'Alto', value: 'Alto'},
+    ]
 
-  onRiskSort({ columnRisk, directionRisk }: SortRiskEvent) {
-    // resetting other headers
-    this.headers?.forEach((header) => {
-      if (header.sortableRisk !== columnRisk) {
-        header.directionRisk = '';
-      }
-    });
+    this.riskState = [
+      {label:'Abierto', value:'Abierto'},
+      {label:'Mitigado', value:'Mitigado'},
+      {label:'Cerrado', value:'Cerrado'},
+      {label:'Problema', value:'Problema'},
+    ]
 
-    if (directionRisk === '' || columnRisk == null) {
-      this.risks;
-    } else {
-      this.risks.sort((a, b) => {
-        if (columnRisk == null || columnRisk == '') return 0;
-        const aColumnRisk = a[columnRisk];
-        const bColumnRisk = b[columnRisk];
-        if (aColumnRisk == null && bColumnRisk == null) return 0;
-        if (aColumnRisk == null) return 1;
-        if (bColumnRisk == null) return -1;
-        const res = this.compare(aColumnRisk, bColumnRisk);
-        return directionRisk === 'asc' ? res : -res;
-      });
+    this.audience = [
+      {label:'Interna', value:'Interna'},
+      {label:'Externa', value:'Externa'},
+    ]
+
+    this.category = [
+      {label:'Costo', value:'Costo'},
+      {label:'Tiempo', value:'Tiempo'},
+      {label:'Calidad', value:'Calidad'},
+    ]
+
+    this.riskType = [
+      {label:'Riesgo de producto o calidad', value:'Riesgo de producto o calidad'},
+      {label:'Riesgo de proyecto', value:'Riesgo de proyecto'},
+    ]
+
+    this.primengConfig.ripple = true;
+  }
+
+  onDetectedDateSelect(value: any){
+    if(this.table !== undefined){
+      this.table.filter(this.formatDate(value), 'detectedDate', 'equals');
     }
   }
 
+  onEndingDateSelect(value: any){
+    if(this.table !== undefined){
+      this.table.filter(this.formatDate(value), 'endingDate', 'equals');
+    }
+  }
+
+  formatDate(date: any) {
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+
+    return date.getFullYear() + ',' + month + ',' + day;
+}
+   
   deleteRisk(risk: Risk) {
     risk.state = 0;
     this.service.updateRisk(risk).subscribe(() => {

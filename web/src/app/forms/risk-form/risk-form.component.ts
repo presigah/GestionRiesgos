@@ -38,7 +38,7 @@ export class RiskFormComponent implements OnInit {
       this.risk.responsibleMitigationMails = this.mitigationMails.split(',');
     }
     this.risk.userId = '11298';
-
+    
     this.service.saveRisk(this.risk).subscribe(() => {
       setTimeout(() => {
         window.location.reload();

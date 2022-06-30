@@ -16,14 +16,14 @@ import { RiskDetailComponent } from './risk-detail/risk-detail.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ProjectIdComponent } from './project-id/project-id.component';
-import { FormsModule } from '@angular/forms';
-import { SortableHeaderProjectDirective } from './directives/sortable-header-project.directive';
-import { SortableHeaderRiskDirective } from './directives/sortable-header-risk.directive';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { EditRiskComponent } from './forms/edit-risk/edit-risk.component';
 import { HeatMapChartComponent } from './heat-map-chart/heat-map-chart.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NavbarComponent } from './navbar/navbar.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { PrimeNgModule } from './prime-ng/prime-ng.module';
 
 @NgModule({
   declarations: [
@@ -35,13 +35,12 @@ import { NavbarComponent } from './navbar/navbar.component';
     ProjectDetailComponent,
     ProjectIdComponent,
     HeatMapChartComponent,
-    SortableHeaderProjectDirective,
-    SortableHeaderRiskDirective,
     EditRiskComponent,
     NavbarComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
     FontAwesomeModule,
@@ -51,6 +50,9 @@ import { NavbarComponent } from './navbar/navbar.component';
     ToastrModule.forRoot(),
     NgxChartsModule,
     NgxPaginationModule,
+    ReactiveFormsModule,
+    MatPaginatorModule,
+    PrimeNgModule
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent],

@@ -42,32 +42,83 @@
     </div>
   </div>
 </div>
-<table class="table table-dark table-striped table-hover text-center">
-  <thead>
+
+  <p-table 
+  #dt
+    [value]="projects"
+    [(selection)]="selectedProjects"
+    dataKey="id"
+    [rowHover]="true"
+    [rows]="30"
+    [showCurrentPageReport]="true"
+    [loading]="loading"
+    [paginator]="true"
+    [filterDelay]="0"
+    styleClass="table table-dark table-striped table-hover text-center"
+  >
+  <ng-template pTemplate="header">
     <tr>
-      <!-- <th scope="col">Id Proyecto</th> -->
-      <th scope="col" sortable="name" (sort)="onSort($event)">Nombre</th>
-      <th scope="col" sortable="startDate" (sort)="onSort($event)">Inicio</th>
-      <th scope="col" sortable="endingDate" (sort)="onSort($event)">Final</th>
-      <th scope="col">Emails</th>
-      <th scope="col">Descripción</th>
-      <th scope="col" colspan="2">Acciones</th>
-      <!-- <th scope="col" sortable="status" (sort) = "onSort($event)">Status</th> -->
+      <th pSortableColumn="name">
+        Nombre del proyecto <p-sortIcon field="name"></p-sortIcon>
+      </th>
+      <th pSortableColumn="startDate">
+        Fecha de Inicio <p-sortIcon field="startDate"></p-sortIcon>
+      </th>
+      <th pSortableColumn="endedDate">
+        Fecha de cierre <p-sortIcon field="endedDate"></p-sortIcon>
+      </th>
+      <th>Emails</th>
+      <th>Descripción</th>
+      <th style="width: 8rem">Acciones</th>
     </tr>
-  </thead>
-  <tbody>
-    <tr
-      *ngFor="
-        let project of projects
-          | paginate: { itemsPerPage: 20, currentPage: page }
-      "
-    >
-      <!-- <th scope="row" [routerLink]="['/project', project.id]">
-        {{ project.id }}
-      </th> -->
-      <th scope="row">{{ project.name }}</th>
-      <th scope="row">{{ project.startDate }}</th>
-      <th scope="row">{{ project.endingDate }}</th>
+    <tr>
+      <th>
+        <input
+          #searchName
+          pInputText
+          type="text"
+          (input)="dt.filter(searchName.value, 'name', 'contains')"
+          placeholder="Buscar por nombre"
+        />
+      </th>
+      <th>
+        <p-calendar
+          (onSelect)="onStartDateSelect($event)"
+          (onClearClick)="dt.filter('', 'startDate', 'equals')"
+          [showButtonBar]="true"
+          styleClass="p-column-filter"
+          placeholder="Fecha Inicio"
+          [readonlyInput]="true"
+          dateFormat="yyyy,M,dd"
+        >
+        </p-calendar>
+      </th>
+      <th>
+        <p-calendar
+          (onSelect)="onEndingDateSelect($event)"
+          (onClearClick)="dt.filter('', 'endingDate', 'equals')"
+          [showButtonBar]="true"
+          styleClass="p-column-filter"
+          placeholder="Fecha Cierre"
+          [readonlyInput]="true"
+          dateFormat="yyyy,M,dd"
+        >
+        </p-calendar>
+      </th>
+      <th></th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-project>
+    <tr class="p-selectable-row">
+      <th>
+          {{ project.name }}
+      </th>
+      <th>
+        {{ project.startDate }}
+      </th>
+      <th>
+        {{ project.endingDate }}
+      </th>
       <th scope="row">
         <button
           type="button"
@@ -158,7 +209,6 @@
           </div>
         </div>
       </th>
-      <!-- <th scope="row">{{ project.status }}</th> -->
       <th>
         <button class="btn btn-warning" [routerLink]="['/project', project.id]">
           <fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon>
@@ -174,11 +224,5 @@
         </button>
       </th>
     </tr>
-  </tbody>
-</table>
-
-<pagination-controls
-  (pageChange)="page = $event"
-  nextLabel="Siguiente"
-  previousLabel="Anterior"
-></pagination-controls>
+  </ng-template>
+</p-table>
