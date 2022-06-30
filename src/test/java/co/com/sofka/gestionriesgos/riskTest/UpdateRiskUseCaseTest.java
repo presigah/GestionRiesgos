@@ -2,7 +2,9 @@ package co.com.sofka.gestionriesgos.riskTest;
 
 import co.com.sofka.gestionriesgos.collections.Risk;
 import co.com.sofka.gestionriesgos.mappers.RiskMapper;
+import co.com.sofka.gestionriesgos.repositories.HistoryRepository;
 import co.com.sofka.gestionriesgos.repositories.RiskRepository;
+import co.com.sofka.gestionriesgos.usercases.project.GetProjectUseCase;
 import co.com.sofka.gestionriesgos.usercases.risk.UpdateRiskUseCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,13 +27,15 @@ public class UpdateRiskUseCaseTest {
     RiskRepository riskRepository;
 
     UpdateRiskUseCase updateRiskUseCase;
+    HistoryRepository historyRepository;
+    GetProjectUseCase getProjectUseCase;
 
     RiskMapper riskMapper;
 
     @BeforeEach
     public void setup() {
         riskMapper = new RiskMapper();
-        updateRiskUseCase = new UpdateRiskUseCase(riskMapper, riskRepository);
+        updateRiskUseCase = new UpdateRiskUseCase(riskMapper, riskRepository, historyRepository, getProjectUseCase);
     }
 
     @Test

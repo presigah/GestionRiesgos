@@ -25,6 +25,7 @@ public class CreateRiskUseCaseTest {
 
     @Mock
     RiskRepository riskRepository;
+    @Mock
     ProjectRepository projectRepository;
 
     CreateRiskUseCase createRiskUseCase;
@@ -43,6 +44,7 @@ public class CreateRiskUseCaseTest {
         risk.setProjectId("123");
         risk.setName("Risk");
         risk.setUserId("321");
+        risk.setDetectedDate(LocalDate.now());
         risk.setEndedDate(LocalDate.of(2022, 06, 30));
         risk.setLabels(List.of("Label1", "Label2"));
         risk.setDescription("Descripcion1");
@@ -85,7 +87,7 @@ public class CreateRiskUseCaseTest {
         when(riskRepository.save(any(Risk.class))).thenReturn(Mono.just(riskReturn));
 
         StepVerifier.create(createRiskUseCase.apply(riskDTO))
-                .expectNext("1")
+                .expectNext("123")
                 .verifyComplete();
 
         verify(riskRepository).save(refEq(risk));
