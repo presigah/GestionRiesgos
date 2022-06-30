@@ -1,3 +1,4 @@
+import { ProjectSave } from './../models/projectSave';
 import { Injectable } from '@angular/core';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -27,9 +28,9 @@ export class ProjectService {
     return this.http.put<Project>(direction, project);
   }
 
-  saveProject(project: Project): Observable<Project> {
-    let direction = this.url + 'create';
-    return this.http.post<Project>(direction, project, {
+  saveProject(project: ProjectSave): Observable<ProjectSave> {
+    let direction = this.url + 'createProject';
+    return this.http.post<ProjectSave>(direction, project, {
       responseType: 'text' as 'json',
     });
   }
