@@ -20,7 +20,6 @@ export class RiskDetailComponent implements OnInit {
   riskId: string | undefined;
 
   projects: Project[] | undefined;
-  // risk: Risk[] | undefined;
   risk: Risk | undefined;
 
   faPenToSquare = faPenToSquare;

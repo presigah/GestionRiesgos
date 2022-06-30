@@ -56,6 +56,7 @@
               >Fecha Cierre (opcional)</label
             >
             <input
+              [(ngModel)]="risk.endedDate"
               name="endedDate"
               type="date"
               class="form-control"
@@ -105,10 +106,10 @@
               name="riskState"
               [(ngModel)]="risk.riskState"
             >
-              <option value="open">Abierto</option>
-              <option value="mitigated">Mitigado</option>
-              <option value="closed">Cerrado</option>
-              <option value="problem">Problema</option>
+              <option value="Abierto">Abierto</option>
+              <option value="Mitigado">Mitigado</option>
+              <option value="Cerrado">Cerrado</option>
+              <option value="Problema">Problema</option>
             </select>
           </div>
 
@@ -124,8 +125,8 @@
               name="riskAudience"
               [(ngModel)]="risk.audience"
             >
-              <option value="internal">Interna</option>
-              <option value="external">Externa</option>
+              <option value="Interna">Interna</option>
+              <option value="Externa">Externa</option>
             </select>
           </div>
 
@@ -141,9 +142,9 @@
               name="riskCategory"
               [(ngModel)]="risk.category"
             >
-              <option value="cost">Costo</option>
-              <option value="time">Tiempo</option>
-              <option value="quality">Calidad</option>
+              <option value="Costo">Costo</option>
+              <option value="Tiempo">Tiempo</option>
+              <option value="Calidad">Calidad</option>
             </select>
           </div>
 
@@ -156,8 +157,10 @@
               name="riskType"
               [(ngModel)]="risk.riskType"
             >
-              <option value="prodQuality">Producto/calidad</option>
-              <option value="proyect">Proyecto</option>
+              <option value="Riesgo de producto o calidad">
+                Producto/calidad
+              </option>
+              <option value="Riesgo de proyecto">Proyecto</option>
             </select>
           </div>
 
@@ -187,7 +190,7 @@
               id="riskOdds"
               class="form-select"
               name="riskOdds"
-              [(ngModel)]="this.occurrence"
+              [(ngModel)]="this.risk.probability"
             >
               <option value="1">Improbable</option>
               <option value="2">Posible</option>
@@ -205,7 +208,7 @@
               id="riskImpact"
               class="form-select"
               name="riskImpact"
-              [(ngModel)]="impactValue"
+              [(ngModel)]="risk.impactValue"
             >
               <option value="1">Insignificante</option>
               <option value="2">Menor</option>
@@ -239,7 +242,7 @@
             <textarea
               class="form-control"
               name="riskEmails"
-              [(ngModel)]="this.mitigationMails"
+              [(ngModel)]="mitigationMails"
               id="riskEmails"
               required
               autocapitalize="none"
@@ -271,14 +274,14 @@
               >Emails responsables plan de contingencia</label
             >
             <textarea
-              [(ngModel)]="this.contingenceMails"
+              [(ngModel)]="contingenceMails"
               name="mitigationMails"
               class="form-control"
               id="riskEmails"
               required
               autocapitalize="none"
             ></textarea>
-            <div class="form-text">Deben estar separados por ;</div>
+            <div class="form-text">Deben estar separados por ,</div>
           </div>
         </form>
       </div>

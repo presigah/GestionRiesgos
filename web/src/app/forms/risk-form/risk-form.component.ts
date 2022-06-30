@@ -24,7 +24,6 @@ export class RiskFormComponent implements OnInit {
     this.risk.projectId = this.projectId;
     if (this.occurrence != undefined) {
       this.risk.probability = Number(this.occurrence);
-      console.log(this.risk.probability, this.occurrence);
     }
     if (this.impactValue != undefined) {
       this.risk.impactValue = Number(this.impactValue);

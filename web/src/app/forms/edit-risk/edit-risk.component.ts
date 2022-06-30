@@ -14,12 +14,26 @@ export class EditRiskComponent implements OnInit {
   tags?: string;
   contingenceMails?: string;
   mitigationMails?: string;
+
   constructor(private service: RiskService) {}
 
   ngOnInit(): void {}
 
+  ngOnChanges() {
+    this.getvalues();
+  }
+
   editRisk() {
-    console.log(this.risk);
+    if (this.tags != undefined && this.risk != undefined) {
+      this.risk.labels = this.tags.split(',');
+    }
+    if (this.contingenceMails != undefined && this.risk != undefined) {
+      this.risk.responsibleContingencyMails = this.contingenceMails.split(',');
+    }
+
+    if (this.mitigationMails != undefined && this.risk != undefined) {
+      this.risk.responsibleMitigationMails = this.mitigationMails.split(',');
+    }
     if (this.risk != undefined) {
       this.service.updateRisk(this.risk).subscribe(() => {
         setTimeout(() => {
@@ -27,5 +41,11 @@ export class EditRiskComponent implements OnInit {
         }, 1000);
       });
     }
+  }
+
+  getvalues() {
+    this.tags = this.risk?.labels.join(',');
+    this.contingenceMails = this.risk?.responsibleContingencyMails.join(',');
+    this.mitigationMails = this.risk?.responsibleMitigationMails.join(',');
   }
 }
