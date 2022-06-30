@@ -54,7 +54,9 @@
         <td *ngIf="risk.state === 1">{{ risk.audience }}</td>
         <td *ngIf="risk.state === 1">{{ risk.category }}</td>
         <td *ngIf="risk.state === 1">{{ risk.riskType }}</td>
-        <td *ngIf="risk.state === 1">calcular</td>
+        <td *ngIf="risk.state === 1">
+          {{ risk.impactValue * risk.probability }}
+        </td>
         <td *ngIf="risk.state === 1">
           <button
             class="btn btn-primary"
