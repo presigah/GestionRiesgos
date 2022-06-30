@@ -5,6 +5,7 @@
   aria-labelledby="Title"
   aria-hidden="true"
 >
+  <!-- [hidden]="true" -->
   <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
@@ -20,9 +21,7 @@
       <div class="modal-body">
         <form>
           <div class="mb-3">
-            <label for="riskProyect" class="form-label"
-              >Nombre del proyecto</label
-            >
+            <label for="riskProyect" class="form-label">Id del proyecto</label>
             <select id="riskProyect" class="form-select" name="riskProyect">
               <option value="(proyectId)">{{ projectId }}</option>
             </select>
@@ -39,6 +38,7 @@
               id="riskName"
               maxlength="50"
               required
+              autocomplete="off"
             />
             <div class="form-text">
               El nombre debe ser menor a 50 caracteres
@@ -83,6 +83,7 @@
               class="form-control"
               id="proyectTags"
               autocapitalize="characters"
+              autocomplete="off"
             />
             <div class="form-text">Deben estar separadas por ,</div>
           </div>
@@ -99,6 +100,7 @@
               id="riskResume"
               maxlength="700"
               required
+              autocomplete="off"
             ></textarea>
             <div class="form-text">
               La descripcion debe ser menor a 700 caracteres
@@ -185,6 +187,7 @@
               required
               name="detailsRiskType"
               [(ngModel)]="risk.detailsRiskType"
+              autocomplete="off"
             ></textarea>
             <div class="form-text">
               Los detalles deben ser menores a 500 caracteres
@@ -255,6 +258,7 @@
               id="riskEmails"
               required
               autocapitalize="none"
+              autocomplete="off"
             ></textarea>
             <div class="form-text">Deben estar separados por ,</div>
           </div>
@@ -270,6 +274,7 @@
               class="form-control"
               id="riskMitigationPlan"
               maxlength="1000"
+              autocomplete="off"
               required
             ></textarea>
             <div class="form-text">
@@ -289,6 +294,7 @@
               id="riskEmails"
               required
               autocapitalize="none"
+              autocomplete="off"
             ></textarea>
             <div class="form-text">Deben estar separados por ,</div>
           </div>
@@ -300,9 +306,6 @@
             <button class="btn btn-warning disabled">(Riesgo Medio)</button>
             <button class="btn btn-danger disabled">(Riesgo Alto)</button>
           </div>
-          <!-- <button type="button" class="btn btn-primary" (click)="onSubmit()">
-            Guardar riesgosxxxx
-          </button> -->
         </form>
       </div>
 
