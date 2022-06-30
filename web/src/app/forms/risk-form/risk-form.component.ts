@@ -15,7 +15,6 @@ export class RiskFormComponent implements OnInit {
   tags?: string;
   contingenceMails?: string;
   mitigationMails?: string;
-  openModal: boolean = true;
 
   constructor(private service: RiskService) {}
 
