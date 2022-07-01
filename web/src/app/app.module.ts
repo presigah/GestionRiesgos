@@ -24,6 +24,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { PrimeNgModule } from './prime-ng/prime-ng.module';
+import { HistoryComponent } from './history/history/history.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { PrimeNgModule } from './prime-ng/prime-ng.module';
     HeatMapChartComponent,
     EditRiskComponent,
     NavbarComponent,
+    HistoryComponent,
   ],
   imports: [
     BrowserModule,

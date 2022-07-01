@@ -2,6 +2,6 @@ import { Project } from './project'
 
 export interface History {
     id: string;
-    dateTiem: Date;
+    dateTime: Date;
     project: [Project]
 }

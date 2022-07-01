@@ -10,8 +10,8 @@ export class HistoryService {
     private url = 'https://gestionriesgossofka.herokuapp.com/';
     constructor(private http: HttpClient) {}
 
-    getHistory(id: string): Observable<any> {
-        let direction = this.url + 'getHistoryByProject/' + id
+    getHistory(): Observable<any> {
+        let direction = this.url + 'getAllHistory/'
         return this.http.get<History>(direction);
     }
 }
