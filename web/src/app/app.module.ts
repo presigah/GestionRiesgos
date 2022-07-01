@@ -25,6 +25,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { PrimeNgModule } from './prime-ng/prime-ng.module';
 import { HistoryComponent } from './history/history/history.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 import { EditProjectComponent } from './forms/edit-project/edit-project.component';
 
 @NgModule({
@@ -40,6 +41,7 @@ import { EditProjectComponent } from './forms/edit-project/edit-project.componen
     EditRiskComponent,
     NavbarComponent,
     HistoryComponent,
+    WelcomeComponent,
     EditProjectComponent,
   ],
   imports: [

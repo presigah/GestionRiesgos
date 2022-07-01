@@ -62,7 +62,7 @@ export class NavbarComponent implements OnInit {
         if(res) {
           this.toastr.success('Login correcto');
           setTimeout(() => {
-            this.route.navigate(['preguntas']);
+            this.route.navigate(['projects']);
           }, 3000);
 
         }else {
@@ -74,7 +74,7 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.afAuth.logout();
     window.location.reload();
-    this.route.navigate(['projects']);
+    this.route.navigate(['welcome']);
   }
 
 }
