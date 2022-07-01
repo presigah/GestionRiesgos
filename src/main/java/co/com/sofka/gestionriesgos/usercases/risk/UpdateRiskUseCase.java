@@ -14,6 +14,7 @@ import reactor.core.publisher.Mono;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 @Service
@@ -35,11 +36,12 @@ public class UpdateRiskUseCase implements SaveRisk{
 
     public Mono<String> apply(RiskDTO riskDTO){
         Objects.requireNonNull(riskDTO.getId(), "Id of the risk is required");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");
         return riskRepo
                 .save(riskMapper.RiskDTOTORisk(riskDTO.getId()).apply(riskDTO))
                 .flatMap(risk -> getProjectUseCase.apply(risk.getProjectId()))
                 .flatMap(projectDTO -> {
-                    History history = new History(null, LocalDate.now(), LocalTime.now(), projectDTO);
+                    History history = new History(null, LocalDate.now(), LocalTime.now().format(dtf), projectDTO);
                     return historyRepository.save(history);
                 })
                 .map(History::getId);

@@ -21,6 +21,6 @@ public class History {
     private String id;
     //private String email;
     private LocalDate date;
-    private LocalTime time;
+    private String time;
     private ProjectDTO project;
 }
