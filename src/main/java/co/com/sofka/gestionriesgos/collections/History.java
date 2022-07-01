@@ -18,6 +18,7 @@ public class History {
     @Id
     private String id;
     //private String email;
-    private LocalDateTime date;
+    private LocalDate date;
+    private LocalTime time;
     private ProjectDTO project;
 }
