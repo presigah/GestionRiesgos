@@ -7,14 +7,27 @@ import { FireserviceService } from './service/fireservice.service';
   providedIn: 'root'
 })
 export class AuthGuardGuard implements CanActivate {
+  userLogged = this.afAuth.getUserLogged();
+  logged: boolean = false;
+
   constructor(private afAuth: FireserviceService, private router: Router) { }
 
   canActivate(): boolean {
-    if(!this.afAuth.userData){
-      this.router.navigate(['welcome']);
-      return false;
-    }
-    return true;
+    this.checkUser();
+    return this.logged;
+  }
+
+  checkUser(){
+    this.userLogged.subscribe((value) => {
+      if (value === null) {
+        console.log(value+ ' desde auth guard');
+        this.router.navigate(['welcome']);
+        this.logged = false;       
+      }else{
+        console.log(value)
+        this.logged=true;
+      }
+    })
   }
   
 }

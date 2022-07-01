@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'heatMap', component: HeatMapChartComponent, canActivate: [AuthGuardGuard] },
   { path: 'history', component: HistoryComponent, canActivate: [AuthGuardGuard] },
   { path: 'welcome', component: WelcomeComponent },
-  { path: '**', pathMatch: 'full', redirectTo: 'welcome' },
+  { path: '**', pathMatch: 'full', redirectTo: 'projects' },
 ];
 
 @NgModule({

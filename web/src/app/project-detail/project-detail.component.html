@@ -192,6 +192,7 @@
           class="btn btn-danger"
           *ngIf="project.status == 'Creado'"
           (click)="deleteProject(project.id)"
+          [routerLink]="['/project']"
         >
           <fa-icon [icon]="faTrashCan"></fa-icon>
         </button>
@@ -199,6 +200,7 @@
           *ngIf="project.status !== 'Creado'"
           class="btn btn-danger disabled"
           (click)="deleteProject(project.id)"
+          [routerLink]="['/project']"
         >
           <fa-icon [icon]="faTrashCan"></fa-icon>
         </button>
