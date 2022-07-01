@@ -38,7 +38,6 @@ export class RiskTableComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.risks)
     this.criticValue = [
       {label: 'Bajo', value: 'Bajo'},
       {label: 'Medio', value: 'Medio'},

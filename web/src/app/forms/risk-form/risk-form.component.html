@@ -16,7 +16,7 @@
             type="button"
             class="btn-close"
             aria-label="Close"
-            (click)="this.show = false"
+            (click)="closeModal()"
           ></button>
         </div>
 
@@ -308,11 +308,47 @@
             </div>
 
             <!-- nivel del riesgo -->
+
             <div class="d-grid mb-3 gap-1">
-              <label class="form-label">Nivel de Riesgo</label>
-              <button class="btn btn-success disabled">(Riesgo Bajo)</button>
-              <button class="btn btn-warning disabled">(Riesgo Medio)</button>
-              <button class="btn btn-danger disabled">(Riesgo Alto)</button>
+              <button
+                class="btn btn-primary"
+                (click)="
+                  this.criticalityLevelCalculation(
+                    this.risk.probability,
+                    this.risk.impactValue
+                  )
+                "
+              >
+                Ver criticidad del riesgo
+              </button>
+              <label class="form-label"> </label>
+
+              <button
+                class="btn btn-success disabled"
+                *ngIf="this.criticidad === 1"
+              >
+                (Riesgo Bajo)
+              </button>
+              <button
+                class="btn btn-warning disabled"
+                *ngIf="this.criticidad === 2"
+              >
+                (Riesgo Medio)
+              </button>
+              <button
+                class="btn btn-danger disabled"
+                *ngIf="this.criticidad === 3"
+              >
+                (Riesgo Alto)
+              </button>
+            </div>
+            <div
+              class="alert alert-danger"
+              role="alert"
+              *ngIf="this.criticidad === 4"
+            >
+              Los campos probabilidad de riesgo y valor de impacto no deben ser
+              nulos para clacular el valor de criticidad
             </div>
           </form>
         </div>
@@ -321,7 +357,7 @@
           <button
             type="button"
             class="btn btn-secondary"
-            (click)="this.show = false"
+            (click)="closeModal()"
           >
             Cerrar
           </button>
@@ -333,6 +369,12 @@
           >
             Guardar riesgo
           </button>
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+          <h5>
+            Se debe llenar todos los campos requeridos y/o agregar correos
+            válidos
+          </h5>
         </div>
       </div>
     </div>
