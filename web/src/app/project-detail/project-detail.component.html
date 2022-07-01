@@ -3,51 +3,18 @@
   <button
     type="button"
     class="btn btn-dark border border-success border-4"
-    data-bs-toggle="modal"
-    data-bs-target="#FormProyectPoPUp"
+    (click)="createProjectModal.show = true"
   >
     <fa-icon [icon]="faFolderPlus"></fa-icon>
   </button>
-  <button 
-    type="button" 
+  <button
+    type="button"
     class="btn btn-dark border border-success border-4"
     [routerLink]="['/history']"
   >
     Historial
   </button>
-  <div
-    class="modal fade"
-    id="FormProyectPoPUp"
-    tabindex="-1"
-    aria-labelledby="Title"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="Title">Agregar un nuevo proyecto</h5>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body">
-          <app-project-form></app-project-form>
-        </div>
-        <div class="modal-footer">
-          <button
-            type="button"
-            class="btn btn-secondary"
-            data-bs-dismiss="modal"
-          >
-            Cerrar
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <app-project-form #createProjectModal></app-project-form>
 </div>
 
 <p-table
@@ -112,7 +79,7 @@
         >
         </p-calendar>
       </th>
-      <th ></th>
+      <th></th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-project>
