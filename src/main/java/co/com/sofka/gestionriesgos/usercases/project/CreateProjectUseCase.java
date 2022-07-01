@@ -19,13 +19,15 @@ public class CreateProjectUseCase implements SaveProject {
         this.projectMapper = projectMapper;
     }
 
-    @Override
-    public Mono<String> apply(ProjectDTO newProject) {
-        if (newProject.getStartDate().isBefore(newProject.getEndingDate()) || newProject.getStartDate().isEqual(newProject.getEndingDate())) {
-            return projectRepository.save(projectMapper.mapperToProject(null).apply(newProject))
-                    .map(Project::getId);
-        }
+    public Mono<String> apply(ProjectDTO projectDTO){
+        if (projectDTO.getEndingDate() == null) return guardar(projectDTO);
+        if (projectDTO.getStartDate().isBefore(projectDTO.getEndingDate()) || projectDTO.getStartDate().isEqual(projectDTO.getEndingDate())) return guardar(projectDTO);
         return Mono.error(new IllegalArgumentException("La fecha de inicio debe ser anterior o igual a la fecha de finalización"));
+    }
+
+    public Mono<String> guardar(ProjectDTO newProject) {
+        return projectRepository.save(projectMapper.mapperToProject(null).apply(newProject))
+                .map(Project::getId);
     }
 
 }
