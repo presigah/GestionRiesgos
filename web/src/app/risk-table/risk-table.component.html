@@ -3,13 +3,12 @@
   <button
     type="button"
     class="btn btn-dark border border-success border-4"
-    data-bs-toggle="modal"
-    data-bs-target="#FormRiskPoPUp"
+    (click)="this.showCreateRiskModal = true"
   >
     <fa-icon [icon]="faHeartCirclePlus"></fa-icon>
   </button>
 
-  <app-risk-form [projectId]="this.projectId"></app-risk-form>
+  <app-risk-form [projectId]="this.projectId" [(show)]="this.showCreateRiskModal"></app-risk-form>
 
   <p-table
     #dt

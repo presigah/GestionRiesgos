@@ -34,6 +34,7 @@ export class RiskTableComponent implements OnInit {
 
   @Input() projectId?: string;
   @Input() risks: Risk[] = [];
+  showCreateRiskModal = false;
   constructor(private primengConfig: PrimeNGConfig, private service: RiskService) {
   }
 

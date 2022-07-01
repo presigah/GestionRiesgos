@@ -1,6 +1,6 @@
 import { RiskService } from './../../service/risk.service';
 import { Risk } from './../../models/risk';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-risk-form',
@@ -9,6 +9,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class RiskFormComponent implements OnInit {
   @Input() projectId: string | undefined;
+  @Input() show = false;
+  @Output() showChange = new EventEmitter<boolean>();
   risk: Risk = this.getEmptyRisk();
   occurrence?: string;
   impactValue?: string;
@@ -56,6 +58,11 @@ export class RiskFormComponent implements OnInit {
       this.impactValue = '';
       this.occurrence = '';
     }
+  }
+
+  setShow(show: boolean) {
+    this.show = show;
+    this.showChange.emit(this.show);
   }
 
   onSubmit() {
