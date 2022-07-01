@@ -16,10 +16,15 @@ export class RiskFormComponent implements OnInit {
   tags?: string;
   contingenceMails?: string;
   mitigationMails?: string;
+  errorMessage: boolean = false;
+  criticidad?: number;
 
   constructor(private service: RiskService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.errorMessage = false;
+    this.criticidad = 6;
+  }
 
   saveRisk() {
     this.risk.projectId = this.projectId;
@@ -47,8 +52,10 @@ export class RiskFormComponent implements OnInit {
       this.validateEmails(this.risk.responsibleContingencyMails) &&
       this.validateEmails(this.risk.responsibleMitigationMails);
     let validEmptyFields = this.validateEmptyFields();
+    let validLengthTag = this.validateLengthTag(this.risk.labels);
+    console.log(validLengthTag);
 
-    if (validEmails && validEmptyFields) {
+    if (validEmails && validEmptyFields && validLengthTag) {
       this.service.saveRisk(this.risk).subscribe(() => {
         setTimeout(() => {
           window.location.reload();
@@ -56,6 +63,8 @@ export class RiskFormComponent implements OnInit {
       });
       this.impactValue = '';
       this.occurrence = '';
+    } else {
+      this.errorMessage = true;
     }
   }
 
@@ -121,5 +130,73 @@ export class RiskFormComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  closeModal() {
+    this.show = false;
+    this.risk = this.getEmptyRisk();
+    this.errorMessage = false;
+    this.criticidad = 6;
+  }
+
+  validateLengthTag(array: string[]) {
+    for (let index = 0; index < array.length; index++) {
+      let lengthTag = array[0].length;
+      if (lengthTag > 50) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  criticalityLevelCalculation(probability: number, impactValue: number) {
+    if (this.occurrence != undefined) {
+      this.risk.probability = Number(this.occurrence);
+    }
+    if (this.impactValue != undefined) {
+      this.risk.impactValue = Number(this.impactValue);
+    }
+    console.log('probe' + this.risk.probability);
+    console.log('impacto' + this.risk.impactValue);
+
+    if (
+      this.risk.probability === 0 ||
+      this.risk.impactValue === 0 ||
+      this.risk.impactValue == undefined ||
+      this.risk.probability == undefined
+    ) {
+      this.criticidad = 4;
+
+      return;
+    }
+    if (
+      (this.risk.probability === 1 && this.risk.impactValue === 1) ||
+      (this.risk.probability === 2 && this.risk.impactValue === 1) ||
+      (this.risk.probability === 3 && this.risk.impactValue === 1) ||
+      (this.risk.probability === 4 && this.risk.impactValue === 1) ||
+      (this.risk.probability === 1 && this.risk.impactValue === 2) ||
+      (this.risk.probability === 2 && this.risk.impactValue === 2) ||
+      (this.risk.probability === 1 && this.risk.impactValue === 3)
+    ) {
+      this.criticidad = 1;
+
+      return;
+    }
+
+    if (
+      (this.risk.probability === 5 && this.risk.impactValue === 1) ||
+      (this.risk.probability === 5 && this.risk.impactValue === 2) ||
+      (this.risk.probability === 4 && this.risk.impactValue === 2) ||
+      (this.risk.probability === 3 && this.risk.impactValue === 2) ||
+      (this.risk.probability === 3 && this.risk.impactValue === 3) ||
+      (this.risk.probability === 2 && this.risk.impactValue === 3) ||
+      (this.risk.probability === 2 && this.risk.impactValue === 4) ||
+      (this.risk.probability === 1 && this.risk.impactValue === 4) ||
+      (this.risk.probability === 1 && this.risk.impactValue === 5)
+    ) {
+      this.criticidad = 2;
+    }
+
+    this.criticidad = 3;
   }
 }
