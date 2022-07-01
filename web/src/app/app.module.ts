@@ -58,7 +58,7 @@ import { EditProjectComponent } from './forms/edit-project/edit-project.componen
     NgxPaginationModule,
     ReactiveFormsModule,
     MatPaginatorModule,
-    PrimeNgModule
+    PrimeNgModule,
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent],
