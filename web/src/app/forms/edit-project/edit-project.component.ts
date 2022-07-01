@@ -1,4 +1,3 @@
-import { Project } from './../../models/project';
 import { ProjectService } from './../../service/project.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { ProjectSave } from 'src/app/models/projectSave';
@@ -14,15 +13,18 @@ export class EditProjectComponent implements OnInit {
   projectEdit?: ProjectSave;
   tags?: string;
   emails?: string;
+  errorMessage: boolean = false;
 
   constructor(private service: ProjectService) {}
 
   ngOnInit(): void {
     console.log(this.emails), this.tags;
+    this.errorMessage = false;
   }
 
   ngOnChanges() {
     this.getvalues();
+    this.errorMessage = false;
   }
 
   editProject() {
@@ -33,15 +35,21 @@ export class EditProjectComponent implements OnInit {
     if (this.emails != undefined && this.project != undefined) {
       this.project.emails = this.emails.split(',');
     }
-    console.log('email' + this.project?.emails);
-    console.log('etiqueta' + this.project?.labels);
+
     this.project = this.getProyectEdit();
     if (this.project !== undefined) {
-      this.service.updateProject(this.project).subscribe(() => {
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
-      });
+      let validLengthTag = this.validateLengthTag(this.project.labels);
+      let validEmails = this.validateEmails(this.project.emails);
+
+      if (validLengthTag && validEmails) {
+        this.service.updateProject(this.project).subscribe(() => {
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+        });
+        return;
+      }
+      this.errorMessage = true;
     }
   }
 
@@ -58,7 +66,7 @@ export class EditProjectComponent implements OnInit {
   closeModal() {
     this.show = false;
     this.getvalues();
-    // this.errorMessage = false;
+    this.errorMessage = false;
   }
 
   getProyectEdit() {
@@ -75,5 +83,26 @@ export class EditProjectComponent implements OnInit {
       };
     }
     return undefined;
+  }
+
+  validateEmails(emailList: string[]) {
+    for (let index = 0; index < emailList.length; index++) {
+      let validate = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
+        emailList[index]
+      );
+      if (validate == false) {
+        return false;
+      }
+    }
+    return true;
+  }
+  validateLengthTag(array: string[]) {
+    for (let index = 0; index < array.length; index++) {
+      let lengthTag = array[0].length;
+      if (lengthTag > 50) {
+        return false;
+      }
+    }
+    return true;
   }
 }
