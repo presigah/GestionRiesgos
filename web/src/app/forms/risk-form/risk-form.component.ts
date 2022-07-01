@@ -53,7 +53,6 @@ export class RiskFormComponent implements OnInit {
       this.validateEmails(this.risk.responsibleMitigationMails);
     let validEmptyFields = this.validateEmptyFields();
     let validLengthTag = this.validateLengthTag(this.risk.labels);
-    console.log(validLengthTag);
 
     if (validEmails && validEmptyFields && validLengthTag) {
       this.service.saveRisk(this.risk).subscribe(() => {
@@ -156,8 +155,6 @@ export class RiskFormComponent implements OnInit {
     if (this.impactValue != undefined) {
       this.risk.impactValue = Number(this.impactValue);
     }
-    console.log('probe' + this.risk.probability);
-    console.log('impacto' + this.risk.impactValue);
 
     if (
       this.risk.probability === 0 ||
