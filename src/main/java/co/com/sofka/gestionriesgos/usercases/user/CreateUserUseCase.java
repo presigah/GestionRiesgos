@@ -22,7 +22,12 @@ public class CreateUserUseCase implements SaveUser {
 
     @Override
     public Mono<String> apply(UserDTO userDTO) {
-        return userRepository.save(userMapper.userDtoToUser(null).apply(userDTO))
+
+        return userRepository.findById(userDTO.getIdFirebase())
+                .switchIfEmpty(userRepository.save(userMapper.userDtoToUser(userDTO.getIdFirebase()).apply(userDTO)))
                 .map(User::getId);
+
+//        return userRepository.save(userMapper.userDtoToUser(userDTO.getIdFirebase()).apply(userDTO))
+//                .map(User::getId);
     }
 }
