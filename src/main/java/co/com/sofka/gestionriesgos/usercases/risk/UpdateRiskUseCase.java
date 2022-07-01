@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Objects;
 
 @Service
@@ -37,7 +39,7 @@ public class UpdateRiskUseCase implements SaveRisk{
                 .save(riskMapper.RiskDTOTORisk(riskDTO.getId()).apply(riskDTO))
                 .flatMap(risk -> getProjectUseCase.apply(risk.getProjectId()))
                 .flatMap(projectDTO -> {
-                    History history = new History(null, LocalDateTime.now(), projectDTO);
+                    History history = new History(null, LocalDate.now(), LocalTime.now(), projectDTO);
                     return historyRepository.save(history);
                 })
                 .map(History::getId);
