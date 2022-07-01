@@ -23,17 +23,21 @@ public class CreateRiskUseCase implements SaveRisk{
     }
 
     public Mono<String> apply(RiskDTO riskDTO) {
-        if(riskDTO.getDetectedDate().isBefore(riskDTO.getEndedDate()) || riskDTO.getDetectedDate().isEqual(riskDTO.getEndedDate())) {
-            return riskRepo
-                    .save(riskMapper.RiskDTOTORisk(null).apply(riskDTO))
-                    .flatMap(risk -> projectRepository.findById(risk.getProjectId()))
-                    .flatMap(project -> {
-                        project.setStatus("Cerrado");
-                        return projectRepository.save(project);
-                    })
-                    .map(Project::getId)
-                    .switchIfEmpty(Mono.defer(() -> Mono.just("Empty")));
-        }
+        if (riskDTO.getEndedDate() == null) return guarda(riskDTO);
+        if(riskDTO.getDetectedDate().isBefore(riskDTO.getEndedDate()) ||
+                riskDTO.getDetectedDate().isEqual(riskDTO.getEndedDate())) return guarda(riskDTO);
         return Mono.error(new IllegalArgumentException("La fecha de inicio debe ser igual o anterior a la fecha de finalización"));
+    }
+
+    public Mono<String> guarda(RiskDTO riskDTO){
+        return riskRepo
+                .save(riskMapper.RiskDTOTORisk(null).apply(riskDTO))
+                .flatMap(risk -> projectRepository.findById(risk.getProjectId()))
+                .flatMap(project -> {
+                    project.setStatus("Cerrado");
+                    return projectRepository.save(project);
+                })
+                .map(Project::getId)
+                .switchIfEmpty(Mono.defer(() -> Mono.just("Empty")));
     }
 }
