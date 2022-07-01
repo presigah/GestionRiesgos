@@ -2,20 +2,24 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Project } from '../models/project';
 import { FireserviceService } from '../service/fireservice.service';
 import { ProjectService } from '../service/project.service';
-import { faEye, faFolderPlus, faArrowUpRightFromSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import {
+  faEye,
+  faFolderPlus,
+  faArrowUpRightFromSquare,
+  faTrashCan,
+} from '@fortawesome/free-solid-svg-icons';
 import { DatePipe } from '@angular/common';
 import { PrimeNGConfig } from 'primeng/api';
 import { Table } from 'primeng/table';
-
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-project-detail',
   templateUrl: './project-detail.component.html',
   styleUrls: ['./project-detail.component.scss'],
-  providers: [DatePipe]
+  providers: [DatePipe],
 })
 export class ProjectDetailComponent implements OnInit {
-  
   @ViewChild('dt') table?: Table;
 
   selectedProjects: Project[] = [];
@@ -24,6 +28,7 @@ export class ProjectDetailComponent implements OnInit {
   faFolderPlus = faFolderPlus;
   faArrowUpRightFromSquare = faArrowUpRightFromSquare;
   faTrashCan = faTrashCan;
+  faPenToSquare = faPenToSquare;
 
   userLogged = this.afAuth.getUserLogged();
   uid: any;
@@ -38,7 +43,7 @@ export class ProjectDetailComponent implements OnInit {
     private afAuth: FireserviceService,
     public projectService: ProjectService,
     private primengConfig: PrimeNGConfig
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.getProjects();
@@ -65,14 +70,14 @@ export class ProjectDetailComponent implements OnInit {
     });
   }
 
-  onStartDateSelect(value: any){
-    if(this.table !== undefined){
+  onStartDateSelect(value: any) {
+    if (this.table !== undefined) {
       this.table.filter(this.formatDate(value), 'startDate', 'equals');
     }
   }
 
-  onEndingDateSelect(value: any){
-    if(this.table !== undefined){
+  onEndingDateSelect(value: any) {
+    if (this.table !== undefined) {
       this.table.filter(this.formatDate(value), 'endingDate', 'equals');
     }
   }
@@ -82,7 +87,7 @@ export class ProjectDetailComponent implements OnInit {
     let day = date.getDate();
 
     return date.getFullYear() + ',' + month + ',' + day;
-   }
+  }
 
   deleteProject(id: string) {
     this.projectService.deleteProject(id).subscribe(() => {
@@ -91,5 +96,4 @@ export class ProjectDetailComponent implements OnInit {
       }, 1000);
     });
   }
-  
 }

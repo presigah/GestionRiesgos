@@ -4,6 +4,7 @@ import { Project } from '../models/project';
 import { Risk } from '../models/risk';
 import { ProjectService } from '../service/project.service';
 import { faFolderPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-project-id',
@@ -15,6 +16,7 @@ export class ProjectIdComponent implements OnInit {
   risks: Risk[] = [];
   id: string | undefined;
   faFolderPlus = faFolderPlus;
+  faPenToSquare = faPenToSquare;
 
   projects: Project[] | undefined;
 
