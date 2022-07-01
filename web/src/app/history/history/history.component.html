@@ -1,4 +1,4 @@
-<p-table #dt [value]="history" dataKey="id" [rowHover]="true" [rows] = "20" [paginator] = "true" 
+<p-table #dt [value]="history" dataKey="id" [rowHover]="true" [rows] = "20" 
 [showCurrentPageReport]="true" styleClass="table table-dark table-striped table-hover text-center">
     <ng-template pTemplate="header" >
         <tr>
@@ -7,6 +7,9 @@
             </th>
             <th>
                 Fecha del cambio
+            </th>
+            <th>
+                Hora del cambio
             </th>
             <th>
                 Nombre del proyecto
@@ -26,6 +29,9 @@
             </td>
             <td>
                 {{his.date}}
+            </td>
+            <td>
+                {{his.time}}
             </td>
             <td >
                 {{his.project.name}}

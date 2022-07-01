@@ -1,7 +1,9 @@
+import { Time } from '@angular/common';
 import { Project } from './project'
 
 export interface History {
     id: string;
-    dateTime: Date;
+    date: Date;
+    time: Time;
     project: [Project]
 }
