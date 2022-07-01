@@ -1,6 +1,6 @@
 import { RiskService } from './../../service/risk.service';
 import { Risk } from './../../models/risk';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-risk-form',
@@ -9,6 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class RiskFormComponent implements OnInit {
   @Input() projectId: string | undefined;
+  @Input() show = false;
   risk: Risk = this.getEmptyRisk();
   occurrence?: string;
   impactValue?: string;
