@@ -2,7 +2,7 @@ import { ProjectSave } from './../models/projectSave';
 import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
-import { Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import { Project } from '../models/project';
 
 @Injectable({
@@ -19,13 +19,15 @@ export class ProjectService {
   }
 
   getProject(id: string): Observable<Project> {
-    let direction = this.url + 'getProjectById/' + id
+    let direction = this.url + 'getProjectById/' + id;
     return this.http.get<Project>(direction);
   }
 
-  updateProject(project: Project): Observable<Project> {
+  updateProject(project: ProjectSave): Observable<any> {
     let direction = this.url + 'updateProject';
-    return this.http.put<Project>(direction, project);
+    return this.http.put<any>(direction, project, {
+      responseType: 'text' as 'json',
+    });
   }
 
   saveProject(project: ProjectSave): Observable<ProjectSave> {

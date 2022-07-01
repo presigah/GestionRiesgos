@@ -25,8 +25,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { PrimeNgModule } from './prime-ng/prime-ng.module';
 import { HistoryComponent } from './history/history/history.component';
-import { DropdownModule } from 'primeng/dropdown';
-
+import { WelcomeComponent } from './welcome/welcome.component';
+import { EditProjectComponent } from './forms/edit-project/edit-project.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +41,8 @@ import { DropdownModule } from 'primeng/dropdown';
     EditRiskComponent,
     NavbarComponent,
     HistoryComponent,
+    WelcomeComponent,
+    EditProjectComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,6 @@ import { DropdownModule } from 'primeng/dropdown';
     ReactiveFormsModule,
     MatPaginatorModule,
     PrimeNgModule,
-    DropdownModule
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent],
