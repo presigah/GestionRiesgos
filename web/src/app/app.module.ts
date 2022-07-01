@@ -25,6 +25,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { PrimeNgModule } from './prime-ng/prime-ng.module';
 import { HistoryComponent } from './history/history/history.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { HistoryComponent } from './history/history/history.component';
     EditRiskComponent,
     NavbarComponent,
     HistoryComponent,
+    WelcomeComponent,
   ],
   imports: [
     BrowserModule,
