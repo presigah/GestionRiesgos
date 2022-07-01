@@ -29,11 +29,11 @@ export class EditProjectComponent implements OnInit {
 
   editProject() {
     if (this.tags != undefined && this.project != undefined) {
-      this.project.labels = this.tags.split(',');
+      this.project.labels = this.removeSpaces(this.tags.split(','));
     }
 
     if (this.emails != undefined && this.project != undefined) {
-      this.project.emails = this.emails.split(',');
+      this.project.emails = this.removeSpaces(this.emails.split(','));
     }
 
     this.project = this.getProyectEdit();
@@ -104,5 +104,9 @@ export class EditProjectComponent implements OnInit {
       }
     }
     return true;
+  }
+
+  removeSpaces(array: string[]) {
+    return array.map((i) => i.trim());
   }
 }

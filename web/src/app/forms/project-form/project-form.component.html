@@ -27,6 +27,7 @@
                 >Nombre proyecto</label
               >
               <input
+                autocomplete="off"
                 type="text"
                 class="form-control"
                 id="projectName"
@@ -76,6 +77,7 @@
               >
               <input
                 type="text"
+                autocomplete="off"
                 class="form-control"
                 id="projectTags"
                 required
@@ -83,7 +85,7 @@
                 name="tags"
                 [(ngModel)]="tags"
               />
-              <div class="form-text">Deben estar separadas por ;</div>
+              <div class="form-text">Deben estar separadas por ,</div>
             </div>
 
             <!-- correos -->
@@ -94,13 +96,14 @@
               >
               <textarea
                 class="form-control"
+                autocomplete="off"
                 id="projectEmails"
                 required
                 autocapitalize="none"
                 [(ngModel)]="emails"
                 name="email"
               ></textarea>
-              <div class="form-text">Deben estar separados por ;</div>
+              <div class="form-text">Deben estar separados por ,</div>
             </div>
 
             <!-- descripcion -->
@@ -111,6 +114,7 @@
               >
               <textarea
                 class="form-control"
+                autocomplete="off"
                 id="projectResume"
                 maxlength="700"
                 required

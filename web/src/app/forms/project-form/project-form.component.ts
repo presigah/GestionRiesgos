@@ -28,10 +28,10 @@ export class ProjectFormComponent implements OnInit {
   saveProject() {
     this.project.status = 'Creado';
     if (this.tags != undefined) {
-      this.project.labels = this.tags.split(',');
+      this.project.labels = this.removeSpaces(this.tags.split(','));
     }
     if (this.emails != undefined) {
-      this.project.emails = this.emails.split(',');
+      this.project.emails = this.removeSpaces(this.emails.split(','));
     }
 
     let validLengthTag = this.validateLengthTag(this.project.labels);
@@ -96,5 +96,9 @@ export class ProjectFormComponent implements OnInit {
       return true;
     }
     return false;
+  }
+
+  removeSpaces(array: string[]) {
+    return array.map((i) => i.trim());
   }
 }
