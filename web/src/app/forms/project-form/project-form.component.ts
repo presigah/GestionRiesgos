@@ -13,10 +13,13 @@ export class ProjectFormComponent implements OnInit {
   project: ProjectSave = this.getEmptyProject();
   tags?: string;
   emails?: string;
+  errorMessage: boolean = false;
 
   constructor(private service: ProjectService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.errorMessage = false;
+  }
 
   onSubmit() {
     this.project = this.getEmptyProject();
@@ -32,11 +35,17 @@ export class ProjectFormComponent implements OnInit {
     }
 
     let validLengthTag = this.validateLengthTag(this.project.labels);
-    this.service.saveProject(this.project).subscribe(() => {
-      setTimeout(() => {
-        window.location.reload();
-      }, 1000);
-    });
+    let validEmails = this.validateEmails(this.project.emails);
+    let validEmptyFields = this.validateEmptyFields();
+    if (validLengthTag && validEmails && validEmptyFields) {
+      this.service.saveProject(this.project).subscribe(() => {
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
+      });
+    } else {
+      this.errorMessage = true;
+    }
   }
 
   getEmptyProject(): ProjectSave {
@@ -73,6 +82,19 @@ export class ProjectFormComponent implements OnInit {
   closeModal() {
     this.show = false;
     this.project = this.getEmptyProject();
-    // this.errorMessage = false;
+    this.errorMessage = false;
+  }
+
+  validateEmptyFields() {
+    if (
+      this.project.name !== '' &&
+      this.project.startDate != undefined &&
+      this.project.labels !== [] &&
+      this.project.emails !== [] &&
+      this.project.description !== ''
+    ) {
+      return true;
+    }
+    return false;
   }
 }

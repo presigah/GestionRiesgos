@@ -16,6 +16,7 @@
             class="btn-close"
             data-bs-dismiss="modal"
             aria-label="Close"
+            (click)="closeModal()"
           ></button>
         </div>
         <div class="modal-body">
@@ -136,10 +137,17 @@
             type="button"
             class="btn btn-secondary"
             data-bs-dismiss="modal"
-            (click)="show = false"
+            (click)="closeModal()"
           >
             Cerrar
           </button>
+        </div>
+
+        <div class="alert alert-danger" role="alert" *ngIf="errorMessage">
+          <h5>
+            Se debe llenar todos los campos requeridos y/o agregar correos
+            válidos
+          </h5>
         </div>
       </div>
     </div>
