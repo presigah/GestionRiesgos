@@ -9,14 +9,13 @@
   </button>
   <button
     type="button"
-    class="btn btn-dark border border-success border-4"
+    class="btn btn-dark border border-success border-4 my-2"
     [routerLink]="['/history']"
   >
     Historial
   </button>
   <app-project-form #createProjectModal></app-project-form>
 </div>
-
 <p-table
   #dt
   [value]="projects"
@@ -28,7 +27,7 @@
   [loading]="loading"
   [paginator]="true"
   [filterDelay]="0"
-  styleClass="table table-dark table-striped table-hover text-center"
+  class="table table-dark table-striped table-hover text-center"
 >
   <ng-template pTemplate="header">
     <tr>
@@ -43,7 +42,7 @@
       </th>
       <th>Emails</th>
       <th>Descripción</th>
-      <th style="width: 8rem">Acciones</th>
+      <th colspan="2">Acciones</th>
     </tr>
     <tr>
       <th>
@@ -63,7 +62,7 @@
           styleClass="p-column-filter"
           placeholder="Fecha Inicio"
           [readonlyInput]="true"
-          dateFormat="yyyy,M,dd"
+          dateFormat="yy,M,dd"
         >
         </p-calendar>
       </th>
@@ -75,7 +74,7 @@
           styleClass="p-column-filter"
           placeholder="Fecha Cierre"
           [readonlyInput]="true"
-          dateFormat="yyyy,M,dd"
+          dateFormat="yy,M,dd"
         >
         </p-calendar>
       </th>
@@ -192,6 +191,13 @@
         <button
           class="btn btn-danger"
           *ngIf="project.status == 'Creado'"
+          (click)="deleteProject(project.id)"
+        >
+          <fa-icon [icon]="faTrashCan"></fa-icon>
+        </button>
+        <button
+          class="btn btn-danger disabled"
+          
           (click)="deleteProject(project.id)"
         >
           <fa-icon [icon]="faTrashCan"></fa-icon>

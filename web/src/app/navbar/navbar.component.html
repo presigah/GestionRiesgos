@@ -8,12 +8,12 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         </ul>
         <form class="d-flex" role="search">
-            <button type="button" class="btn btn-secondary disabled" data-bs-toggle="modal" data-bs-target="#staticBackdrop1" *ngIf="!afAuth.userData">
+            <button type="button" class="btn btn-secondary disabled" *ngIf="!afAuth.userData">
                 <fa-icon class="user-icon" [icon]="faQuestion" ></fa-icon>
            
             </button>
-            <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop1" *ngIf="afAuth.userData">
-              <img clas="user-icon" [src]="userIcon">
+            <button type="button" class="btn btn-secondary disabled" *ngIf="afAuth.userData">
+              <img class="user-icon" [src]="userIcon">
             </button>
 
             <button class="btn btn-primary mx-2" (click)="loginGoogle()" *ngIf="!afAuth.userData">

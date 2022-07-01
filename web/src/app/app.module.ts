@@ -25,6 +25,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { PrimeNgModule } from './prime-ng/prime-ng.module';
 import { HistoryComponent } from './history/history/history.component';
+import { DropdownModule } from 'primeng/dropdown';
+
 
 @NgModule({
   declarations: [
@@ -54,7 +56,8 @@ import { HistoryComponent } from './history/history/history.component';
     NgxPaginationModule,
     ReactiveFormsModule,
     MatPaginatorModule,
-    PrimeNgModule
+    PrimeNgModule,
+    DropdownModule
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent],

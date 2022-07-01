@@ -1,19 +1,14 @@
 <div class="card text-center">
   <div class="card-header bg-dark text-light text-center d-grid">
     <h1>{{ this.risk?.name || "Loading ..." }}</h1>
-    <button class="btn btn-dark border border-warning border-4">
+    <button class="btn btn-dark border border-warning border-4"
+      data-bs-toggle="modal"
+      data-bs-target="#FormRiskPoPUp"
+    >
       <fa-icon [icon]="faPenToSquare"></fa-icon>
     </button>
   </div>
   <div class="card-body" style="margin-right: 40px; margin-left: 40px">
-    <button
-      type="button"
-      class="btn btn-success mb-6 col-md-2 offset-md-10"
-      data-bs-toggle="modal"
-      data-bs-target="#FormRiskPoPUp"
-    >
-      <fa-icon class="user-icon" [icon]="faHeartCirclePlus"></fa-icon>
-    </button>
     <app-edit-risk [risk]="risk"></app-edit-risk>
 
     <h5><b>Fecha de detección: </b> {{ this.risk?.detectedDate }}</h5>

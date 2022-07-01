@@ -9,8 +9,8 @@
   </button>
 
   <app-risk-form #createRiskModal [projectId]="this.projectId"></app-risk-form>
-
-  <p-table
+  <div style="overflow-x:auto;">
+    <p-table
     #dt
     [value]="risks"
     [(selection)]="selectedRisks"
@@ -29,19 +29,21 @@
       'riskType',
       'criticValue'
     ]"
-    styleClass="table table-dark table-striped table-hover text-center"
+    class="table table-dark table-striped table-hover text-center"
   >
     <ng-template pTemplate="caption">
-      <span class="p-input-icon-left">
-        <i class="pi pi-search"></i>
-        <input
-          #search
-          pInputText
-          type="text"
-          (input)="dt.filterGlobal(search.value, 'contains')"
-          placeholder="Buscar..."
-        />
-      </span>
+      <div class="d-grid">
+        <span class="p-input-icon-left">
+          <input
+            #search
+            pInputText
+            type="text"
+            (input)="dt.filterGlobal(search.value, 'contains')"
+            placeholder="Buscar..."
+            class="form-control"
+          />
+        </span>
+      </div>
     </ng-template>
     <ng-template pTemplate="header">
       <tr>
@@ -89,7 +91,7 @@
             styleClass="p-column-filter"
             placeholder="Fecha Deteccion"
             [readonlyInput]="true"
-            dateFormat="yyyy,M,dd"
+            dateFormat="yy,M,dd"
           >
           </p-calendar>
         </th>
@@ -101,7 +103,7 @@
             styleClass="p-column-filter"
             placeholder="Fecha Cierre"
             [readonlyInput]="true"
-            dateFormat="yyyy,M,dd"
+            dateFormat="yy,M,dd"
           >
           </p-calendar>
         </th>
@@ -246,4 +248,5 @@
       </tr>
     </ng-template>
   </p-table>
+  </div>
 </div>

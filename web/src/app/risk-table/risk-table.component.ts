@@ -2,8 +2,10 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Risk } from '../models/risk';
 import { faHeartCirclePlus, faArrowUpRightFromSquare, faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { Table } from 'primeng/table';
+import { SelectItem } from 'primeng/api';
 import { PrimeNGConfig } from 'primeng/api';
 import { RiskService } from '../service/risk.service';
+
 
 @Component({
   selector: 'app-risk-table',
@@ -31,7 +33,7 @@ export class RiskTableComponent implements OnInit {
   faTrashCan = faTrashCan;
 
   @ViewChild('dt') table?: Table;
-
+  
   @Input() projectId?: string;
   @Input() risks: Risk[] = [];
   constructor(private primengConfig: PrimeNGConfig, private service: RiskService) {
