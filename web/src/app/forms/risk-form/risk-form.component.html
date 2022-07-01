@@ -318,7 +318,13 @@
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary">Cerrar</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            (click)="this.show = false"
+          >
+            Cerrar
+          </button>
           <button
             type="button"
             class="btn btn-primary"
