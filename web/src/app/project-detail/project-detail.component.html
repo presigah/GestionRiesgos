@@ -196,8 +196,8 @@
           <fa-icon [icon]="faTrashCan"></fa-icon>
         </button>
         <button
+          *ngIf="project.status !== 'Creado'"
           class="btn btn-danger disabled"
-          
           (click)="deleteProject(project.id)"
         >
           <fa-icon [icon]="faTrashCan"></fa-icon>
